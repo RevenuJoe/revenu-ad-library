@@ -207,6 +207,45 @@ a { color: inherit; }
   .view-toggle { display: none; }
 }
 
+/* ---------- Shuffle button (desktop only) ---------- */
+.shuffle-btn {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+  border: none;
+  background: rgba(28, 31, 29, 0.05);
+  color: var(--ink-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.shuffle-btn:hover {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
+}
+.shuffle-btn svg { display: block; }
+.shuffle-btn.is-spinning svg {
+  animation: shuffle-spin 0.55s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+@keyframes shuffle-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@media (max-width: 1100px) {
+  .shuffle-btn { left: 0; }
+}
+@media (max-width: 960px) {
+  .shuffle-btn { display: none; }
+}
+
 /* ---------- Custom dropdown (shared by mobile filters + mobile platform) ---------- */
 .dropdown {
   position: relative;
@@ -523,9 +562,9 @@ a { color: inherit; }
     font-size: 13px;
   }
   /* Compact hero */
-  .hero { padding: 24px 0 16px; }
-  .hero-title { font-size: clamp(21px, 5.5vw, 33px); margin-bottom: 20px; }
-  .feature-pills { margin-bottom: 28px; gap: 8px; }
+  .hero { padding: 19px 0 16px; }
+  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 10px; }
+  .feature-pills { margin-bottom: 28px; gap: 4px; }
   .feature-pill { font-size: 11px; padding: 4px 12px 4px 4px; }
   .feature-pill-num { width: 18px; height: 18px; font-size: 9px; }
   /* Tabs collapse to the custom filter dropdown */
@@ -554,7 +593,7 @@ a { color: inherit; }
 
 /* Phone-only fine-tuning (anything narrower than typical iPad portrait) */
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(22px, 8vw, 32px); }
+  .hero-title { font-size: clamp(20px, 7.2vw, 29px); }
   .feature-pill { font-size: 10px; }
   .feature-pill-num { width: 16px; height: 16px; font-size: 9px; }
   .brand-logo { font-size: 18px; }

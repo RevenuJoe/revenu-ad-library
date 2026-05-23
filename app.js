@@ -112,6 +112,32 @@ viewToggle.querySelectorAll('.view-toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => setColumns(btn.dataset.cols));
 });
 
+// ---------- Shuffle button (desktop) ----------
+// Reorders the ads currently visible in the active platform + category.
+// Uses Fisher–Yates and re-renders without re-filtering, so the new order
+// sticks until you change platform / category or hit shuffle again.
+const shuffleBtn = document.getElementById('shuffle-btn');
+
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+shuffleBtn.addEventListener('click', () => {
+  if (visibleAds.length < 2) return;
+  shuffleInPlace(visibleAds);
+  renderCards(true); // animate to highlight the new order
+  shuffleBtn.classList.remove('is-spinning');
+  // Force reflow so the animation restarts even on rapid clicks
+  void shuffleBtn.offsetWidth;
+  shuffleBtn.classList.add('is-spinning');
+});
+shuffleBtn.addEventListener('animationend', () => {
+  shuffleBtn.classList.remove('is-spinning');
+});
+
 // ---------- Load ads ----------
 allAds = window.ADS || [];
 renderFeaturePills();
@@ -184,13 +210,18 @@ filterDropdownTrigger.addEventListener('click', (e) => {
 });
 
 // ---------- Gallery ----------
-// `animate` is true on initial load and platform switches, false on category-tab switches
+// `animate` is true on initial load and platform switches, false on category-tab switches.
+// render() refilters from allAds; renderCards() just paints whatever is currently in visibleAds
+// (used by the shuffle button so it doesn't re-sort back into the original order).
 function render(animate = false) {
   visibleAds = allAds.filter(ad =>
     (ad.platform || 'google') === activePlatform &&
     ad.category === activeFilter
   );
+  renderCards(animate);
+}
 
+function renderCards(animate = false) {
   gallery.innerHTML = '';
   if (visibleAds.length === 0) {
     const cfg = currentPlatform();
