@@ -94,10 +94,11 @@ renderTabs();
 updateHeadline();
 render();
 
-// ---------- Headline ----------
+// ---------- Headline + tab title ----------
 function updateHeadline() {
   const cfg = currentPlatform();
   heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
+  document.title = `${cfg.label} Library | Revenu`;
 }
 
 // ---------- Feature pills (3 bullet badges) ----------

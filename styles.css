@@ -81,7 +81,7 @@ a { color: inherit; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 60px 0 16px;
+  padding: 54px 0 16px;
   text-align: center;
 }
 .hero-title {
@@ -99,7 +99,7 @@ a { color: inherit; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin: 0 0 56px;
+  margin: 0 0 28px;
 }
 .feature-pill {
   display: inline-flex;
