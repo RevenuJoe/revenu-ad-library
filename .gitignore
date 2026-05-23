@@ -9,6 +9,9 @@
 ads.json.bak
 images/*/_tmp_sort/
 
+# Favicon source images + intermediates (only the rendered .ico/.png are committed)
+_favicon_source/
+
 # Dependencies / build artifacts
 node_modules/
 .vercel
