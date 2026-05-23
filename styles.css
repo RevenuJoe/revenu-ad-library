@@ -441,10 +441,11 @@ a { color: inherit; }
   box-shadow: 0 24px 60px rgba(0,0,0,0.5);
   background: var(--bg);
   cursor: pointer;
-  touch-action: pan-y; /* allow vertical scroll bail-out, capture horizontal swipes */
+  touch-action: pan-y; /* let vertical scroll through, capture horizontal swipes */
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+  will-change: transform, opacity;
 }
 .lb-figure figcaption {
   color: #f7f1e8;

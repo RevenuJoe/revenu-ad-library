@@ -315,6 +315,10 @@ function openLightbox(index) {
 function closeLightbox() {
   lightbox.hidden = true;
   document.body.style.overflow = '';
+  // Reset any in-flight drag transform so next open is clean
+  lbImage.style.transition = 'none';
+  lbImage.style.transform = '';
+  lbImage.style.opacity = '';
 }
 function updateLightbox() {
   const ad = visibleAds[currentIndex];
@@ -342,34 +346,103 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') step(1);
 });
 
-// ---------- Touch swipe + tap navigation on the lightbox image ----------
-// Mobile: side buttons are hidden — users swipe left/right on the image to
-// move between ads, or tap the image to advance to the next one.
-// Desktop: tapping the image also advances (arrow buttons + keys still work).
-let swipeStartX = 0;
-let swipeStartY = 0;
+// ---------- Touch drag (Tinder-style) on the lightbox image ----------
+// Mobile only: the image follows the finger horizontally. If the drag
+// crosses SWIPE_THRESHOLD, the image slides off and the next/previous ad
+// slides in from the opposite side. Otherwise it springs back to center.
+// A tap (no significant movement) advances to the next ad via the click
+// handler below — that handler also covers desktop click-to-advance.
+const SWIPE_THRESHOLD = 80; // px past which a swipe commits to navigation
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let dragAxis = null; // 'x' | 'y' | null — locked on first significant movement
+let dragDx = 0;
 let swipeDidNavigate = false;
+
+function applyDrag(dx) {
+  // Subtle rotation + fade as the card pulls away
+  const rot = (dx / window.innerWidth) * 10;
+  const opacity = Math.max(0.5, 1 - Math.abs(dx) / (window.innerWidth * 0.8));
+  lbImage.style.transition = 'none';
+  lbImage.style.transform = `translateX(${dx}px) rotate(${rot}deg)`;
+  lbImage.style.opacity = String(opacity);
+}
+
+function snapBack() {
+  lbImage.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+  lbImage.style.transform = '';
+  lbImage.style.opacity = '';
+}
+
+function commitSwipe(direction) {
+  // direction: +1 (next, swipe-left) or -1 (prev, swipe-right)
+  const sign = direction === 1 ? -1 : 1;
+  lbImage.style.transition = 'transform 0.22s ease, opacity 0.22s ease';
+  lbImage.style.transform = `translateX(${sign * window.innerWidth}px) rotate(${sign * 12}deg)`;
+  lbImage.style.opacity = '0';
+
+  const onOff = () => {
+    lbImage.removeEventListener('transitionend', onOff);
+    step(direction);
+    // Place the new image off-screen on the opposite side, then animate to center
+    lbImage.style.transition = 'none';
+    lbImage.style.transform = `translateX(${-sign * window.innerWidth}px)`;
+    lbImage.style.opacity = '0';
+    void lbImage.offsetWidth; // force reflow so the next change animates
+    lbImage.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+    lbImage.style.transform = '';
+    lbImage.style.opacity = '';
+  };
+  lbImage.addEventListener('transitionend', onOff, { once: true });
+}
 
 lbImage.addEventListener('touchstart', (e) => {
   if (e.touches.length !== 1) return;
-  swipeStartX = e.touches[0].clientX;
-  swipeStartY = e.touches[0].clientY;
+  dragStartX = e.touches[0].clientX;
+  dragStartY = e.touches[0].clientY;
+  dragAxis = null;
+  dragDx = 0;
+  isDragging = true;
   swipeDidNavigate = false;
+  lbImage.style.transition = 'none';
 }, { passive: true });
 
-lbImage.addEventListener('touchend', (e) => {
-  if (e.changedTouches.length !== 1) return;
-  const dx = e.changedTouches[0].clientX - swipeStartX;
-  const dy = e.changedTouches[0].clientY - swipeStartY;
-  // Horizontal swipe: at least 40px and mostly horizontal
-  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-    swipeDidNavigate = true;
-    step(dx < 0 ? 1 : -1);
+lbImage.addEventListener('touchmove', (e) => {
+  if (!isDragging || e.touches.length !== 1) return;
+  const dx = e.touches[0].clientX - dragStartX;
+  const dy = e.touches[0].clientY - dragStartY;
+  if (!dragAxis) {
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+      dragAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+    }
+  }
+  if (dragAxis === 'x') {
+    dragDx = dx;
+    applyDrag(dx);
   }
 }, { passive: true });
 
+lbImage.addEventListener('touchend', () => {
+  if (!isDragging) return;
+  isDragging = false;
+  if (dragAxis !== 'x') return; // vertical or no movement — leave alone
+  if (Math.abs(dragDx) > SWIPE_THRESHOLD) {
+    swipeDidNavigate = true;
+    commitSwipe(dragDx < 0 ? 1 : -1);
+  } else {
+    snapBack();
+  }
+}, { passive: true });
+
+lbImage.addEventListener('touchcancel', () => {
+  if (!isDragging) return;
+  isDragging = false;
+  if (dragAxis === 'x') snapBack();
+}, { passive: true });
+
 lbImage.addEventListener('click', () => {
-  // Suppress the synthetic click that fires after a swipe
+  // Suppress the synthetic click that follows a swipe
   if (swipeDidNavigate) {
     swipeDidNavigate = false;
     return;
