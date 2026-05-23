@@ -440,6 +440,11 @@ a { color: inherit; }
   border-radius: 12px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.5);
   background: var(--bg);
+  cursor: pointer;
+  touch-action: pan-y; /* allow vertical scroll bail-out, capture horizontal swipes */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 .lb-figure figcaption {
   color: #f7f1e8;
@@ -541,10 +546,9 @@ a { color: inherit; }
   .card-body { padding: 16px 20px 20px; }
   .card-title { font-size: 16px; }
   .card-sub { font-size: 13px; }
-  .lb-close, .lb-nav { width: 40px; height: 40px; }
-  .lb-prev { left: 8px; }
-  .lb-next { right: 8px; }
-  .lb-close { top: 12px; right: 12px; }
+  .lb-close { width: 40px; height: 40px; top: 12px; right: 12px; }
+  /* Mobile uses swipe / tap on the image instead of side buttons */
+  .lb-prev, .lb-next { display: none; }
 }
 
 /* Phone-only fine-tuning (anything narrower than typical iPad portrait) */

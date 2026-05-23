@@ -342,6 +342,41 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') step(1);
 });
 
+// ---------- Touch swipe + tap navigation on the lightbox image ----------
+// Mobile: side buttons are hidden — users swipe left/right on the image to
+// move between ads, or tap the image to advance to the next one.
+// Desktop: tapping the image also advances (arrow buttons + keys still work).
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeDidNavigate = false;
+
+lbImage.addEventListener('touchstart', (e) => {
+  if (e.touches.length !== 1) return;
+  swipeStartX = e.touches[0].clientX;
+  swipeStartY = e.touches[0].clientY;
+  swipeDidNavigate = false;
+}, { passive: true });
+
+lbImage.addEventListener('touchend', (e) => {
+  if (e.changedTouches.length !== 1) return;
+  const dx = e.changedTouches[0].clientX - swipeStartX;
+  const dy = e.changedTouches[0].clientY - swipeStartY;
+  // Horizontal swipe: at least 40px and mostly horizontal
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+    swipeDidNavigate = true;
+    step(dx < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+lbImage.addEventListener('click', () => {
+  // Suppress the synthetic click that fires after a swipe
+  if (swipeDidNavigate) {
+    swipeDidNavigate = false;
+    return;
+  }
+  step(1);
+});
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
