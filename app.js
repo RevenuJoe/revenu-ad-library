@@ -42,7 +42,7 @@ const platforms = {
   linkedin: {
     label: 'LinkedIn Ads',
     folder: 'LinkedIn Ads',
-    features: ['Increase Your CTR', 'Drive More Demos', 'Make An Impact'],
+    features: ['Increase Your CTR', 'Drive More Demos', 'Stop The Scroll'],
     defaultTab: 'problem',
     tabs: [
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
