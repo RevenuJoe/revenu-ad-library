@@ -70,8 +70,8 @@ const platforms = {
 let allAds = [];
 let visibleAds = [];
 let currentIndex = 0;
-let activePlatform = 'google';
-let activeFilter = platforms.google.defaultTab;
+let activePlatform = 'linkedin';
+let activeFilter = platforms.linkedin.defaultTab;
 
 function currentPlatform() { return platforms[activePlatform] || platforms.google; }
 
