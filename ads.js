@@ -1138,5 +1138,27 @@ window.ADS = [
     tag: "Animation",
     category: "animations",
     platform: "linkedin"
-  }
+  },
+
+  // ---------- Landing Pages — Above the Fold ----------
+  { image: "1 Field - 1.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "1 Field - 2.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "1 Field - 3.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Long Form 2.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Long Form 3.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  { image: "Question 1.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 2.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 3.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 4.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 5.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 6.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 7.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 8.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 9.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 10.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 11.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 13.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" }
 ];

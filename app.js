@@ -67,11 +67,29 @@ const platforms = {
   }
 };
 
+// ---------- URL routing ----------
+// Each platform has its own clean URL. Root URL "/" defaults to LinkedIn.
+// vercel.json rewrites /google-ads, /linkedin-ads, /landing-pages to index.html.
+const PATH_TO_PLATFORM = {
+  '/google-ads': 'google',
+  '/linkedin-ads': 'linkedin',
+  '/landing-pages': 'landing'
+};
+const PLATFORM_TO_PATH = {
+  google:   '/google-ads',
+  linkedin: '/linkedin-ads',
+  landing:  '/landing-pages'
+};
+function platformFromPath() {
+  const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+  return PATH_TO_PLATFORM[path] || 'linkedin';
+}
+
 let allAds = [];
 let visibleAds = [];
 let currentIndex = 0;
-let activePlatform = 'linkedin';
-let activeFilter = platforms.linkedin.defaultTab;
+let activePlatform = platformFromPath();
+let activeFilter = platforms[activePlatform].defaultTab;
 let isFirstRender = true;
 
 function currentPlatform() { return platforms[activePlatform] || platforms.google; }
@@ -140,6 +158,8 @@ shuffleBtn.addEventListener('animationend', () => {
 
 // ---------- Load ads ----------
 allAds = window.ADS || [];
+// Sync the desktop platform pills to the URL-derived activePlatform
+platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform === activePlatform));
 renderFeaturePills();
 renderTabs();
 updateHeadline();
@@ -235,7 +255,7 @@ function renderCards(animate = false) {
 
   visibleAds.forEach((ad, i) => {
     const card = document.createElement('article');
-    card.className = 'card';
+    card.className = `card card-${ad.platform || 'google'}`;
     // Pop animation on the first 6 cards — only on initial load + platform switches
     if (animate && i < 6) {
       card.classList.add('card-pop');
@@ -271,7 +291,7 @@ function renderCards(animate = false) {
 // ---------- Platform switching ----------
 const platformNav = document.querySelector('.platform-nav');
 
-function setPlatform(platform) {
+function setPlatform(platform, opts = {}) {
   if (!platform || platform === activePlatform) return;
   // Sync desktop pills
   platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform === platform));
@@ -287,7 +307,22 @@ function setPlatform(platform) {
   renderFeaturePills();
   renderTabs();
   render(true); // platform switch — animate
+  // Push the new URL (unless this was triggered by popstate)
+  if (opts.updateUrl !== false) {
+    const newPath = PLATFORM_TO_PATH[platform];
+    if (newPath && window.location.pathname !== newPath) {
+      window.history.pushState({ platform }, '', newPath);
+    }
+  }
 }
+
+// Sync platform when the user hits back / forward
+window.addEventListener('popstate', () => {
+  const platform = platformFromPath();
+  if (platform !== activePlatform) {
+    setPlatform(platform, { updateUrl: false });
+  }
+});
 
 // Desktop pills
 platformPills.forEach(pill => {

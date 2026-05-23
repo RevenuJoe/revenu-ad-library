@@ -383,6 +383,21 @@ a { color: inherit; }
   object-fit: contain;
   object-position: center;
 }
+
+/* Landing-page cards have no fixed aspect — each thumb sizes itself to the
+   natural proportions of its image (hero shots are tall, captures are short).
+   Cards top-align in their grid row so they don't stretch to match the tallest. */
+.gallery { align-items: start; }
+.card-landing .card-thumb {
+  aspect-ratio: auto;
+  display: block;
+}
+.card-landing .card-thumb img {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+  display: block;
+}
 .card-body {
   padding: 18px 22px 22px;
   display: flex;
@@ -564,9 +579,9 @@ a { color: inherit; }
   /* Compact hero */
   .hero { padding: 19px 0 16px; }
   .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 10px; }
-  .feature-pills { margin-bottom: 28px; gap: 4px; }
-  .feature-pill { font-size: 11px; padding: 4px 12px 4px 4px; }
-  .feature-pill-num { width: 18px; height: 18px; font-size: 9px; }
+  .feature-pills { margin-bottom: 14px; gap: 4px; }
+  .feature-pill { font-size: 12px; padding: 4px 13px 4px 4px; }
+  .feature-pill-num { width: 20px; height: 20px; font-size: 10px; }
   /* Tabs collapse to the custom filter dropdown */
   .tabs { display: none; }
   .filter-dropdown { display: block; }
@@ -594,7 +609,7 @@ a { color: inherit; }
 /* Phone-only fine-tuning (anything narrower than typical iPad portrait) */
 @media (max-width: 480px) {
   .hero-title { font-size: clamp(20px, 7.2vw, 29px); }
-  .feature-pill { font-size: 10px; }
-  .feature-pill-num { width: 16px; height: 16px; font-size: 9px; }
+  .feature-pill { font-size: 11px; }
+  .feature-pill-num { width: 18px; height: 18px; font-size: 10px; }
   .brand-logo { font-size: 18px; }
 }
