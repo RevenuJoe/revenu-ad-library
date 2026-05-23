@@ -88,6 +88,30 @@ function imagePath(ad) {
   return `images/${cfg.folder}/${tabFolder}/${ad.image}`;
 }
 
+// ---------- Column count toggle (desktop) ----------
+const viewToggle = document.getElementById('view-toggle');
+const COLS_KEY = 'ad-library-cols';
+
+function setColumns(n) {
+  const cols = String(n);
+  gallery.classList.remove('cols-1', 'cols-2', 'cols-3');
+  gallery.classList.add(`cols-${cols}`);
+  viewToggle.querySelectorAll('.view-toggle-btn').forEach(b => {
+    b.classList.toggle('is-active', b.dataset.cols === cols);
+  });
+  try { localStorage.setItem(COLS_KEY, cols); } catch (e) {}
+}
+
+// Restore saved preference (default 3)
+const savedCols = (() => {
+  try { return localStorage.getItem(COLS_KEY); } catch (e) { return null; }
+})();
+setColumns(savedCols && ['1','2','3'].includes(savedCols) ? savedCols : 2);
+
+viewToggle.querySelectorAll('.view-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => setColumns(btn.dataset.cols));
+});
+
 // ---------- Load ads ----------
 allAds = window.ADS || [];
 renderFeaturePills();

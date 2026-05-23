@@ -168,6 +168,44 @@ a { color: inherit; }
   padding: 14px 0;
   text-align: center; /* centers the inline-flex .tabs row on desktop */
 }
+.filters-wrap .container { position: relative; }
+
+/* ---------- View toggle (desktop only) ---------- */
+.view-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 2px;
+  background: rgba(28, 31, 29, 0.05);
+  border-radius: 10px;
+  padding: 3px;
+}
+.view-toggle-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.view-toggle-btn:hover { color: var(--ink); }
+.view-toggle-btn svg { display: block; fill: currentColor; }
+.view-toggle-btn.is-active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
+}
+/* Toggle hides at the same breakpoint where the desktop tabs collapse */
+@media (max-width: 960px) {
+  .view-toggle { display: none; }
+}
 
 /* ---------- Custom dropdown (shared by mobile filters + mobile platform) ---------- */
 .dropdown {
@@ -268,6 +306,15 @@ a { color: inherit; }
   gap: 24px;
   padding: 32px 0 64px;
 }
+.gallery.cols-1 {
+  grid-template-columns: 1fr;
+  gap: 28px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gallery.cols-2 { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.gallery.cols-3 { grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .card {
   background: var(--bg-card);
   border-radius: var(--radius);
@@ -428,16 +475,21 @@ a { color: inherit; }
 }
 
 /* ---------- Responsive ---------- */
+/* ---------- Responsive breakpoints ----------
+   Three tiers:
+   ≥ 1100px : full-size desktop
+   960–1100 : compact desktop (tabs + toggle still visible, slightly tighter)
+   < 960px  : mobile UI — dropdowns for both platform and category, 1-col gallery,
+              no column toggle, compact hero. iPad portrait (≤ 1024) hits this. */
+
 @media (max-width: 1100px) {
   .container { padding: 0 32px; }
   .platform-pill { padding: 9px 18px; font-size: 15px; }
+  .view-toggle { right: 0; }
+  .tab { padding: 14px 18px; }
 }
 
-@media (max-width: 900px) {
-  .gallery { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-}
-
-@media (max-width: 700px) {
+@media (max-width: 960px) {
   .container { padding: 0 20px; }
   .header-inner {
     flex-direction: row;
@@ -445,11 +497,8 @@ a { color: inherit; }
     justify-content: space-between;
     gap: 12px;
   }
-  .platform-nav {
-    position: relative;
-    width: auto;
-  }
-  /* Hide the desktop pills row on mobile — replaced by the custom dropdown */
+  .platform-nav { position: relative; width: auto; }
+  /* Replace the row of platform pills with the custom dropdown */
   .platform-pill { display: none; }
   .platform-dropdown {
     display: block;
@@ -457,7 +506,6 @@ a { color: inherit; }
     max-width: none;
     margin: 0;
   }
-  /* Anchor the dropdown menu to the right edge of the trigger */
   .platform-dropdown .dropdown-menu {
     left: auto;
     right: 0;
@@ -468,18 +516,28 @@ a { color: inherit; }
     padding: 10px 14px;
     font-size: 13px;
   }
+  /* Compact hero */
   .hero { padding: 24px 0 16px; }
-  /* Headline shrunk ~25% on mobile */
-  .hero-title { font-size: clamp(21px, 6.75vw, 33px); margin-bottom: 20px; }
+  .hero-title { font-size: clamp(21px, 5.5vw, 33px); margin-bottom: 20px; }
   .feature-pills { margin-bottom: 28px; gap: 8px; }
-  /* Bullets shrunk ~10% on mobile */
   .feature-pill { font-size: 11px; padding: 4px 12px 4px 4px; }
   .feature-pill-num { width: 18px; height: 18px; font-size: 9px; }
-  /* Hide the row of category tabs on mobile — replaced by the custom dropdown */
+  /* Tabs collapse to the custom filter dropdown */
   .tabs { display: none; }
   .filter-dropdown { display: block; }
   .filters-wrap { padding: 10px 0; }
-  .gallery { grid-template-columns: 1fr; gap: 16px; padding: 24px 0 56px; }
+  /* Gallery is always 1 column at this size; cols-1/2/3 selection is ignored */
+  .gallery,
+  .gallery.cols-1,
+  .gallery.cols-2,
+  .gallery.cols-3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 0 56px;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
   .card-body { padding: 16px 20px 20px; }
   .card-title { font-size: 16px; }
   .card-sub { font-size: 13px; }
@@ -487,4 +545,12 @@ a { color: inherit; }
   .lb-prev { left: 8px; }
   .lb-next { right: 8px; }
   .lb-close { top: 12px; right: 12px; }
+}
+
+/* Phone-only fine-tuning (anything narrower than typical iPad portrait) */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(22px, 8vw, 32px); }
+  .feature-pill { font-size: 10px; }
+  .feature-pill-num { width: 16px; height: 16px; font-size: 9px; }
+  .brand-logo { font-size: 18px; }
 }
