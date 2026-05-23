@@ -72,6 +72,7 @@ let visibleAds = [];
 let currentIndex = 0;
 let activePlatform = 'linkedin';
 let activeFilter = platforms.linkedin.defaultTab;
+let isFirstRender = true;
 
 function currentPlatform() { return platforms[activePlatform] || platforms.google; }
 
@@ -92,7 +93,7 @@ allAds = window.ADS || [];
 renderFeaturePills();
 renderTabs();
 updateHeadline();
-render();
+render(true); // initial load — animate
 
 // ---------- Headline + tab title ----------
 function updateHeadline() {
@@ -159,7 +160,8 @@ filterDropdownTrigger.addEventListener('click', (e) => {
 });
 
 // ---------- Gallery ----------
-function render() {
+// `animate` is true on initial load and platform switches, false on category-tab switches
+function render(animate = false) {
   visibleAds = allAds.filter(ad =>
     (ad.platform || 'google') === activePlatform &&
     ad.category === activeFilter
@@ -179,6 +181,11 @@ function render() {
   visibleAds.forEach((ad, i) => {
     const card = document.createElement('article');
     card.className = 'card';
+    // Pop animation on the first 6 cards — only on initial load + platform switches
+    if (animate && i < 6) {
+      card.classList.add('card-pop');
+      card.style.animationDelay = `${i * 0.08}s`;
+    }
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Open ${ad.title}`);
@@ -203,6 +210,7 @@ function render() {
     });
     gallery.appendChild(card);
   });
+  isFirstRender = false;
 }
 
 // ---------- Platform switching ----------
@@ -223,7 +231,7 @@ function setPlatform(platform) {
   updateHeadline();
   renderFeaturePills();
   renderTabs();
-  render();
+  render(true); // platform switch — animate
 }
 
 // Desktop pills
