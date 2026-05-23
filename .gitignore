@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Hide the original PDFs/PNGs backup folders — only the .webp files in each
+# category folder are needed to render the site
+**/_originals/
+
+# Old/temp files from earlier iterations
+ads.json.bak
+images/*/_tmp_sort/
+
+# Dependencies / build artifacts
+node_modules/
+.vercel
+.env
+*.log
