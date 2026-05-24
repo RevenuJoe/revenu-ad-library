@@ -319,13 +319,12 @@ function shuffleInPlace(arr) {
 
 shuffleBtn.addEventListener('click', () => {
   if (visibleAds.length < 2) return;
+  // Pure shuffle — priority pinning is intentionally NOT re-applied.
+  // Shuffle takes priority over the curated order, so pinned ads (Question
+  // Animated, the LinkedIn animations, etc.) get tossed in with everything else.
   shuffleInPlace(visibleAds);
-  // Keep pinned ads (e.g., animations pinned into product/problem/etc.) at the top
-  // even after a shuffle. Sort is stable, so non-pinned ads stay in shuffled order.
-  applyPinnedSort(visibleAds);
   renderCards(true); // animate to highlight the new order
   shuffleBtn.classList.remove('is-spinning');
-  // Force reflow so the animation restarts even on rapid clicks
   void shuffleBtn.offsetWidth;
   shuffleBtn.classList.add('is-spinning');
 });
