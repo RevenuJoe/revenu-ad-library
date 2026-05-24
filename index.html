@@ -10,7 +10,13 @@
     if (location.protocol !== 'file:') document.write('<base href="/">');
   </script>
   <title>LinkedIn Ads Library | Revenu</title>
-  <meta name="description" content="100+ high-performing ad examples across LinkedIn, Google, and tons of winning landing page formulas too." />
+  <meta name="description" content="A free library of 300+ high-performing B2B SaaS ad examples and landing page templates across LinkedIn, Google, and landing pages — categorized by formula." />
+  <meta name="keywords" content="LinkedIn ads, Google ads, B2B SaaS ads, landing pages, ad library, ad formulas, ad examples, marketing examples, ad templates, SaaS marketing, demand generation, conversion examples" />
+  <meta name="author" content="Revenu Agency" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <!-- Canonical — updated by JS for nested URLs -->
+  <link rel="canonical" id="canonical-link" href="https://library.revenuagency.io/" />
 
   <!-- Open Graph (Slack / WhatsApp / Facebook / LinkedIn link previews) -->
   <meta property="og:type" content="website" />
@@ -37,6 +43,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured data: Organization + WebSite (with SearchAction) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.revenuagency.io/#organization",
+        "name": "Revenu",
+        "alternateName": "Revenu Agency",
+        "url": "https://www.revenuagency.io",
+        "logo": "https://library.revenuagency.io/favicon/favicon-192.png",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://library.revenuagency.io/#website",
+        "url": "https://library.revenuagency.io/",
+        "name": "Revenu Ad Library",
+        "description": "A free library of 300+ high-performing B2B SaaS ad examples and landing page templates.",
+        "publisher": { "@id": "https://www.revenuagency.io/#organization" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Dynamic page-specific JSON-LD (CollectionPage / ItemPage / BreadcrumbList) — populated by app.js -->
+  <script type="application/ld+json" id="page-jsonld"></script>
 </head>
 <body>
   <header class="site-header">

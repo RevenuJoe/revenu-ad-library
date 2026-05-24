@@ -462,6 +462,134 @@ function updateHeadline() {
   const cfg = currentPlatform();
   heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
   document.title = `${cfg.label} Library | Revenu`;
+  updateSEOTags();
+}
+
+// ---------- SEO: title, description, canonical, JSON-LD per URL ----------
+// Called whenever the URL changes (platform switch, category switch, ad open/close,
+// popstate). Updates <title>, <meta description>, <link rel=canonical>, and the
+// page-level JSON-LD schema so each URL communicates its content to crawlers.
+const SITE_ORIGIN = 'https://library.revenuagency.io';
+function findAdByUrl(parsed) {
+  if (!parsed.category || parsed.adId == null) return null;
+  return allAds.find(a =>
+    (a.platform || 'google') === parsed.platform &&
+    a.category === parsed.category &&
+    a.id === parsed.adId
+  );
+}
+function setMeta(name, value) {
+  let el = document.querySelector(`meta[name="${name}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', value);
+}
+function setCanonical(url) {
+  let el = document.getElementById('canonical-link');
+  if (!el) {
+    el = document.createElement('link');
+    el.setAttribute('rel', 'canonical');
+    el.id = 'canonical-link';
+    document.head.appendChild(el);
+  }
+  el.setAttribute('href', url);
+}
+function setJsonLd(obj) {
+  const el = document.getElementById('page-jsonld');
+  if (!el) return;
+  el.textContent = obj ? JSON.stringify(obj) : '';
+}
+function updateSEOTags() {
+  const parsed = parsePath();
+  const platform = parsed.platform;
+  const cfg = platforms[platform];
+  if (!cfg) return;
+  const canonical = SITE_ORIGIN + window.location.pathname;
+  setCanonical(canonical);
+
+  const breadcrumbItems = [
+    { name: 'Revenu Ad Library', item: SITE_ORIGIN + '/' },
+    { name: cfg.label, item: SITE_ORIGIN + PLATFORM_TO_PATH[platform] }
+  ];
+
+  // Specific ad open
+  const ad = findAdByUrl(parsed);
+  if (ad) {
+    const catLabel = (cfg.tabs.find(t => t.key === ad.category) || {}).label || ad.category;
+    breadcrumbItems.push({
+      name: catLabel,
+      item: SITE_ORIGIN + PLATFORM_TO_PATH[platform] + '/' + ad.category
+    });
+    breadcrumbItems.push({
+      name: ad.title,
+      item: canonical
+    });
+    const title = `${ad.title} — ${catLabel} ${cfg.label} example | Revenu`;
+    document.title = title;
+    setMeta(
+      'description',
+      `${ad.title} — a real example of a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} from the Revenu Ad Library. Browse 300+ proven B2B SaaS ad and landing page templates.`
+    );
+    setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'ImageObject',
+      '@id': canonical,
+      name: ad.title,
+      caption: ad.title + (ad.formula ? ' — ' + ad.formula : ''),
+      description: `${ad.title}: a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} example curated in the Revenu Ad Library.`,
+      contentUrl: SITE_ORIGIN + '/' + imagePath(ad).replace(/^\//, ''),
+      keywords: [cfg.label, catLabel, ad.title, ad.formula, ad.tag, 'B2B SaaS', 'ad example'].filter(Boolean).join(', '),
+      isPartOf: { '@id': SITE_ORIGIN + '/#website' },
+      breadcrumb: { '@type': 'BreadcrumbList', itemListElement: breadcrumbItems.map((b, i) => ({
+        '@type': 'ListItem', position: i + 1, name: b.name, item: b.item
+      })) }
+    });
+    return;
+  }
+
+  // Category page (or "All")
+  if (parsed.category) {
+    const catLabel = (cfg.tabs.find(t => t.key === parsed.category) || {}).label || parsed.category;
+    breadcrumbItems.push({ name: catLabel, item: canonical });
+    document.title = `${catLabel} — ${cfg.label} examples | Revenu`;
+    setMeta(
+      'description',
+      `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS ad templates categorized by formula.`
+    );
+    setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': canonical,
+      name: `${catLabel} — ${cfg.label}`,
+      description: `Collection of ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} examples.`,
+      isPartOf: { '@id': SITE_ORIGIN + '/#website' },
+      breadcrumb: { '@type': 'BreadcrumbList', itemListElement: breadcrumbItems.map((b, i) => ({
+        '@type': 'ListItem', position: i + 1, name: b.name, item: b.item
+      })) }
+    });
+    return;
+  }
+
+  // Platform landing (or root)
+  document.title = `${cfg.label} Library | Revenu`;
+  setMeta(
+    'description',
+    `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world ad and landing page templates categorized by formula.`
+  );
+  setJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': canonical,
+    name: `${cfg.label} Library`,
+    description: `Curated library of ${cfg.label} examples for B2B SaaS marketing.`,
+    isPartOf: { '@id': SITE_ORIGIN + '/#website' },
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: breadcrumbItems.map((b, i) => ({
+      '@type': 'ListItem', position: i + 1, name: b.name, item: b.item
+    })) }
+  });
 }
 
 // ---------- Feature pills (3 bullet badges) ----------
@@ -532,6 +660,7 @@ function setFilter(key, opts = {}) {
       window.history.pushState({ category: key }, '', newPath);
     }
   }
+  if (typeof updateSEOTags === 'function') updateSEOTags();
 }
 
 // Toggle mobile filter dropdown
@@ -813,6 +942,7 @@ function syncUrlToCurrentAd() {
   if (window.location.pathname !== newPath) {
     window.history.replaceState({ adId: ad.id }, '', newPath);
   }
+  if (typeof updateSEOTags === 'function') updateSEOTags();
 }
 
 async function openLightbox(index, opts = {}) {
@@ -871,6 +1001,7 @@ async function openLightbox(index, opts = {}) {
     }
   }
 
+  updateSEOTags();
   preloadNeighbors();
 }
 
@@ -890,6 +1021,7 @@ function closeLightbox(opts = {}) {
       window.history.replaceState({}, '', newPath);
     }
   }
+  if (typeof updateSEOTags === 'function') updateSEOTags();
 }
 
 // step(): used by desktop prev/next buttons, arrow keys, and the
