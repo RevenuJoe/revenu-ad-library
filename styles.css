@@ -568,7 +568,9 @@ body.gated .site-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  /* Above the header (200) and password gate (150) so the dark backdrop
+     fully covers REVENU + the platform dropdown on mobile too. */
+  z-index: 300;
   padding: 24px;
   animation: fadeIn 0.2s ease;
 }
