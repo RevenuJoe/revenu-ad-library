@@ -103,7 +103,9 @@ function imagePath(ad) {
   const cfg = platforms[ad.platform || 'google'] || platforms.google;
   const tab = cfg.tabs.find(t => t.key === ad.category);
   const tabFolder = tab ? tab.folder : '';
-  return `images/${cfg.folder}/${tabFolder}/${ad.image}`;
+  // Absolute path so images resolve correctly whether the URL is /,
+  // /linkedin-ads, /google-ads, or /landing-pages.
+  return `/images/${cfg.folder}/${tabFolder}/${ad.image}`;
 }
 
 // ---------- Column count toggle (desktop) ----------

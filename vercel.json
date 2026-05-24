@@ -1,6 +1,4 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     { "source": "/google-ads", "destination": "/index.html" },
     { "source": "/linkedin-ads", "destination": "/index.html" },
