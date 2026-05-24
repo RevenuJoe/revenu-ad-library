@@ -81,11 +81,14 @@ a { color: inherit; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 40px 0 18px;
+  /* 30px above the title, 16px below — plus the filters-wrap 14px top padding
+     gives 30px below too, so the title sits with equal breathing room on
+     both sides between the header above and the tabs below. */
+  padding: 30px 0 16px;
   text-align: center;
 }
 .hero-title {
-  font-size: clamp(28px, 3.3vw, 44px);
+  font-size: clamp(17px, 2vw, 26px); /* 40% smaller than before */
   font-weight: 700;
   margin: 0;
   color: var(--ink);
