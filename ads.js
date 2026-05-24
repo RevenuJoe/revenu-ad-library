@@ -109,14 +109,16 @@ window.ADS = [
     title: "The Ad Rank Formula",
     formula: "How Google ranks your ads",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 4 }
   },
   {
     image: "Quality Score Breakdown.webp",
     title: "Quality Score Breakdown",
     formula: "The four pillars of Quality Score",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 8 }
   },
   {
     image: "Focus On Relevance.webp",
@@ -154,6 +156,150 @@ window.ADS = [
     category: "playbook"
   },
 
+
+  // ---------- Google Ads — Brand (continued) ----------
+  { image: "Brand 1.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 1 } },
+  { image: "Brand 2.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 5 } },
+  { image: "Brand 3.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 9 } },
+  { image: "Brand 4.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 5.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 6.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 7.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 8.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 9.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 10.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 11.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 12.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 13.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 14.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 15.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 16.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 17.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 18.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 19.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 20.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 21.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 22.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 23.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 24.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  { image: "Brand 25.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+
+  // ---------- Google Ads — Non Brand (continued) ----------
+  { image: "Non Brand 1.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 2 } },
+  { image: "Non Brand 2.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 6 } },
+  { image: "Non Brand 3.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 10 } },
+  { image: "Non Brand 4.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 5.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 6.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 7.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 8.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 9.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 10.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 11.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 12.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 13.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 14.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 15.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 16.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 17.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 18.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 19.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 20.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 21.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 22.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 23.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 24.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 25.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 26.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 27.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 28.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 29.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 30.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 31.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 32.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 33.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 34.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 35.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 36.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 37.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 38.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 39.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 40.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 41.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 42.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 43.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  { image: "Non Brand 44.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+
+  // ---------- Google Ads — Competitor (continued) ----------
+  { image: "Competitor 1.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 3 } },
+  { image: "Competitor 2.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 7 } },
+  { image: "Competitor 3.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 11 } },
+  { image: "Competitor 4.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 5.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 6.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 7.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 8.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 9.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 10.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 11.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 12.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 13.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 14.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 15.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 16.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 17.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 18.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 19.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 20.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 21.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 22.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 23.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 24.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 25.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 26.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 27.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 28.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 29.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 30.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 31.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 32.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 33.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 34.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 35.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 36.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 37.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 38.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 39.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 40.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 41.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 42.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 43.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 44.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 45.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 46.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 47.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 48.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 49.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 50.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 51.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 52.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 53.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 54.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 55.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 56.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 57.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 58.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 59.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 60.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 61.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 62.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 63.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 64.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 65.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 66.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 67.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 68.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  { image: "Competitor 69.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
   // ---------- LinkedIn ----------
   {
     image: "Playbook 1.webp",
@@ -161,6 +307,7 @@ window.ADS = [
     formula: "Unlock 1.5%+ CTR by blending in",
     tag: "Playbook",
     category: "playbook",
+    priority: { all: 7 },
     platform: "linkedin"
   },
   {
@@ -169,6 +316,7 @@ window.ADS = [
     formula: "Familiar logos drive higher CTR",
     tag: "Playbook",
     category: "playbook",
+    priority: { all: 14 },
     platform: "linkedin"
   },
   {
@@ -289,7 +437,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
-    priority: { problem: 1 },
+    priority: { problem: 1, all: 1 },
     platform: "linkedin"
   },
   {
@@ -378,7 +526,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
-    priority: { problem: 2 },
+    priority: { problem: 2, all: 8 },
     platform: "linkedin"
   },
   {
@@ -395,7 +543,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
-    priority: { problem: 3 },
+    priority: { problem: 3, all: 13 },
     platform: "linkedin"
   },
   {
@@ -868,7 +1016,7 @@ window.ADS = [
     formula: "",
     tag: "Product",
     category: "product",
-    priority: { product: 1 },
+    priority: { product: 1, all: 2 },
     platform: "linkedin"
   },
   {
@@ -909,7 +1057,7 @@ window.ADS = [
     formula: "",
     tag: "Product",
     category: "product",
-    priority: { product: 3 },
+    priority: { product: 3, all: 9 },
     platform: "linkedin"
   },
   {
@@ -1144,20 +1292,20 @@ window.ADS = [
     formula: "",
     tag: "Animation",
     category: "animations",
-    priority: { product: 2 },
+    priority: { product: 2, all: 10 },
     platform: "linkedin"
   },
 
   // ---------- Landing Pages — Above the Fold ----------
-  { image: "1 Field - 1.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 2 },  platform: "landing" },
+  { image: "1 Field - 1.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 2, all: 3 },  platform: "landing" },
   { image: "1 Field - 2.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 8 },  platform: "landing" },
   { image: "1 Field - 3.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 13 }, platform: "landing" },
 
-  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 3 },  platform: "landing" },
+  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 3, all: 6 },  platform: "landing" },
   { image: "Long Form 2.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 9 },  platform: "landing" },
   { image: "Long Form 3.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 14 }, platform: "landing" },
 
-  { image: "Question 1.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 4 },  platform: "landing" },
+  { image: "Question 1.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 4, all: 8 },  platform: "landing" },
   { image: "Question 2.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 10 }, platform: "landing" },
   { image: "Question 3.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 15 }, platform: "landing" },
   { image: "Question 4.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
@@ -1170,7 +1318,7 @@ window.ADS = [
   { image: "Question 11.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 13.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
 
-  { image: "Buttons 1.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 5 },  platform: "landing" },
+  { image: "Buttons 1.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 5, all: 10 },  platform: "landing" },
   { image: "Buttons 2.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 12 }, platform: "landing" },
   { image: "Buttons 3.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Buttons 4.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
@@ -1192,11 +1340,11 @@ window.ADS = [
   { image: "Sign Up 3.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Sign Up 4.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
 
-  // Animated standout — pinned to the top of Above the Fold via priority
-  { image: "Question Animated.webp", title: "Question", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 1 }, platform: "landing" },
+  // Animated standout — pinned to the top of Above the Fold and the All view
+  { image: "Question Animated.webp", title: "Question", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 1, all: 1 }, platform: "landing" },
 
   // ---------- Landing Pages — Blocks ----------
-  { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 1 },  platform: "landing" },
+  { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 1, all: 2 },  platform: "landing" },
   { image: "Dynamic 2.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 7 },  platform: "landing" },
   { image: "Dynamic 3.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 4.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1205,7 +1353,7 @@ window.ADS = [
   { image: "Dynamic 7.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 8.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 2 },  platform: "landing" },
+  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 2, all: 4 },  platform: "landing" },
   { image: "Logos 2.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 8 },  platform: "landing" },
   { image: "Logos 3.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 14 }, platform: "landing" },
   { image: "Logos 4.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1214,7 +1362,7 @@ window.ADS = [
   { image: "Logos 7.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Logos 8.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Product Hero 1.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 3 }, platform: "landing" },
+  { image: "Product Hero 1.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 3, all: 7 }, platform: "landing" },
   { image: "Product Hero 2.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 9 }, platform: "landing" },
   { image: "Product Hero 3.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Product Hero 4.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1253,7 +1401,7 @@ window.ADS = [
   { image: "Video 4.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Video 5.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Bookend 1.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 12 }, platform: "landing" },
+  { image: "Bookend 1.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 12, all: 9 }, platform: "landing" },
   { image: "Bookend 2.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 3.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 4.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1284,7 +1432,7 @@ window.ADS = [
   { image: "Steps 3.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
   // ---------- Landing Pages — Product Visuals ----------
-  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 1 }, platform: "landing" },
+  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 1, all: 5 }, platform: "landing" },
   { image: "Devices 2.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 5 }, platform: "landing" },
   { image: "Devices 3.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 9 }, platform: "landing" },
 
@@ -1320,11 +1468,11 @@ window.ADS = [
 
   // ---------- LinkedIn — Gated Content ----------
   { image: "Gated 1.webp",  title: "Ebook Highlights",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
-  { image: "Gated 2.webp",  title: "Book Tiles",         formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 1 }, platform: "linkedin" },
+  { image: "Gated 2.webp",  title: "Book Tiles",         formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 1, all: 5 }, platform: "linkedin" },
   { image: "Gated 3.webp",  title: "Front & Open",       formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 4 }, platform: "linkedin" },
   { image: "Gated 4.webp",  title: "Front Cover",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
   { image: "Gated 5.webp",  title: "Statistics Cover",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
-  { image: "Gated 6.webp",  title: "Multiple Hardbacks", formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 3 }, platform: "linkedin" },
+  { image: "Gated 6.webp",  title: "Multiple Hardbacks", formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 3, all: 15 }, platform: "linkedin" },
   { image: "Gated 7.webp",  title: "Front & Open",       formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
   { image: "Gated 8.webp",  title: "Paperback Title",    formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
   { image: "Gated 9.webp",  title: "Paperback Details",  formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
@@ -1338,8 +1486,8 @@ window.ADS = [
   { image: "Gated 17.webp", title: "Infographic",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
 
   // ---------- LinkedIn — Conversion ----------
-  { image: "Conversion 1.webp",  title: "Demo Slides",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
-  { image: "Conversion 2.webp",  title: "3 Step Trial",       formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 1.webp",  title: "Demo Slides",        formula: "", tag: "Conversion", category: "conversion", priority: { all: 4 }, platform: "linkedin" },
+  { image: "Conversion 2.webp",  title: "3 Step Trial",       formula: "", tag: "Conversion", category: "conversion", priority: { all: 11 }, platform: "linkedin" },
   { image: "Conversion 3.webp",  title: "Platform Demo",      formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 4.webp",  title: "Price Slider",       formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 5.webp",  title: "Price Calculator",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
@@ -1363,8 +1511,8 @@ window.ADS = [
   { image: "Conversion 23.webp", title: "AirBnB Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
 
   // ---------- LinkedIn — Convo Ads ----------
-  { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
-  { image: "Convo 2.webp",  title: "Lunch",               formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Convo Ads", category: "convo-ads", priority: { all: 6 }, platform: "linkedin" },
+  { image: "Convo 2.webp",  title: "Lunch",               formula: "", tag: "Convo Ads", category: "convo-ads", priority: { all: 12 }, platform: "linkedin" },
   { image: "Convo 3.webp",  title: "Retargeting",         formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
   { image: "Convo 4.webp",  title: "Retargeting",         formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
   { image: "Convo 5.webp",  title: "Problem Profanity",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
@@ -1405,7 +1553,7 @@ window.ADS = [
   { image: "Playbook 29.webp", title: "Be Extreme, Tap Pain, Offer Free", formula: "Three angles that get convo ads opened",            tag: "Playbook", category: "playbook", platform: "linkedin" },
 
   // ---------- LinkedIn — Animations (continued) ----------
-  { image: "Wheel of Fortune.webp",  title: "Wheel of Fortune", formula: "", tag: "Animation", category: "animations", priority: { animations: 1, product: 5 },           platform: "linkedin" },
+  { image: "Wheel of Fortune.webp",  title: "Wheel of Fortune", formula: "", tag: "Animation", category: "animations", priority: { animations: 1, product: 5, all: 3 },  platform: "linkedin" },
   { image: "GIF in Message.webp",    title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 4 },                          platform: "linkedin" },
   { image: "GIF in Message 2.webp",  title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 20 },                         platform: "linkedin" },
   { image: "Scroll Through.webp",    title: "Scroll Through",   formula: "", tag: "Animation", category: "animations", priority: { animations: 3, "gated-content": 2 },   platform: "linkedin" },

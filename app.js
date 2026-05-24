@@ -712,9 +712,9 @@ function render(animate = false) {
 
 // Sort ads by their priority for the current filter (lower = higher in list).
 // Ads without an explicit priority remain in their natural ads.js order at the end
-// (stable sort). Skipped for the 'all' view so global order is preserved there.
+// (stable sort). Works for any filter including 'all' — set `priority: { all: N }`
+// on an ad to bubble it to position N when viewing the All tab.
 function applyPinnedSort(arr) {
-  if (activeFilter === 'all') return;
   arr.sort((a, b) => adPriority(a, activeFilter) - adPriority(b, activeFilter));
 }
 
