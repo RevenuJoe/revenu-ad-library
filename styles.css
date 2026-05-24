@@ -584,6 +584,9 @@ body.gated .site-footer {
   flex-direction: column;
   gap: 11px;
 }
+/* Without this the display: flex above overrides the `hidden` HTML attribute,
+   so the success card would render alongside the form until JS hides it. */
+.password-gate-card[hidden] { display: none; }
 .password-gate-title {
   font-size: clamp(14px, 4vw, 17px);
   font-weight: 800;
