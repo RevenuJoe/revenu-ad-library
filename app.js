@@ -49,7 +49,7 @@ function hideGate() {
     const value = (input.value || '').trim().toLowerCase();
     if (value === PASSWORD.toLowerCase()) {
       try { localStorage.setItem(PASSWORD_KEY, 'ok'); } catch (err) {}
-      hideGate();
+      playSuccessThenReveal();
     } else {
       if (error) error.hidden = false;
       input.value = '';
@@ -57,6 +57,36 @@ function hideGate() {
     }
   });
 })();
+
+// Success animation: tick draws → "Thanks!" → "Enjoy the best libraries in
+// B2B SaaS" → hold → fade out → reveal the library with the pop animation.
+function playSuccessThenReveal() {
+  const form = document.getElementById('password-form');
+  const success = document.getElementById('password-success');
+  if (!form || !success) { hideGate(); return; }
+
+  // Step 1: hide the form, show the success card with its enter animations.
+  form.hidden = true;
+  success.hidden = false;
+  // Forcing reflow so the .is-playing class triggers the keyframes cleanly.
+  void success.offsetWidth;
+  success.classList.add('is-playing');
+
+  // Step 2: hold ~1.0s after the last text fades in, then fade the card out.
+  // (tick ~0.05–0.5s, Thanks 0.55–0.95s, Message 0.85–1.25s, hold to ~2.2s)
+  setTimeout(() => {
+    success.classList.add('is-leaving');
+  }, 2200);
+
+  // Step 3: once the card has faded, close the gate so the library animates in.
+  setTimeout(() => {
+    hideGate();
+    // Reset success state in case the gate is shown again later
+    success.classList.remove('is-playing', 'is-leaving');
+    success.hidden = true;
+    form.hidden = false;
+  }, 2600);
+}
 
 const gallery = document.getElementById('gallery');
 const emptyState = document.getElementById('empty-state');
@@ -215,13 +245,17 @@ function setColumns(n) {
   try { localStorage.setItem(COLS_KEY, cols); } catch (e) {}
 }
 
-// Restore saved preference. First-time mobile visitors get 1-col (matches the
-// previous mobile visual); desktop defaults to 2-col. Toggle still overrides.
+// Restore saved preference. Mobile only allows 1 or 2 columns; desktop allows 1/2/3.
+// First-time mobile visitors get 1-col; desktop defaults to 2-col.
 const savedCols = (() => {
   try { return localStorage.getItem(COLS_KEY); } catch (e) { return null; }
 })();
 const _isMobileViewport = window.matchMedia('(max-width: 960px)').matches;
-setColumns(savedCols && ['1','2','3'].includes(savedCols) ? savedCols : (_isMobileViewport ? 1 : 2));
+const _allowedCols = _isMobileViewport ? ['1', '2'] : ['1', '2', '3'];
+const _useCols = (savedCols && _allowedCols.includes(savedCols))
+  ? savedCols
+  : (_isMobileViewport ? '1' : '2');
+setColumns(_useCols);
 
 viewToggle.querySelectorAll('.view-toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => setColumns(btn.dataset.cols));
@@ -252,6 +286,67 @@ shuffleBtn.addEventListener('click', () => {
 shuffleBtn.addEventListener('animationend', () => {
   shuffleBtn.classList.remove('is-spinning');
 });
+
+// ---------- Search control (desktop) ----------
+// Click the magnifying glass → input slides out, focuses. Press Enter →
+// applies the filter and collapses back to the icon, with an accent dot
+// shown on the icon while a search is active.
+const searchControl = document.getElementById('search-control');
+const searchBtn = document.getElementById('search-btn');
+const searchInput = document.getElementById('search-input');
+const searchIndicator = document.getElementById('search-indicator');
+let searchQuery = '';
+
+function openSearch() {
+  if (!searchControl) return;
+  searchControl.classList.add('is-open');
+  searchInput.value = searchQuery; // restore current query for editing
+  // Wait for the slide-out before grabbing focus so iOS-style soft-keyboards
+  // (where applicable) and the visible caret line up with the open state.
+  setTimeout(() => searchInput.focus(), 60);
+}
+function closeSearch() {
+  if (!searchControl) return;
+  searchControl.classList.remove('is-open');
+  searchInput.blur();
+}
+function applySearch(rawQuery) {
+  searchQuery = (rawQuery || '').trim();
+  if (searchIndicator) searchIndicator.hidden = !searchQuery;
+  render(true); // pop-in animation for the filtered results
+}
+
+if (searchBtn) {
+  searchBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (searchControl.classList.contains('is-open')) {
+      // Clicking the icon while open commits whatever's in the box
+      applySearch(searchInput.value);
+      closeSearch();
+    } else {
+      openSearch();
+    }
+  });
+}
+if (searchInput) {
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applySearch(searchInput.value);
+      closeSearch();
+    } else if (e.key === 'Escape') {
+      // Esc just closes without changing the active filter
+      closeSearch();
+    }
+  });
+  // Close when clicking outside (but ignore clicks on the search button itself)
+  document.addEventListener('click', (e) => {
+    if (!searchControl) return;
+    if (!searchControl.classList.contains('is-open')) return;
+    if (searchControl.contains(e.target)) return;
+    closeSearch();
+  });
+}
 
 // ---------- Load ads ----------
 allAds = window.ADS || [];
@@ -369,10 +464,16 @@ filterDropdownTrigger.addEventListener('click', (e) => {
 // render() refilters from allAds; renderCards() just paints whatever is currently in visibleAds
 // (used by the shuffle button so it doesn't re-sort back into the original order).
 function render(animate = false) {
-  visibleAds = allAds.filter(ad =>
-    (ad.platform || 'google') === activePlatform &&
-    ad.category === activeFilter
-  );
+  visibleAds = allAds.filter(ad => {
+    if ((ad.platform || 'google') !== activePlatform) return false;
+    if (ad.category !== activeFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const hay = `${ad.title || ''} ${ad.formula || ''} ${ad.tag || ''} ${ad.image || ''}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
   renderCards(animate);
 }
 
@@ -739,16 +840,19 @@ async function commitSwipe(direction) {
   // swipe-off animation ends, the new image is almost always cache-warm.
   const preloadDone = preloadImage(targetSrc);
 
-  // Phase 1 — throw the current image off-screen
-  lbImage.style.transition = 'transform 0.26s cubic-bezier(0.5, 0, 0.75, 0.1), opacity 0.22s ease';
+  // Phase 1 — throw the current image off-screen.
+  // We use a setTimeout matching the transition duration instead of waiting
+  // on `transitionend`. If anything cancels the transition (e.g. a follow-up
+  // touch resetting transition to 'none'), `transitionend` never fires and
+  // the await would hang forever — which would leave the image stuck off-screen
+  // and break every subsequent navigation.
+  const PHASE_1_MS = 260;
+  lbImage.style.transition = `transform ${PHASE_1_MS}ms cubic-bezier(0.5, 0, 0.75, 0.1), opacity 0.22s ease`;
   lbImage.style.transform = `translateX(${sign * window.innerWidth}px) rotate(${sign * 10}deg)`;
   lbImage.style.opacity = '0';
 
   await Promise.all([
-    new Promise(resolve => {
-      const onEnd = () => { lbImage.removeEventListener('transitionend', onEnd); resolve(); };
-      lbImage.addEventListener('transitionend', onEnd, { once: true });
-    }),
+    new Promise(resolve => setTimeout(resolve, PHASE_1_MS + 10)),
     preloadDone
   ]);
   if (mySeq !== navSeq) return;

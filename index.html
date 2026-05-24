@@ -78,6 +78,26 @@
           <path d="M20.5 15a9 9 0 0 1-15 3.5L3 15"></path>
         </svg>
       </button>
+      <!-- Desktop-only search: collapsed = icon, expanded = inline input. Green dot when a query is active. -->
+      <div class="search-control" id="search-control">
+        <button class="search-btn" id="search-btn" type="button" aria-label="Search" title="Search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <span class="search-indicator" id="search-indicator" hidden></span>
+        </button>
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search ads…"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+        />
+      </div>
       <div class="dropdown filter-dropdown" id="filter-dropdown">
         <button class="dropdown-trigger" type="button" id="filter-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
           <span class="dropdown-label" id="filter-dropdown-label"></span>
@@ -139,6 +159,15 @@
       <button type="submit" class="password-gate-btn">Unlock</button>
       <p class="password-gate-error" id="password-error" hidden>That's not the right password.</p>
     </form>
+    <div class="password-gate-card password-gate-success" id="password-success" hidden>
+      <div class="password-gate-tick" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M7 16.5 L13.5 22.5 L25 10.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="password-gate-thanks">Thanks!</h2>
+      <p class="password-gate-message">Enjoy the best libraries in <span class="password-gate-message-accent">B2B SaaS</span></p>
+    </div>
   </div>
 
   <script src="ads.js"></script>

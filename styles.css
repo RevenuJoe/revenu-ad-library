@@ -211,6 +211,78 @@ a { color: inherit; }
   .view-toggle { display: none; }
 }
 
+/* ---------- Search control (desktop only) ---------- */
+.search-control {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+.search-btn {
+  position: relative;
+  appearance: none;
+  border: none;
+  background: rgba(28, 31, 29, 0.05);
+  color: var(--ink-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.search-btn:hover {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
+}
+.search-btn svg { display: block; }
+.search-indicator {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 1.5px solid var(--bg);
+  box-shadow: 0 0 0 0.5px rgba(0,0,0,0.04);
+}
+.search-indicator[hidden] { display: none; }
+.search-input {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 16px;
+  height: 32px;
+  width: 0;
+  padding: 0;
+  margin-left: 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.25s ease, padding 0.25s ease, margin-left 0.25s ease, opacity 0.18s ease, border-color 0.15s ease;
+}
+.search-control.is-open .search-input {
+  width: 220px;
+  padding: 0 14px;
+  margin-left: 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-input:focus { border-color: var(--accent); }
+@media (max-width: 1100px) { .search-control { left: 44px; } }
+@media (max-width: 960px) { .search-control { display: none; } }
+
 /* ---------- Shuffle button (desktop only) ---------- */
 .shuffle-btn {
   position: absolute;
@@ -575,6 +647,91 @@ body.gated .site-footer {
   font-weight: 600;
   margin: 2px 0 0;
 }
+
+/* ---------- Password gate success state ---------- */
+.password-gate-success {
+  align-items: center;
+  gap: 14px;
+  padding: 30px 28px 28px;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.password-gate-success.is-leaving {
+  opacity: 0;
+  transform: scale(0.96);
+}
+.password-gate-tick {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(118, 160, 156, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transform: scale(0.6);
+  opacity: 0;
+}
+.password-gate-tick svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+.password-gate-tick svg path {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+}
+.password-gate-success.is-playing .password-gate-tick {
+  animation: tickPop 0.42s 0.05s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.password-gate-success.is-playing .password-gate-tick svg path {
+  animation: drawTick 0.36s 0.28s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+@keyframes tickPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes drawTick {
+  to { stroke-dashoffset: 0; }
+}
+
+.password-gate-thanks {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 4px 0 0;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.password-gate-success.is-playing .password-gate-thanks {
+  animation: gateFadeUp 0.4s 0.55s ease forwards;
+}
+.password-gate-message {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.password-gate-message-accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+.password-gate-success.is-playing .password-gate-message {
+  animation: gateFadeUp 0.4s 0.85s ease forwards;
+}
+@keyframes gateFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 480px) {
+  .password-gate-success { padding: 26px 22px 24px; }
+  .password-gate-thanks { font-size: 19px; }
+  .password-gate-message { font-size: 13px; }
+  .password-gate-tick { width: 50px; height: 50px; }
+  .password-gate-tick svg { width: 28px; height: 28px; }
+}
 @media (max-width: 480px) {
   .password-gate-card { padding: 22px 18px 20px; }
   /* +20% on mobile while still fitting on one line on a 320px phone */
@@ -717,18 +874,24 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
     flex-shrink: 0;
     left: auto; right: auto;
   }
-  /* Column toggle is desktop-only — hide on mobile entirely */
-  .view-toggle { display: none; }
+  /* Mobile column toggle: 1 or 2 only. Sits to the right of the filter dropdown. */
+  .view-toggle {
+    display: flex;
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    left: auto; right: auto;
+  }
+  .view-toggle-btn[data-cols="3"] { display: none; }
   .filter-dropdown {
     display: block;
     flex: 1 1 auto;
     max-width: none;
     margin: 0;
   }
-  /* Mobile is always 1-column regardless of saved column preference */
+  /* Mobile gallery: cols-1 default, cols-2 enabled with tighter gap. cols-3 falls back to 1. */
   .gallery,
   .gallery.cols-1,
-  .gallery.cols-2,
   .gallery.cols-3 {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -736,6 +899,28 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
     max-width: none;
     margin-left: 0;
     margin-right: 0;
+  }
+  .gallery.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 24px 0 56px;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /* Shrink cards to fit two-up on phones without overflow */
+  .gallery.cols-2 .card-body {
+    padding: 10px 12px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .gallery.cols-2 .card-title { font-size: 13px; line-height: 1.2; }
+  .gallery.cols-2 .card-sub { font-size: 10.5px; }
+  .gallery.cols-2 .card-tag {
+    font-size: 9px;
+    padding: 3px 7px;
+    align-self: flex-start;
   }
   .card-body { padding: 16px 20px 20px; }
   .card-title { font-size: 16px; }
