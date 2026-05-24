@@ -12,28 +12,36 @@ window.ADS = [
     title: "P1 - What",
     formula: "What and Why",
     tag: "Non Brand",
-    category: "non-brand"
+    category: "non-brand",
+    priority: { all: 2 }
+
   },
   {
     image: "P1 - question.webp",
     title: "P1 - Question",
     formula: "Question Answer",
     tag: "Non Brand",
-    category: "non-brand"
+    category: "non-brand",
+    priority: { all: 6 }
+
   },
   {
     image: "P2 - guarantee.webp",
     title: "P2 - Guarantee",
     formula: "Solution Guarantee",
     tag: "Non Brand",
-    category: "non-brand"
+    category: "non-brand",
+    priority: { all: 10 }
+
   },
   {
     image: "P2 - cta.webp",
     title: "P2 - CTA",
     formula: "Solution CTA",
     tag: "Non Brand",
-    category: "non-brand"
+    category: "non-brand",
+    priority: { all: 14 }
+
   },
 
   // ---------- Competitor ----------
@@ -42,35 +50,45 @@ window.ADS = [
     title: "P1 - Comp Callout",
     formula: "Competitor Redirect",
     tag: "Competitor",
-    category: "competitor"
+    category: "competitor",
+    priority: { all: 7 }
+
   },
   {
     image: "P1 - soft comp.webp",
     title: "P1 - Soft Comp",
     formula: "Soft Comp Redirect",
     tag: "Competitor",
-    category: "competitor"
+    category: "competitor",
+    priority: { all: 11 }
+
   },
   {
     image: "P1 - comparison.webp",
     title: "P1 - Comparison",
     formula: "Comparison Redirect",
     tag: "Competitor",
-    category: "competitor"
+    category: "competitor",
+    priority: { all: 3 }
+
   },
   {
     image: "P2 - comp offer.webp",
     title: "P2 - Comp Offer",
     formula: "Comparison Offer",
     tag: "Competitor",
-    category: "competitor"
+    category: "competitor",
+    priority: { all: 17 }
+
   },
   {
     image: "P2 - because.webp",
     title: "P2 - Because",
     formula: "We're Better Because",
     tag: "Competitor",
-    category: "competitor"
+    category: "competitor",
+    priority: { all: 15 }
+
   },
 
   // ---------- Brand ----------
@@ -79,28 +97,36 @@ window.ADS = [
     title: "P1 - Brand Name",
     formula: "Brand and USP",
     tag: "Brand",
-    category: "brand"
+    category: "brand",
+    priority: { all: 1 }
+
   },
   {
     image: "P2 - brand name.webp",
     title: "P2 - Brand Name",
     formula: "Soft Brand Push",
     tag: "Brand",
-    category: "brand"
+    category: "brand",
+    priority: { all: 13 }
+
   },
   {
     image: "P2 - brand cta.webp",
     title: "P2 - Brand CTA",
     formula: "Branded CTA",
     tag: "Brand",
-    category: "brand"
+    category: "brand",
+    priority: { all: 5 }
+
   },
   {
     image: "P2 - brand guarantee.webp",
     title: "P2 - Brand Guarantee",
     formula: "Brand Promise",
     tag: "Brand",
-    category: "brand"
+    category: "brand",
+    priority: { all: 9 }
+
   },
 
   // ---------- The Playbook ----------
@@ -125,49 +151,59 @@ window.ADS = [
     title: "Focus On Relevance",
     formula: "Search term × ad copy × landing page",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 12 }
+
   },
   {
     image: "Pin Your Headlines.webp",
     title: "Pin Your Headlines",
     formula: "Why pinning beats the algorithm",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 16 }
+
   },
   {
     image: "Use Image Extensions.webp",
     title: "Use Image Extensions",
     formula: "Boost CTR with a single image",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 18 }
+
   },
   {
     image: "Tell a Good Story.webp",
     title: "Tell a Good Story",
     formula: "Problem · Solution · Benefit",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 19 }
+
   },
   {
     image: "The Formulas.webp",
     title: "The Formulas",
     formula: "The playbook for ads that convert",
     tag: "Playbook",
-    category: "playbook"
+    category: "playbook",
+    priority: { all: 20 }
+
   },
 
 
-  // ---------- Google Ads — Brand (continued) ----------
-  { image: "Brand 1.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 1 } },
-  { image: "Brand 2.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 5 } },
-  { image: "Brand 3.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 9 } },
-  { image: "Brand 4.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 5.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 6.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 7.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 8.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 9.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
-  { image: "Brand 10.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
+  // ---------- Google Ads — Brand (continued) ----------,
+  { image: "Brand 1.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 21 } },
+  { image: "Brand 2.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 24 } },
+  { image: "Brand 3.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 27 } },
+  { image: "Brand 4.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 30 } },
+  { image: "Brand 5.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 33 } },
+  { image: "Brand 6.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 36 } },
+  { image: "Brand 7.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 39 } },
+  { image: "Brand 8.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 42 } },
+  { image: "Brand 9.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 45 } },
+  { image: "Brand 10.webp", title: "Brand", formula: "", tag: "Brand", category: "brand", priority: { all: 48 } },
   { image: "Brand 11.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
   { image: "Brand 12.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
   { image: "Brand 13.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
@@ -184,17 +220,17 @@ window.ADS = [
   { image: "Brand 24.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
   { image: "Brand 25.webp", title: "Brand", formula: "", tag: "Brand", category: "brand" },
 
-  // ---------- Google Ads — Non Brand (continued) ----------
-  { image: "Non Brand 1.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 2 } },
-  { image: "Non Brand 2.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 6 } },
-  { image: "Non Brand 3.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 10 } },
-  { image: "Non Brand 4.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 5.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 6.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 7.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 8.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 9.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
-  { image: "Non Brand 10.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
+  // ---------- Google Ads — Non Brand (continued) ----------,
+  { image: "Non Brand 1.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 22 } },
+  { image: "Non Brand 2.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 25 } },
+  { image: "Non Brand 3.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 28 } },
+  { image: "Non Brand 4.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 31 } },
+  { image: "Non Brand 5.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 34 } },
+  { image: "Non Brand 6.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 37 } },
+  { image: "Non Brand 7.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 40 } },
+  { image: "Non Brand 8.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 43 } },
+  { image: "Non Brand 9.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 46 } },
+  { image: "Non Brand 10.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand", priority: { all: 49 } },
   { image: "Non Brand 11.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
   { image: "Non Brand 12.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
   { image: "Non Brand 13.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
@@ -230,17 +266,17 @@ window.ADS = [
   { image: "Non Brand 43.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
   { image: "Non Brand 44.webp", title: "Non Brand", formula: "", tag: "Non Brand", category: "non-brand" },
 
-  // ---------- Google Ads — Competitor (continued) ----------
-  { image: "Competitor 1.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 3 } },
-  { image: "Competitor 2.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 7 } },
-  { image: "Competitor 3.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 11 } },
-  { image: "Competitor 4.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 5.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 6.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 7.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 8.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 9.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
-  { image: "Competitor 10.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
+  // ---------- Google Ads — Competitor (continued) ----------,
+  { image: "Competitor 1.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 23 } },
+  { image: "Competitor 2.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 26 } },
+  { image: "Competitor 3.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 29 } },
+  { image: "Competitor 4.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 32 } },
+  { image: "Competitor 5.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 35 } },
+  { image: "Competitor 6.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 38 } },
+  { image: "Competitor 7.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 41 } },
+  { image: "Competitor 8.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 44 } },
+  { image: "Competitor 9.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 47 } },
+  { image: "Competitor 10.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor", priority: { all: 50 } },
   { image: "Competitor 11.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
   { image: "Competitor 12.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
   { image: "Competitor 13.webp", title: "Competitor", formula: "", tag: "Competitor", category: "competitor" },
@@ -1485,7 +1521,7 @@ window.ADS = [
   { image: "Gated 16.webp", title: "Chart",              formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
   { image: "Gated 17.webp", title: "Infographic",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
 
-  // ---------- LinkedIn — Conversion ----------
+  // ---------- LinkedIn — Conversion ----------,
   { image: "Conversion 1.webp",  title: "Demo Slides",        formula: "", tag: "Conversion", category: "conversion", priority: { all: 4 }, platform: "linkedin" },
   { image: "Conversion 2.webp",  title: "3 Step Trial",       formula: "", tag: "Conversion", category: "conversion", priority: { all: 11 }, platform: "linkedin" },
   { image: "Conversion 3.webp",  title: "Platform Demo",      formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
@@ -1510,7 +1546,7 @@ window.ADS = [
   { image: "Conversion 22.webp", title: "Audit Offer",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 23.webp", title: "AirBnB Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
 
-  // ---------- LinkedIn — Convo Ads ----------
+  // ---------- LinkedIn — Convo Ads ----------,
   { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Convo Ads", category: "convo-ads", priority: { all: 6 }, platform: "linkedin" },
   { image: "Convo 2.webp",  title: "Lunch",               formula: "", tag: "Convo Ads", category: "convo-ads", priority: { all: 12 }, platform: "linkedin" },
   { image: "Convo 3.webp",  title: "Retargeting",         formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
