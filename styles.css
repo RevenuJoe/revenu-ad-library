@@ -856,7 +856,7 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
   }
   /* Compact hero — bullet pills are hidden so title sits flush above filters */
   .hero { padding: 14px 0 14px; }
-  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 0; }
+  .hero-title { font-size: clamp(14px, 3.75vw, 22px); margin-bottom: 0; }
   .feature-pills { margin-bottom: 14px; gap: 4px; }
   .feature-pill { font-size: 12px; padding: 4px 13px 4px 4px; }
   .feature-pill-num { width: 20px; height: 20px; font-size: 10px; }
