@@ -599,24 +599,26 @@ a { color: inherit; }
     flex-shrink: 0;
     left: auto; right: auto;
   }
-  .view-toggle {
-    display: flex;
-    position: static;
-    transform: none;
-    flex-shrink: 0;
-    left: auto; right: auto;
-  }
+  /* Column toggle is desktop-only — hide on mobile entirely */
+  .view-toggle { display: none; }
   .filter-dropdown {
     display: block;
     flex: 1 1 auto;
     max-width: none;
     margin: 0;
   }
-  /* Gallery: respect the column toggle selection. Tighter gaps for narrow screens. */
-  .gallery { padding: 24px 0 56px; max-width: none; margin-left: 0; margin-right: 0; }
-  .gallery.cols-1 { gap: 16px; max-width: none; margin-left: 0; margin-right: 0; }
-  .gallery.cols-2 { gap: 12px; }
-  .gallery.cols-3 { gap: 8px; }
+  /* Mobile is always 1-column regardless of saved column preference */
+  .gallery,
+  .gallery.cols-1,
+  .gallery.cols-2,
+  .gallery.cols-3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 0 56px;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
   .card-body { padding: 16px 20px 20px; }
   .card-title { font-size: 16px; }
   .card-sub { font-size: 13px; }

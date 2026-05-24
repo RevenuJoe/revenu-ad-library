@@ -66,14 +66,6 @@
   <div class="filters-wrap" id="filters-wrap">
     <div class="container">
       <div class="tabs" id="filters" role="tablist"></div>
-      <div class="dropdown filter-dropdown" id="filter-dropdown">
-        <button class="dropdown-trigger" type="button" id="filter-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
-          <span class="dropdown-label" id="filter-dropdown-label"></span>
-          <span class="dropdown-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" id="filter-dropdown-menu" role="listbox"></div>
-      </div>
-      <!-- Desktop-only shuffle button -->
       <button class="shuffle-btn" id="shuffle-btn" type="button" aria-label="Shuffle order" title="Shuffle">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="21 3 21 9 15 9"></polyline>
@@ -82,6 +74,13 @@
           <path d="M20.5 15a9 9 0 0 1-15 3.5L3 15"></path>
         </svg>
       </button>
+      <div class="dropdown filter-dropdown" id="filter-dropdown">
+        <button class="dropdown-trigger" type="button" id="filter-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span class="dropdown-label" id="filter-dropdown-label"></span>
+          <span class="dropdown-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" id="filter-dropdown-menu" role="listbox"></div>
+      </div>
       <!-- Desktop-only column toggle -->
       <div class="view-toggle" id="view-toggle" role="radiogroup" aria-label="Column count">
         <button class="view-toggle-btn" type="button" role="radio" data-cols="1" aria-label="1 column" title="1 column">
