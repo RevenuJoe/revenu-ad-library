@@ -822,10 +822,66 @@ lbImage.addEventListener('touchcancel', () => {
   if (dragAxis === 'x') snapBack();
 }, { passive: true });
 
+// ---------- Desktop mouse drag on the lightbox image ----------
+// Mirrors the touch drag — mousedown locks state, mousemove on the document
+// updates the transform (so the drag continues even if the cursor leaves the
+// image), mouseup commits or snaps back. A "suppress next click" flag stops
+// drags from also firing the tap-to-advance click handler.
+let isMouseDragging = false;
+let suppressNextClick = false;
+
+lbImage.addEventListener('mousedown', (e) => {
+  if (e.button !== 0) return; // left-button only
+  if (lightbox.hidden) return;
+  e.preventDefault(); // stop native image drag-and-drop
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragAxis = null;
+  dragDx = 0;
+  isMouseDragging = true;
+  swipeDidNavigate = false;
+  lbImage.style.transition = 'none';
+  document.body.classList.add('lb-dragging');
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isMouseDragging) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  if (!dragAxis) {
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+      dragAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+    }
+  }
+  if (dragAxis === 'x') {
+    dragDx = dx;
+    applyDrag(dx);
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  if (!isMouseDragging) return;
+  isMouseDragging = false;
+  document.body.classList.remove('lb-dragging');
+
+  // Any meaningful movement should suppress the click that mouseup triggers.
+  if (dragAxis !== null) suppressNextClick = true;
+
+  if (dragAxis === 'x') {
+    if (Math.abs(dragDx) > SWIPE_THRESHOLD) {
+      swipeDidNavigate = true;
+      commitSwipe(dragDx < 0 ? 1 : -1);
+    } else {
+      snapBack();
+    }
+  }
+});
+
 lbImage.addEventListener('click', () => {
-  // Suppress the synthetic click that follows a swipe
-  if (swipeDidNavigate) {
+  // Suppress the click that fires after a swipe or a mouse drag
+  if (swipeDidNavigate || suppressNextClick) {
     swipeDidNavigate = false;
+    suppressNextClick = false;
     return;
   }
   step(1);

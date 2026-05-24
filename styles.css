@@ -528,6 +528,8 @@ body.gated .site-footer {
   font: inherit;
   font-size: 16px; /* 16px keeps iOS from auto-zooming on focus */
   width: 100%;
+  max-width: 220px;
+  align-self: center;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   text-align: center;
@@ -549,6 +551,9 @@ body.gated .site-footer {
   padding: 11px 14px;
   border-radius: 11px;
   cursor: pointer;
+  width: 100%;
+  max-width: 160px;
+  align-self: center;
   transition: filter 0.15s ease, transform 0.15s ease;
 }
 .password-gate-btn:hover { filter: brightness(1.06); }
@@ -560,8 +565,9 @@ body.gated .site-footer {
   margin: 2px 0 0;
 }
 @media (max-width: 480px) {
-  .password-gate-card { padding: 22px 20px 20px; }
-  /* Title uses clamp() above so no font-size override needed here. */
+  .password-gate-card { padding: 22px 18px 20px; }
+  /* +20% on mobile while still fitting on one line on a 320px phone */
+  .password-gate-title { font-size: clamp(15px, 4.8vw, 18px); }
 }
 
 /* ---------- Lightbox ---------- */
@@ -594,13 +600,14 @@ body.gated .site-footer {
   border-radius: 12px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.5);
   background: var(--bg);
-  cursor: pointer;
+  cursor: grab;
   touch-action: pan-y; /* let vertical scroll through, capture horizontal swipes */
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
   will-change: transform, opacity;
 }
+body.lb-dragging .lb-figure img { cursor: grabbing; }
 .lb-figure figcaption {
   color: #f7f1e8;
   text-align: center;
