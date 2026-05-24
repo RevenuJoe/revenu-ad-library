@@ -136,9 +136,11 @@ function imagePath(ad) {
   const cfg = platforms[ad.platform || 'google'] || platforms.google;
   const tab = cfg.tabs.find(t => t.key === ad.category);
   const tabFolder = tab ? tab.folder : '';
-  // Absolute path so images resolve correctly whether the URL is /,
-  // /linkedin-ads, /google-ads, or /landing-pages.
-  return `/images/${cfg.folder}/${tabFolder}/${ad.image}`;
+  // Relative path. On the live site the <base href="/"> tag in index.html
+  // makes this resolve from the site root, so nested URLs like
+  // /linkedin-ads/problem-3 still find the right images. Locally (file://),
+  // <base> is skipped and the path resolves from the document's directory.
+  return `images/${cfg.folder}/${tabFolder}/${ad.image}`;
 }
 
 // ---------- Column count toggle (desktop) ----------
