@@ -816,14 +816,15 @@ body.gated .site-footer {
   .password-gate-card { padding: 22px 18px 20px; }
   /* Title sized to fit on one line; bumped 10% from the prior shrink */
   .password-gate-title { font-size: clamp(13px, 4.2vw, 15px); }
-  /* Match input + button: same width, height, font-size. Only the font-weight
-     differs (input stays normal, button keeps bold) per the brief. */
+  /* Match input + button: same width, height, font-size. font-size MUST be
+     16px on the input or iOS Safari auto-zooms on focus. Button matches so
+     the two visually align (only font-weight differs per the brief). */
   .password-gate-input,
   .password-gate-btn {
-    height: 40px;
+    height: 42px;
     width: 100%;
-    max-width: 180px;
-    font-size: 13px;
+    max-width: 200px;
+    font-size: 16px;
     padding: 0 14px;
     border-radius: 11px;
   }
