@@ -494,6 +494,19 @@ function setFilter(key, opts = {}) {
   filterDropdownMenu.querySelectorAll('.dropdown-option').forEach(o => {
     o.classList.toggle('is-active', o.dataset.filter === key);
   });
+  // If favorites filter is on and the new category has zero favorited ads,
+  // automatically release the filter so the gallery isn't empty.
+  if (getFavoritesMode()) {
+    const hasAnyFavInCategory = allAds.some(ad =>
+      (ad.platform || 'google') === activePlatform &&
+      (key === 'all' || ad.category === key) &&
+      isFavorite(ad)
+    );
+    if (!hasAnyFavInCategory) {
+      favoritesModeByPlatform[activePlatform] = false;
+      if (typeof syncFavoritesButton === 'function') syncFavoritesButton();
+    }
+  }
   render();
   // Push URL so categories are sharable. Skip when popstate / deep-link triggered it.
   if (opts.updateUrl !== false) {
