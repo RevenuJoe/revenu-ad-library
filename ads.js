@@ -289,6 +289,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
+    priority: { problem: 1 },
     platform: "linkedin"
   },
   {
@@ -377,6 +378,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
+    priority: { problem: 2 },
     platform: "linkedin"
   },
   {
@@ -393,6 +395,7 @@ window.ADS = [
     formula: "",
     tag: "Problem",
     category: "problem",
+    priority: { problem: 3 },
     platform: "linkedin"
   },
   {
@@ -865,6 +868,7 @@ window.ADS = [
     formula: "",
     tag: "Product",
     category: "product",
+    priority: { product: 1 },
     platform: "linkedin"
   },
   {
@@ -905,6 +909,7 @@ window.ADS = [
     formula: "",
     tag: "Product",
     category: "product",
+    priority: { product: 3 },
     platform: "linkedin"
   },
   {
@@ -929,6 +934,7 @@ window.ADS = [
     formula: "",
     tag: "Product",
     category: "product",
+    priority: { product: 4 },
     platform: "linkedin"
   },
   {
@@ -1129,6 +1135,7 @@ window.ADS = [
     formula: "",
     tag: "Animation",
     category: "animations",
+    priority: { animations: 7, conversion: 1 },
     platform: "linkedin"
   },
   {
@@ -1137,6 +1144,7 @@ window.ADS = [
     formula: "",
     tag: "Animation",
     category: "animations",
+    priority: { product: 2 },
     platform: "linkedin"
   },
 
@@ -1182,5 +1190,177 @@ window.ADS = [
   { image: "Sign Up 1.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Sign Up 2.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Sign Up 3.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Sign Up 4.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" }
+  { image: "Sign Up 4.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  // Animated standout — pinned to the top of Above the Fold via priority
+  { image: "Question Animated.webp", title: "Question", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 1 }, platform: "landing" },
+
+  // ---------- Landing Pages — Blocks ----------
+  { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 2.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 3.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 4.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 5.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 6.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 7.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 8.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 2.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 3.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 4.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 5.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 6.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 7.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 8.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Product Hero 1.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 2.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 3.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 4.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 5.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 6.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 7.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 8.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 9.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 10.webp", title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Competitors 1.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Competitors 2.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Competitors 3.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Competitors 4.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Competitors 5.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Boxes 1.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 2.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 3.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 4.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 5.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 6.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 7.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 8.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "FAQ 1.webp", title: "FAQ", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "FAQ 2.webp", title: "FAQ", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "FAQ 3.webp", title: "FAQ", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Pricing - A.webp", title: "Pricing", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Pricing - B.webp", title: "Pricing", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Video 1.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Video 2.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Video 3.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Video 4.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Video 5.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  // ---------- LinkedIn — Problem (continued) ----------
+  { image: "Problem 68.webp", title: "Pop Culture Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 69.webp", title: "Brand Background", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 70.webp", title: "Meme Storyboard", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 71.webp", title: "Animal Memes", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 72.webp", title: "Movie Memes", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 73.webp", title: "Quiz Show Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 74.webp", title: "Quadrant Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 75.webp", title: "Cartoon Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 76.webp", title: "Quadrant Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 77.webp", title: "Branded Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 78.webp", title: "Star Wars", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 79.webp", title: "Board Game", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 80.webp", title: "Arcade", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 81.webp", title: "Starter Pack", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 82.webp", title: "Countdown", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 83.webp", title: "Pokemon", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Problem 84.webp", title: "Change My Mind", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+
+  // ---------- LinkedIn — Gated Content ----------
+  { image: "Gated 1.webp",  title: "Ebook Highlights",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 2.webp",  title: "Book Tiles",         formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 1 }, platform: "linkedin" },
+  { image: "Gated 3.webp",  title: "Front & Open",       formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 4 }, platform: "linkedin" },
+  { image: "Gated 4.webp",  title: "Front Cover",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 5.webp",  title: "Statistics Cover",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 6.webp",  title: "Multiple Hardbacks", formula: "", tag: "Gated Content", category: "gated-content", priority: { "gated-content": 3 }, platform: "linkedin" },
+  { image: "Gated 7.webp",  title: "Front & Open",       formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 8.webp",  title: "Paperback Title",    formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 9.webp",  title: "Paperback Details",  formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 10.webp", title: "Hardback",           formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 11.webp", title: "Open Book",          formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 12.webp", title: "Book Tiles",         formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 13.webp", title: "Tablet Guide",       formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 14.webp", title: "Phone Guide",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 15.webp", title: "One Pager",          formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 16.webp", title: "Chart",              formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+  { image: "Gated 17.webp", title: "Infographic",        formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
+
+  // ---------- LinkedIn — Conversion ----------
+  { image: "Conversion 1.webp",  title: "Demo Slides",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 2.webp",  title: "3 Step Trial",       formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 3.webp",  title: "Platform Demo",      formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 4.webp",  title: "Price Slider",       formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 5.webp",  title: "Price Calculator",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 6.webp",  title: "Social Proof Demo",  formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 7.webp",  title: "Process Pitch",      formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 8.webp",  title: "Customer Offer",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 9.webp",  title: "ROI Promise",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 10.webp", title: "Outcome Promise",    formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 11.webp", title: "Meeting Rep",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 12.webp", title: "UberEats Gift Card", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 13.webp", title: "Before & After",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 14.webp", title: "Before & After",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 15.webp", title: "Before & After",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 16.webp", title: "No. Of Hours",       formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 17.webp", title: "Product Diagram",    formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 18.webp", title: "Notifications",      formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 19.webp", title: "Graph",              formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 20.webp", title: "Amazon Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 21.webp", title: "Nike Gift Card",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 22.webp", title: "Audit Offer",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Conversion 23.webp", title: "AirBnB Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+
+  // ---------- LinkedIn — Convo Ads ----------
+  { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 2.webp",  title: "Lunch",               formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 3.webp",  title: "Retargeting",         formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 4.webp",  title: "Retargeting",         formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 5.webp",  title: "Problem Profanity",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 6.webp",  title: "Problem Profanity",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 7.webp",  title: "Problem Profanity",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 8.webp",  title: "Need Something?",     formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 9.webp",  title: "Lunch",               formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 10.webp", title: "Coffee",              formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 11.webp", title: "Brand Retargeting",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 12.webp", title: "Retargeting Options", formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 13.webp", title: "White Lie",           formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 14.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 15.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 16.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 17.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 18.webp", title: "Social Proof",        formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 19.webp", title: "Social Proof",        formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 20.webp", title: "Social Proof",        formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 21.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 22.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 23.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 24.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Convo 25.webp", title: "Problem Statement",   formula: "", tag: "Convo Ads", category: "convo-ads", platform: "linkedin" },
+
+  // ---------- LinkedIn — Playbook (chart slides) ----------
+  { image: "Playbook 17.webp", title: "Incentive Headlines",             formula: "50%+ open rate with an incentive in the subject",   tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 18.webp", title: "Problem → Solution",              formula: "Open with a problem, follow with a solution",       tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 19.webp", title: "Incentive + Guarantee",           formula: "Pair the incentive with a guarantee to lift CTR",   tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 20.webp", title: "Keep It Short",                   formula: "Don't lose readers to too much text after they open", tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 21.webp", title: "Clear CTA + Value Prop",          formula: "Spell out the action and the value to raise CVR",    tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 22.webp", title: "Scale Demos With Incentives",     formula: "Add an incentive when you need to scale demo flow",  tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 23.webp", title: "More Than Just An Incentive",     formula: "Pair the incentive with a strong second reason",    tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 24.webp", title: "The Subject Line",                formula: "First part of a well-written convo ad",              tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 25.webp", title: "The Primary Message",             formula: "Short and punchy — the second part of the ad",       tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 26.webp", title: "The Secondary Message",           formula: "Reinforce the previous message in a new way",        tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 27.webp", title: "The Last Chance Message",         formula: "Promote something else like a case study",           tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 28.webp", title: "Grab Their Attention",            formula: "Lead with something powerful to open the ad",        tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 29.webp", title: "Be Extreme, Tap Pain, Offer Free", formula: "Three angles that get convo ads opened",            tag: "Playbook", category: "playbook", platform: "linkedin" },
+
+  // ---------- LinkedIn — Animations (continued) ----------
+  { image: "Wheel of Fortune.webp",  title: "Wheel of Fortune", formula: "", tag: "Animation", category: "animations", priority: { animations: 1, product: 5 },           platform: "linkedin" },
+  { image: "GIF in Message.webp",    title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 4 },                          platform: "linkedin" },
+  { image: "GIF in Message 2.webp",  title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 20 },                         platform: "linkedin" },
+  { image: "Scroll Through.webp",    title: "Scroll Through",   formula: "", tag: "Animation", category: "animations", priority: { animations: 3, "gated-content": 2 },   platform: "linkedin" }
 ];

@@ -17,11 +17,21 @@ function shouldGate() {
 }
 function showGate() {
   gateActive = true;
-  document.body.classList.add('gated');
   const gate = document.getElementById('password-gate');
-  if (gate) gate.hidden = false;
-  const input = document.getElementById('password-input');
-  if (input) setTimeout(() => input.focus(), 50);
+  if (!gate) return;
+  // Stage 1: show the library un-blurred for ~1s so the user can see what's
+  // inside. Stage 2: add the .gated class which animates a CSS blur in over
+  // 0.5s. Stage 3: reveal the password card with a slide-in from the left.
+  // We don't auto-focus the input — the user has to tap "Enter" themselves.
+  setTimeout(() => {
+    document.body.classList.add('gated');
+  }, 1000);
+  setTimeout(() => {
+    gate.hidden = false;
+    // Force reflow so the .is-entering class triggers its animation cleanly
+    void gate.offsetWidth;
+    gate.classList.add('is-entering');
+  }, 1300);
 }
 function hideGate() {
   gateActive = false;
@@ -30,7 +40,10 @@ function hideGate() {
   if (typeof render === 'function') render(true);
   document.body.classList.remove('gated');
   const gate = document.getElementById('password-gate');
-  if (gate) gate.hidden = true;
+  if (gate) {
+    gate.classList.remove('is-entering');
+    gate.hidden = true;
+  }
   // Sync URL to whatever platform is currently visible (user may have toggled
   // platforms while the gate was up — the URL was held at "/" until now).
   const newPath = PLATFORM_TO_PATH[activePlatform];
@@ -307,6 +320,9 @@ function shuffleInPlace(arr) {
 shuffleBtn.addEventListener('click', () => {
   if (visibleAds.length < 2) return;
   shuffleInPlace(visibleAds);
+  // Keep pinned ads (e.g., animations pinned into product/problem/etc.) at the top
+  // even after a shuffle. Sort is stable, so non-pinned ads stay in shuffled order.
+  applyPinnedSort(visibleAds);
   renderCards(true); // animate to highlight the new order
   shuffleBtn.classList.remove('is-spinning');
   // Force reflow so the animation restarts even on rapid clicks
@@ -528,11 +544,27 @@ filterDropdownTrigger.addEventListener('click', (e) => {
 // `animate` is true on initial load and platform switches, false on category-tab switches.
 // render() refilters from allAds; renderCards() just paints whatever is currently in visibleAds
 // (used by the shuffle button so it doesn't re-sort back into the original order).
+// True when an ad has an explicit position priority for the given category.
+// Used both for "appears in this secondary category" and ordering within it.
+function isPinnedTo(ad, filter) {
+  return ad.priority && typeof ad.priority[filter] === 'number';
+}
+// Position priority for an ad in a category (lower = higher in list).
+// Returns Infinity for ads without an explicit priority — they sort to the end.
+function adPriority(ad, filter) {
+  if (ad.priority && typeof ad.priority[filter] === 'number') return ad.priority[filter];
+  return Infinity;
+}
+
 function render(animate = false) {
   visibleAds = allAds.filter(ad => {
     if ((ad.platform || 'google') !== activePlatform) return false;
     // 'all' shows every category in the current platform
-    if (activeFilter !== 'all' && ad.category !== activeFilter) return false;
+    if (activeFilter !== 'all') {
+      // Match if this is the ad's primary category, or if it's pinned here
+      const matchesCategory = ad.category === activeFilter || isPinnedTo(ad, activeFilter);
+      if (!matchesCategory) return false;
+    }
     if (getFavoritesMode() && !isFavorite(ad)) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -541,7 +573,16 @@ function render(animate = false) {
     }
     return true;
   });
+  applyPinnedSort(visibleAds);
   renderCards(animate);
+}
+
+// Sort ads by their priority for the current filter (lower = higher in list).
+// Ads without an explicit priority remain in their natural ads.js order at the end
+// (stable sort). Skipped for the 'all' view so global order is preserved there.
+function applyPinnedSort(arr) {
+  if (activeFilter === 'all') return;
+  arr.sort((a, b) => adPriority(a, activeFilter) - adPriority(b, activeFilter));
 }
 
 function renderCards(animate = false) {
@@ -791,7 +832,12 @@ async function openLightbox(index, opts = {}) {
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
 
-  await preloadImage(imagePath(ad));
+  // Wait for the image (or 400ms — whichever comes first) so animated WebPs
+  // or slow-loading images can't deadlock the open.
+  await Promise.race([
+    preloadImage(imagePath(ad)),
+    new Promise(r => setTimeout(r, 400))
+  ]);
   if (mySeq !== navSeq) return; // user already navigated past this
 
   if (opts.slideIn) {
@@ -848,36 +894,24 @@ function closeLightbox(opts = {}) {
 // step(): used by desktop prev/next buttons, arrow keys, and the
 // tap-to-advance click handler. Crossfades the image and waits for the new
 // one to decode so there's never a flash of the previous image.
-async function step(delta) {
+// Fully synchronous — no awaits, no race conditions. Used by the prev/next
+// arrows, arrow keys, and tap-to-advance click. Image src change is instant;
+// the browser handles the visual swap. Loading is masked by the preloadNeighbors
+// warm-up which usually means the next/prev image is already cached.
+function step(delta) {
   if (visibleAds.length < 2) return;
-  const mySeq = ++navSeq;
-  const targetIdx = (currentIndex + delta + visibleAds.length) % visibleAds.length;
-  const targetAd = visibleAds[targetIdx];
-  const targetSrc = imagePath(targetAd);
-
-  // Start decoding the next image immediately (often already cached)
-  const preloadDone = preloadImage(targetSrc);
-
-  // Fade out current
-  lbImage.style.transition = 'opacity 0.14s ease';
-  lbImage.style.opacity = '0';
-  await new Promise(r => setTimeout(r, 140));
-  if (mySeq !== navSeq) return;
-
-  // Swap src + caption, then wait for the new image to actually decode
-  currentIndex = targetIdx;
-  lbImage.src = targetSrc;
-  lbImage.alt = targetAd.title;
-  updateCaption(targetAd);
-  syncUrlToCurrentAd();
-  await preloadDone;
-  if (lbImage.decode) { try { await lbImage.decode(); } catch (e) {} }
-  if (mySeq !== navSeq) return;
-
-  // Fade in
-  lbImage.style.transition = 'opacity 0.2s ease';
+  navSeq++; // cancel any in-flight slide animation (commitSwipe checks this)
+  currentIndex = (currentIndex + delta + visibleAds.length) % visibleAds.length;
+  const ad = visibleAds[currentIndex];
+  if (!ad) return;
+  // Reset any drag/swipe transform left behind so the new image isn't off-screen
+  lbImage.style.transition = 'none';
+  lbImage.style.transform = '';
   lbImage.style.opacity = '';
-
+  lbImage.src = imagePath(ad);
+  lbImage.alt = ad.title;
+  updateCaption(ad);
+  syncUrlToCurrentAd();
   preloadNeighbors();
 }
 lbClose.addEventListener('click', closeLightbox);

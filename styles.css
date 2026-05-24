@@ -616,6 +616,10 @@ a { color: inherit; }
   z-index: 200;
   background: var(--bg);
 }
+.hero, .filters-wrap, main, .site-footer {
+  /* Smooth blur transition both when the gate appears and when it lifts. */
+  transition: filter 0.5s ease;
+}
 body.gated .hero,
 body.gated .filters-wrap,
 body.gated main,
@@ -623,7 +627,6 @@ body.gated .site-footer {
   filter: blur(8px) saturate(1.05);
   pointer-events: none;
   user-select: none;
-  transition: filter 0.35s ease;
 }
 .password-gate {
   position: fixed;
@@ -634,7 +637,15 @@ body.gated .site-footer {
   justify-content: center;
   padding: 24px;
   background: rgba(252, 247, 245, 0.35);
-  animation: fadeIn 0.35s ease;
+}
+/* Slide the card in from the left when the gate first appears, then settle. */
+.password-gate.is-entering .password-gate-card {
+  animation: gateCardEnter 0.55s cubic-bezier(0.22, 1.15, 0.36, 1) both;
+}
+@keyframes gateCardEnter {
+  0%   { opacity: 0; transform: translateX(-90vw) rotate(-3deg); }
+  60%  { opacity: 1; transform: translateX(0) rotate(0.5deg); }
+  100% { opacity: 1; transform: translateX(0) rotate(0); }
 }
 .password-gate[hidden] { display: none; }
 .password-gate-card {
@@ -803,8 +814,21 @@ body.gated .site-footer {
 }
 @media (max-width: 480px) {
   .password-gate-card { padding: 22px 18px 20px; }
-  /* +20% on mobile while still fitting on one line on a 320px phone */
-  .password-gate-title { font-size: clamp(15px, 4.8vw, 18px); }
+  /* -20% from previous mobile size — title shrunk so the gate is tidier */
+  .password-gate-title { font-size: clamp(12px, 3.8vw, 14px); }
+  /* Match input + button: same width, height, font-size. Only the font-weight
+     differs (input stays normal, button keeps bold) per the brief. */
+  .password-gate-input,
+  .password-gate-btn {
+    height: 40px;
+    width: 100%;
+    max-width: 180px;
+    font-size: 13px;
+    padding: 0 14px;
+    border-radius: 11px;
+  }
+  .password-gate-input { font-weight: 400; }
+  .password-gate-btn   { font-weight: 700; }
 }
 
 /* ---------- Lightbox ---------- */
