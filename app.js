@@ -1,5 +1,60 @@
 // ---------- Ad Library — gallery + lightbox ----------
 
+// ---------- Homepage password gate ----------
+// Gates only the root URL "/". Platform URLs (/google-ads, /linkedin-ads,
+// /landing-pages and their /<category>-<n> children) skip the gate entirely
+// so shared deep-links remain freely accessible.
+const PASSWORD = 'revenu';
+const PASSWORD_KEY = 'ad-library-access';
+let gateActive = false;
+function hasUnlocked() {
+  try { return localStorage.getItem(PASSWORD_KEY) === 'ok'; } catch (e) { return false; }
+}
+function shouldGate() {
+  const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+  if (path !== '/') return false;
+  return !hasUnlocked();
+}
+function showGate() {
+  gateActive = true;
+  document.body.classList.add('gated');
+  const gate = document.getElementById('password-gate');
+  if (gate) gate.hidden = false;
+  const input = document.getElementById('password-input');
+  if (input) setTimeout(() => input.focus(), 50);
+}
+function hideGate() {
+  gateActive = false;
+  document.body.classList.remove('gated');
+  const gate = document.getElementById('password-gate');
+  if (gate) gate.hidden = true;
+  // Sync URL to whatever platform is currently visible (user may have toggled
+  // platforms while the gate was up — the URL was held at "/" until now).
+  const newPath = PLATFORM_TO_PATH[activePlatform];
+  if (newPath && window.location.pathname === '/' && activePlatform !== 'linkedin') {
+    window.history.replaceState({}, '', newPath);
+  }
+}
+// Wire up the password form (scripts load at body bottom, so the form exists).
+(function attachGateForm() {
+  const form = document.getElementById('password-form');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('password-input');
+    const error = document.getElementById('password-error');
+    const value = (input.value || '').trim().toLowerCase();
+    if (value === PASSWORD.toLowerCase()) {
+      try { localStorage.setItem(PASSWORD_KEY, 'ok'); } catch (err) {}
+      hideGate();
+    } else {
+      if (error) error.hidden = false;
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+
 const gallery = document.getElementById('gallery');
 const emptyState = document.getElementById('empty-state');
 const tabsContainer = document.getElementById('filters');
@@ -232,6 +287,9 @@ if (_initialAd) {
   }, 400);
 }
 
+// Homepage gate — show after library renders so the blurred preview is visible.
+if (shouldGate()) showGate();
+
 // ---------- Headline + tab title ----------
 function updateHeadline() {
   const cfg = currentPlatform();
@@ -381,9 +439,10 @@ function setPlatform(platform, opts = {}) {
   renderFeaturePills();
   renderTabs();
   render(true); // platform switch — animate
-  // Push the new URL (unless this was triggered by popstate). Switching platforms
-  // resets to the default category, so URL stays as /platform (no category).
-  if (opts.updateUrl !== false) {
+  // Push the new URL (unless this was triggered by popstate, or the homepage
+  // gate is active — clicking platform pills on the gate should swap the
+  // blurred preview without revealing the deep-link URL).
+  if (opts.updateUrl !== false && !gateActive) {
     const newPath = PLATFORM_TO_PATH[platform];
     if (newPath && window.location.pathname !== newPath) {
       window.history.pushState({ platform }, '', newPath);

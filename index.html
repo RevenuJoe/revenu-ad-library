@@ -122,6 +122,26 @@
     </figure>
   </div>
 
+  <!-- Homepage password gate. Only activates when the URL is exactly "/".
+       Library and ad URLs (/google-ads, /linkedin-ads/problem-3, etc.) skip this. -->
+  <div class="password-gate" id="password-gate" hidden>
+    <form class="password-gate-card" id="password-form" autocomplete="off">
+      <h2 class="password-gate-title">Password for Access</h2>
+      <p class="password-gate-sub">Enter the access code to explore the library.</p>
+      <input
+        type="password"
+        id="password-input"
+        class="password-gate-input"
+        placeholder="Enter password"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+      />
+      <button type="submit" class="password-gate-btn">Unlock</button>
+      <p class="password-gate-error" id="password-error" hidden>That's not the right password.</p>
+    </form>
+  </div>
+
   <script src="ads.js"></script>
   <script src="app.js"></script>
 </body>
