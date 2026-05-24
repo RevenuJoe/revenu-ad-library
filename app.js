@@ -165,10 +165,10 @@ const platforms = {
     features: ['Increase Your Conversion Rate', 'Tell A Better Story', 'Beat Your Competition'],
     defaultTab: 'above-the-fold',
     tabs: [
-      { key: 'all',             label: 'All',             folder: '' },
-      { key: 'above-the-fold',  label: 'Above the Fold',  folder: 'Above the Fold' },
-      { key: 'blocks',          label: 'Blocks',          folder: 'Blocks' },
-      { key: 'conversion-path', label: 'Conversion Path', folder: 'Conversion Path' }
+      { key: 'all',              label: 'All',              folder: '' },
+      { key: 'above-the-fold',   label: 'Above the Fold',   folder: 'Above the Fold' },
+      { key: 'blocks',           label: 'Blocks',           folder: 'Blocks' },
+      { key: 'product-visuals',  label: 'Product Visuals',  folder: 'Product Visuals' }
     ]
   }
 };

@@ -1283,6 +1283,22 @@ window.ADS = [
   { image: "Steps 2.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Steps 3.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
+  // ---------- Landing Pages — Product Visuals ----------
+  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Devices 2.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Devices 3.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+
+  { image: "Laptops 1.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Laptops 2.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+
+  { image: "People 1.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "People 2.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "People 3.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+
+  { image: "Screenshot 1.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Screenshot 2.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Screenshot 3.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+
   // ---------- LinkedIn — Problem (continued) ----------
   { image: "Problem 68.webp", title: "Pop Culture Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "Problem 69.webp", title: "Brand Background", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
