@@ -23,7 +23,7 @@ const PLATFORMS = {
   google: {
     path: '/google-ads',
     label: 'Google Ads',
-    defaultTab: 'non-brand',
+    defaultTab: 'all',
     folder: 'Google Ads',
     tabs: [
       { key: 'all',         label: 'All',          folder: '' },
@@ -36,7 +36,7 @@ const PLATFORMS = {
   linkedin: {
     path: '/linkedin-ads',
     label: 'LinkedIn Ads',
-    defaultTab: 'problem',
+    defaultTab: 'all',
     folder: 'LinkedIn Ads',
     tabs: [
       { key: 'all',           label: 'All',           folder: '' },
@@ -52,7 +52,7 @@ const PLATFORMS = {
   landing: {
     path: '/landing-pages',
     label: 'Landing Pages',
-    defaultTab: 'above-the-fold',
+    defaultTab: 'all',
     folder: 'Landing Pages',
     tabs: [
       { key: 'all',              label: 'All',              folder: '' },

@@ -134,7 +134,7 @@ const platforms = {
     label: 'Google Ads',
     folder: 'Google Ads',
     features: ['30+ Ad Formulas', 'Proven High CTR', 'Higher Quality Scores'],
-    defaultTab: 'non-brand',
+    defaultTab: 'all',
     tabs: [
       { key: 'all',         label: 'All',          folder: '' },
       { key: 'brand',       label: 'Brand',        folder: 'Brand' },
@@ -147,7 +147,7 @@ const platforms = {
     label: 'LinkedIn Ads',
     folder: 'LinkedIn Ads',
     features: ['Increase Your CTR', 'Drive More Demos', 'Stop The Scroll'],
-    defaultTab: 'problem',
+    defaultTab: 'all',
     tabs: [
       { key: 'all',           label: 'All',           folder: '' },
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
@@ -163,7 +163,7 @@ const platforms = {
     label: 'Landing Pages',
     folder: 'Landing Pages',
     features: ['Increase Your Conversion Rate', 'Tell A Better Story', 'Beat Your Competition'],
-    defaultTab: 'above-the-fold',
+    defaultTab: 'all',
     tabs: [
       { key: 'all',              label: 'All',              folder: '' },
       { key: 'above-the-fold',   label: 'Above the Fold',   folder: 'Above the Fold' },
@@ -503,6 +503,9 @@ function setJsonLd(obj) {
   el.textContent = obj ? JSON.stringify(obj) : '';
 }
 function updateSEOTags() {
+  try { _updateSEOTagsImpl(); } catch (e) { /* SEO failures must never break the UI */ }
+}
+function _updateSEOTagsImpl() {
   const parsed = parsePath();
   const platform = parsed.platform;
   const cfg = platforms[platform];
