@@ -81,13 +81,13 @@ a { color: inherit; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 54px 0 16px;
+  padding: 40px 0 18px;
   text-align: center;
 }
 .hero-title {
   font-size: clamp(28px, 3.3vw, 44px);
   font-weight: 700;
-  margin: 0 0 28px;
+  margin: 0;
   color: var(--ink);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -101,6 +101,10 @@ a { color: inherit; }
   gap: 12px;
   margin: 0 0 28px;
 }
+/* Feature pills hidden by request — to bring them back, delete the rule below.
+   The pill data (platforms[*].features) and renderFeaturePills() in app.js are
+   intact, so removing this single rule fully restores the row. */
+.feature-pills { display: none !important; }
 .feature-pill {
   display: inline-flex;
   align-items: center;
@@ -690,9 +694,9 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
     padding: 10px 14px;
     font-size: 13px;
   }
-  /* Compact hero */
-  .hero { padding: 19px 0 16px; }
-  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 12px; }
+  /* Compact hero — bullet pills are hidden so title sits flush above filters */
+  .hero { padding: 14px 0 14px; }
+  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 0; }
   .feature-pills { margin-bottom: 14px; gap: 4px; }
   .feature-pill { font-size: 12px; padding: 4px 13px 4px 4px; }
   .feature-pill-num { width: 20px; height: 20px; font-size: 10px; }
