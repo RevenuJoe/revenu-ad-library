@@ -524,7 +524,9 @@ body.gated .site-footer {
   border: 1px solid var(--line);
   background: var(--bg);
   border-radius: 11px;
-  padding: 11px 14px;
+  height: 42px;
+  padding: 0 14px;
+  box-sizing: border-box;
   font: inherit;
   font-size: 16px; /* 16px keeps iOS from auto-zooming on focus */
   width: 100%;
@@ -548,12 +550,17 @@ body.gated .site-footer {
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.02em;
-  padding: 11px 14px;
+  height: 42px;
+  padding: 0 14px;
+  box-sizing: border-box;
   border-radius: 11px;
   cursor: pointer;
   width: 100%;
   max-width: 160px;
   align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: filter 0.15s ease, transform 0.15s ease;
 }
 .password-gate-btn:hover { filter: brightness(1.06); }
