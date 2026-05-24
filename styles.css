@@ -814,8 +814,8 @@ body.gated .site-footer {
 }
 @media (max-width: 480px) {
   .password-gate-card { padding: 22px 18px 20px; }
-  /* -20% from previous mobile size — title shrunk so the gate is tidier */
-  .password-gate-title { font-size: clamp(12px, 3.8vw, 14px); }
+  /* Title sized to fit on one line; bumped 10% from the prior shrink */
+  .password-gate-title { font-size: clamp(13px, 4.2vw, 15px); }
   /* Match input + button: same width, height, font-size. Only the font-weight
      differs (input stays normal, button keeps bold) per the brief. */
   .password-gate-input,
