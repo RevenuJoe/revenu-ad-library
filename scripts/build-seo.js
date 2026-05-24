@@ -234,4 +234,158 @@ console.log(`✓ llms-full.txt — ${ads.length} ads`);
 fs.writeFileSync(path.join(REPO_ROOT, 'api', 'library.md'), llmsFull);
 console.log('✓ api/library.md');
 
+// ----- Pre-rendered HTML files per URL --------------------------------
+// Strategy: use index.html as a template and only rewrite the head's
+// meta tags + JSON-LD per URL. Body + scripts stay identical so the SPA
+// hydrates exactly the same way it did before.
+const indexTemplate = fs.readFileSync(path.join(REPO_ROOT, 'index.html'), 'utf8');
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function imagePathFor(ad) {
+  const cfg = PLATFORMS[ad.platform || 'google'];
+  const tab = cfg.tabs.find(t => t.key === ad.category);
+  const tabFolder = tab ? tab.folder : '';
+  return `images/${cfg.folder}/${tabFolder}/${ad.image}`;
+}
+
+function buildBreadcrumbs(platform, category, ad) {
+  const cfg = PLATFORMS[platform];
+  const list = [
+    { name: 'Revenu Ad Library', item: BASE_URL + '/' },
+    { name: cfg.label, item: BASE_URL + cfg.path }
+  ];
+  if (category && category !== cfg.defaultTab) {
+    const catLabel = (cfg.tabs.find(t => t.key === category) || {}).label || category;
+    if (ad) {
+      list.push({ name: catLabel, item: BASE_URL + cfg.path + '/' + category });
+      list.push({ name: ad.title, item: BASE_URL + cfg.path + '/' + ad.category + '-' + ad.id });
+    } else {
+      list.push({ name: catLabel, item: BASE_URL + cfg.path + '/' + category });
+    }
+  }
+  return list;
+}
+
+function buildJsonLdFor({ platform, category, ad, canonical }) {
+  const cfg = PLATFORMS[platform];
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    itemListElement: buildBreadcrumbs(platform, category, ad).map((b, i) => ({
+      '@type': 'ListItem', position: i + 1, name: b.name, item: b.item
+    }))
+  };
+  if (ad) {
+    const catLabel = (cfg.tabs.find(t => t.key === ad.category) || {}).label || ad.category;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ImageObject',
+      '@id': canonical,
+      name: ad.title,
+      caption: ad.title + (ad.formula ? ' — ' + ad.formula : ''),
+      description: `${ad.title}: a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} example curated in the Revenu Ad Library.`,
+      contentUrl: BASE_URL + '/' + imagePathFor(ad),
+      keywords: [cfg.label, catLabel, ad.title, ad.formula, ad.tag, 'B2B SaaS', 'ad example'].filter(Boolean).join(', '),
+      isPartOf: { '@id': BASE_URL + '/#website' },
+      breadcrumb
+    };
+  }
+  const name = category
+    ? `${(cfg.tabs.find(t => t.key === category) || {}).label || category} — ${cfg.label}`
+    : `${cfg.label} Library`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': canonical,
+    name,
+    description: `Curated collection of ${cfg.label.toLowerCase()} examples for B2B SaaS marketing.`,
+    isPartOf: { '@id': BASE_URL + '/#website' },
+    breadcrumb
+  };
+}
+
+function buildPageHtml({ title, description, canonical, ogImage, jsonLd }) {
+  let html = indexTemplate;
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
+  html = html.replace(/(<meta name="description" content=")[\s\S]*?(")/, `$1${esc(description)}$2`);
+  html = html.replace(/(<link rel="canonical"[^>]*href=")[\s\S]*?(")/, `$1${canonical}$2`);
+  html = html.replace(/(<meta property="og:title" content=")[\s\S]*?(")/, `$1${esc(title)}$2`);
+  html = html.replace(/(<meta property="og:description" content=")[\s\S]*?(")/, `$1${esc(description)}$2`);
+  html = html.replace(/(<meta property="og:url" content=")[\s\S]*?(")/, `$1${canonical}$2`);
+  if (ogImage) {
+    html = html.replace(/(<meta property="og:image" content=")[\s\S]*?(")/g, `$1${ogImage}$2`);
+    html = html.replace(/(<meta name="twitter:image" content=")[\s\S]*?(")/g, `$1${ogImage}$2`);
+  }
+  html = html.replace(/(<meta name="twitter:title" content=")[\s\S]*?(")/, `$1${esc(title)}$2`);
+  html = html.replace(/(<meta name="twitter:description" content=")[\s\S]*?(")/, `$1${esc(description)}$2`);
+  html = html.replace(
+    /(<script type="application\/ld\+json" id="page-jsonld">)([\s\S]*?)(<\/script>)/,
+    `$1${JSON.stringify(jsonLd)}$3`
+  );
+  return html;
+}
+
+function writePage(urlPath, html) {
+  // urlPath like "/linkedin-ads" -> "linkedin-ads.html"
+  // urlPath like "/linkedin-ads/problem-3" -> "linkedin-ads/problem-3.html"
+  const clean = urlPath.replace(/^\/+/, '').replace(/\/+$/, '');
+  if (!clean) return; // root is index.html — left alone
+  const filePath = path.join(REPO_ROOT, clean + '.html');
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, html);
+}
+
+let pagesWritten = 0;
+// Platform-level pages (/google-ads, /linkedin-ads, /landing-pages)
+for (const [platform, cfg] of Object.entries(PLATFORMS)) {
+  const canonical = BASE_URL + cfg.path;
+  const title = `${cfg.label} Library | Revenu`;
+  const description = `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world templates categorized by formula.`;
+  const jsonLd = buildJsonLdFor({ platform, category: null, ad: null, canonical });
+  writePage(cfg.path, buildPageHtml({ title, description, canonical, jsonLd }));
+  pagesWritten++;
+}
+// Category pages
+for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
+  const cfg = PLATFORMS[platform];
+  // explicit /all
+  {
+    const canonical = BASE_URL + cfg.path + '/all';
+    const title = `All ${cfg.label} examples | Revenu`;
+    const description = `Every ${cfg.label} example in the Revenu Ad Library — all categories, all formulas.`;
+    const jsonLd = buildJsonLdFor({ platform, category: 'all', ad: null, canonical });
+    writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, jsonLd }));
+    pagesWritten++;
+  }
+  for (const cat of cats) {
+    if (cat === cfg.defaultTab) continue;
+    const catLabel = (cfg.tabs.find(t => t.key === cat) || {}).label || cat;
+    const canonical = BASE_URL + cfg.path + '/' + cat;
+    const title = `${catLabel} — ${cfg.label} examples | Revenu`;
+    const description = `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS templates categorized by formula.`;
+    const jsonLd = buildJsonLdFor({ platform, category: cat, ad: null, canonical });
+    writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, jsonLd }));
+    pagesWritten++;
+  }
+}
+// Individual ad pages
+for (const ad of ads) {
+  const platform = ad.platform || 'google';
+  const cfg = PLATFORMS[platform];
+  const catLabel = (cfg.tabs.find(t => t.key === ad.category) || {}).label || ad.category;
+  const urlPath = cfg.path + '/' + ad.category + '-' + ad.id;
+  const canonical = BASE_URL + urlPath;
+  const title = `${ad.title} — ${catLabel} ${cfg.label} example | Revenu`;
+  const description = `${ad.title}${ad.formula ? ' — ' + ad.formula : ''} — a real ${catLabel} ${cfg.label} example from the Revenu Ad Library, a curated collection of high-performing B2B SaaS ad and landing page templates.`;
+  const ogImage = BASE_URL + '/' + imagePathFor(ad); // ad's own image as fallback OG
+  const jsonLd = buildJsonLdFor({ platform, category: ad.category, ad, canonical });
+  writePage(urlPath, buildPageHtml({ title, description, canonical, ogImage, jsonLd }));
+  pagesWritten++;
+}
+console.log(`✓ Pre-rendered HTML — ${pagesWritten} pages`);
+
 console.log('\nAll SEO/LLM files regenerated.');

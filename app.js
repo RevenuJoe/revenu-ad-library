@@ -531,7 +531,7 @@ function updateSEOTags() {
     document.title = title;
     setMeta(
       'description',
-      `${ad.title} — a real example of a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} from the Revenu Ad Library. Browse 300+ proven B2B SaaS ad and landing page templates.`
+      `${ad.title}${ad.formula ? ' — ' + ad.formula : ''} — a real ${catLabel} ${cfg.label} example from the Revenu Ad Library, a curated collection of high-performing B2B SaaS ad and landing page templates.`
     );
     setJsonLd({
       '@context': 'https://schema.org',

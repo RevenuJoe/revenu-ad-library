@@ -1,10 +1,10 @@
 {
   "rewrites": [
-    { "source": "/google-ads", "destination": "/index.html" },
-    { "source": "/linkedin-ads", "destination": "/index.html" },
-    { "source": "/landing-pages", "destination": "/index.html" },
-    { "source": "/google-ads/:rest", "destination": "/index.html" },
-    { "source": "/linkedin-ads/:rest", "destination": "/index.html" },
-    { "source": "/landing-pages/:rest", "destination": "/index.html" }
+    { "source": "/google-ads",        "destination": "/google-ads.html" },
+    { "source": "/linkedin-ads",      "destination": "/linkedin-ads.html" },
+    { "source": "/landing-pages",     "destination": "/landing-pages.html" },
+    { "source": "/google-ads/:rest",    "destination": "/google-ads/:rest.html" },
+    { "source": "/linkedin-ads/:rest",  "destination": "/linkedin-ads/:rest.html" },
+    { "source": "/landing-pages/:rest", "destination": "/landing-pages/:rest.html" }
   ]
 }
