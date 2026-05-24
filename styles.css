@@ -935,7 +935,7 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
 
 /* Phone-only fine-tuning (anything narrower than typical iPad portrait) */
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(20px, 7.2vw, 29px); }
+  .hero-title { font-size: clamp(15px, 5.4vw, 22px); }
   .feature-pill { font-size: 11px; }
   .feature-pill-num { width: 18px; height: 18px; font-size: 10px; }
   .brand-logo { font-size: 18px; }
