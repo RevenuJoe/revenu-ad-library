@@ -4,7 +4,7 @@
 // Gates only the root URL "/". Platform URLs (/google-ads, /linkedin-ads,
 // /landing-pages and their /<category>-<n> children) skip the gate entirely
 // so shared deep-links remain freely accessible.
-const PASSWORD = 'revenu';
+const PASSWORD = 'fox';
 const PASSWORD_KEY = 'ad-library-access';
 let gateActive = false;
 function hasUnlocked() {
@@ -530,45 +530,105 @@ document.addEventListener('click', (e) => {
 });
 
 // ---------- Lightbox ----------
-function openLightbox(index, opts = {}) {
+// Preload + decode an image so we don't paint the lightbox until pixels are
+// actually ready. Resolves either way (errors are swallowed so the UI never gets stuck).
+function preloadImage(src) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.src = src;
+    const finish = () => {
+      if (img.decode) img.decode().then(resolve, resolve);
+      else resolve();
+    };
+    if (img.complete && img.naturalWidth > 0) { finish(); return; }
+    img.onload = finish;
+    img.onerror = () => resolve();
+  });
+}
+
+// Warm prev / next so swipes & arrow keys are usually instant.
+function preloadNeighbors() {
+  if (visibleAds.length < 2) return;
+  const prev = visibleAds[(currentIndex - 1 + visibleAds.length) % visibleAds.length];
+  const next = visibleAds[(currentIndex + 1) % visibleAds.length];
+  if (prev) preloadImage(imagePath(prev));
+  if (next && next !== prev) preloadImage(imagePath(next));
+}
+
+// Sequence counter so rapid clicks / keypresses don't race each other.
+let navSeq = 0;
+
+function updateCaption(ad) {
+  const parts = [ad.title];
+  if (ad.formula) parts.push(ad.formula);
+  lbCaption.textContent = parts.join(' — ');
+}
+
+function syncUrlToCurrentAd() {
+  const ad = visibleAds[currentIndex];
+  if (!ad || ad.id == null) return;
+  const newPath = adPath(ad);
+  if (window.location.pathname !== newPath) {
+    window.history.replaceState({ adId: ad.id }, '', newPath);
+  }
+}
+
+async function openLightbox(index, opts = {}) {
   currentIndex = index;
-  updateLightbox();
+  const ad = visibleAds[currentIndex];
+  if (!ad) return;
+  const mySeq = ++navSeq;
+
+  // Pre-decode the first frame before we paint anything, so we never see the
+  // previously-loaded image flash through. Hold opacity at 0 until ready.
+  lbImage.style.transition = 'none';
+  lbImage.style.transform = '';
+  lbImage.style.opacity = '0';
+  lbImage.src = imagePath(ad);
+  lbImage.alt = ad.title;
+  updateCaption(ad);
+
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
 
+  await preloadImage(imagePath(ad));
+  if (mySeq !== navSeq) return; // user already navigated past this
+
   if (opts.slideIn) {
-    // Image starts off-screen left, then springs into center as the
-    // backdrop fades in (handled by the .lightbox fadeIn keyframe).
+    // Position off-screen left, then spring to center
     lbImage.style.transition = 'none';
     lbImage.style.transform = 'translateX(-110vw) rotate(-4deg)';
     lbImage.style.opacity = '0';
-    void lbImage.offsetWidth; // flush layout so the next change animates
+    void lbImage.offsetWidth;
     requestAnimationFrame(() => {
       lbImage.style.transition = 'transform 0.6s cubic-bezier(0.22, 1.15, 0.36, 1), opacity 0.45s ease';
       lbImage.style.transform = '';
       lbImage.style.opacity = '';
-      // Strip the inline transition once it's done so drag interactions stay snappy
       const cleanup = () => {
         lbImage.removeEventListener('transitionend', cleanup);
         lbImage.style.transition = '';
       };
       lbImage.addEventListener('transitionend', cleanup, { once: true });
     });
+  } else {
+    // Quick fade-in so the swap doesn't pop
+    lbImage.style.transition = 'opacity 0.18s ease';
+    lbImage.style.opacity = '';
   }
 
   // Push the ad's URL so it can be shared / linked.
-  if (opts.updateUrl !== false) {
-    const ad = visibleAds[currentIndex];
-    if (ad && ad.id != null) {
-      const newPath = adPath(ad);
-      if (window.location.pathname !== newPath) {
-        window.history.pushState({ adId: ad.id, platform: ad.platform || 'google' }, '', newPath);
-      }
+  if (opts.updateUrl !== false && ad.id != null) {
+    const newPath = adPath(ad);
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({ adId: ad.id, platform: ad.platform || 'google' }, '', newPath);
     }
   }
+
+  preloadNeighbors();
 }
 
 function closeLightbox(opts = {}) {
+  navSeq++; // cancel any in-flight transition
   lightbox.hidden = true;
   document.body.style.overflow = '';
   // Reset any in-flight drag / slide transform so next open is clean
@@ -585,27 +645,40 @@ function closeLightbox(opts = {}) {
   }
 }
 
-function updateLightbox() {
-  const ad = visibleAds[currentIndex];
-  if (!ad) return;
-  lbImage.src = imagePath(ad);
-  lbImage.alt = ad.title;
-  const parts = [ad.title];
-  if (ad.formula) parts.push(ad.formula);
-  lbCaption.textContent = parts.join(' — ');
-}
+// step(): used by desktop prev/next buttons, arrow keys, and the
+// tap-to-advance click handler. Crossfades the image and waits for the new
+// one to decode so there's never a flash of the previous image.
+async function step(delta) {
+  if (visibleAds.length < 2) return;
+  const mySeq = ++navSeq;
+  const targetIdx = (currentIndex + delta + visibleAds.length) % visibleAds.length;
+  const targetAd = visibleAds[targetIdx];
+  const targetSrc = imagePath(targetAd);
 
-function step(delta) {
-  currentIndex = (currentIndex + delta + visibleAds.length) % visibleAds.length;
-  updateLightbox();
-  // Reflect the new ad in the URL without pushing a history entry per step.
-  const ad = visibleAds[currentIndex];
-  if (ad && ad.id != null) {
-    const newPath = adPath(ad);
-    if (window.location.pathname !== newPath) {
-      window.history.replaceState({ adId: ad.id }, '', newPath);
-    }
-  }
+  // Start decoding the next image immediately (often already cached)
+  const preloadDone = preloadImage(targetSrc);
+
+  // Fade out current
+  lbImage.style.transition = 'opacity 0.14s ease';
+  lbImage.style.opacity = '0';
+  await new Promise(r => setTimeout(r, 140));
+  if (mySeq !== navSeq) return;
+
+  // Swap src + caption, then wait for the new image to actually decode
+  currentIndex = targetIdx;
+  lbImage.src = targetSrc;
+  lbImage.alt = targetAd.title;
+  updateCaption(targetAd);
+  syncUrlToCurrentAd();
+  await preloadDone;
+  if (lbImage.decode) { try { await lbImage.decode(); } catch (e) {} }
+  if (mySeq !== navSeq) return;
+
+  // Fade in
+  lbImage.style.transition = 'opacity 0.2s ease';
+  lbImage.style.opacity = '';
+
+  preloadNeighbors();
 }
 lbClose.addEventListener('click', closeLightbox);
 lbPrev.addEventListener('click', () => step(-1));
@@ -644,31 +717,62 @@ function applyDrag(dx) {
 }
 
 function snapBack() {
-  lbImage.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+  lbImage.style.transition = 'transform 0.28s cubic-bezier(0.22, 1.15, 0.36, 1), opacity 0.25s ease';
   lbImage.style.transform = '';
   lbImage.style.opacity = '';
 }
 
-function commitSwipe(direction) {
+async function commitSwipe(direction) {
   // direction: +1 (next, swipe-left) or -1 (prev, swipe-right)
+  if (visibleAds.length < 2) { snapBack(); return; }
+
+  const mySeq = ++navSeq;
   const sign = direction === 1 ? -1 : 1;
-  lbImage.style.transition = 'transform 0.22s ease, opacity 0.22s ease';
-  lbImage.style.transform = `translateX(${sign * window.innerWidth}px) rotate(${sign * 12}deg)`;
+  const targetIdx = (currentIndex + direction + visibleAds.length) % visibleAds.length;
+  const targetAd = visibleAds[targetIdx];
+  const targetSrc = imagePath(targetAd);
+
+  // Start preloading + decoding the next image immediately. By the time the
+  // swipe-off animation ends, the new image is almost always cache-warm.
+  const preloadDone = preloadImage(targetSrc);
+
+  // Phase 1 — throw the current image off-screen
+  lbImage.style.transition = 'transform 0.26s cubic-bezier(0.5, 0, 0.75, 0.1), opacity 0.22s ease';
+  lbImage.style.transform = `translateX(${sign * window.innerWidth}px) rotate(${sign * 10}deg)`;
   lbImage.style.opacity = '0';
 
-  const onOff = () => {
-    lbImage.removeEventListener('transitionend', onOff);
-    step(direction);
-    // Place the new image off-screen on the opposite side, then animate to center
-    lbImage.style.transition = 'none';
-    lbImage.style.transform = `translateX(${-sign * window.innerWidth}px)`;
-    lbImage.style.opacity = '0';
-    void lbImage.offsetWidth; // force reflow so the next change animates
-    lbImage.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+  await Promise.all([
+    new Promise(resolve => {
+      const onEnd = () => { lbImage.removeEventListener('transitionend', onEnd); resolve(); };
+      lbImage.addEventListener('transitionend', onEnd, { once: true });
+    }),
+    preloadDone
+  ]);
+  if (mySeq !== navSeq) return;
+
+  // Swap src + caption + URL. Image is already decoded so no flash.
+  currentIndex = targetIdx;
+  lbImage.src = targetSrc;
+  lbImage.alt = targetAd.title;
+  updateCaption(targetAd);
+  syncUrlToCurrentAd();
+
+  // Decode the now-attached element too, belt-and-braces against any final blink
+  if (lbImage.decode) { try { await lbImage.decode(); } catch (e) {} }
+  if (mySeq !== navSeq) return;
+
+  // Phase 2 — position off-screen on the opposite side (invisible), reflow, slide in
+  lbImage.style.transition = 'none';
+  lbImage.style.transform = `translateX(${-sign * window.innerWidth}px) rotate(${-sign * 6}deg)`;
+  lbImage.style.opacity = '0';
+  void lbImage.offsetWidth;
+  requestAnimationFrame(() => {
+    lbImage.style.transition = 'transform 0.36s cubic-bezier(0.22, 1.05, 0.36, 1), opacity 0.3s ease';
     lbImage.style.transform = '';
     lbImage.style.opacity = '';
-  };
-  lbImage.addEventListener('transitionend', onOff, { once: true });
+  });
+
+  preloadNeighbors();
 }
 
 lbImage.addEventListener('touchstart', (e) => {
