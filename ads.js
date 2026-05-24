@@ -1149,17 +1149,17 @@ window.ADS = [
   },
 
   // ---------- Landing Pages — Above the Fold ----------
-  { image: "1 Field - 1.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "1 Field - 2.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "1 Field - 3.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "1 Field - 1.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 2 },  platform: "landing" },
+  { image: "1 Field - 2.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 8 },  platform: "landing" },
+  { image: "1 Field - 3.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 13 }, platform: "landing" },
 
-  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Long Form 2.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Long Form 3.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 3 },  platform: "landing" },
+  { image: "Long Form 2.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 9 },  platform: "landing" },
+  { image: "Long Form 3.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 14 }, platform: "landing" },
 
-  { image: "Question 1.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Question 2.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Question 3.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Question 1.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 4 },  platform: "landing" },
+  { image: "Question 2.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 10 }, platform: "landing" },
+  { image: "Question 3.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 15 }, platform: "landing" },
   { image: "Question 4.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 5.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 6.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
@@ -1170,15 +1170,15 @@ window.ADS = [
   { image: "Question 11.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 13.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
 
-  { image: "Buttons 1.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Buttons 2.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Buttons 1.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 5 },  platform: "landing" },
+  { image: "Buttons 2.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 12 }, platform: "landing" },
   { image: "Buttons 3.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Buttons 4.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Buttons 5.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
 
-  { image: "Checkbox 1.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Checkbox 2.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Checkbox 3.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 1.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 6 },  platform: "landing" },
+  { image: "Checkbox 2.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 11 }, platform: "landing" },
+  { image: "Checkbox 3.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 16 }, platform: "landing" },
   { image: "Checkbox 4.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Checkbox 5.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Checkbox 6.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
@@ -1187,7 +1187,7 @@ window.ADS = [
   { image: "Checkbox 9.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Checkbox 10.webp", title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
 
-  { image: "Sign Up 1.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Sign Up 1.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 7 }, platform: "landing" },
   { image: "Sign Up 2.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Sign Up 3.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Sign Up 4.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
@@ -1196,8 +1196,8 @@ window.ADS = [
   { image: "Question Animated.webp", title: "Question", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 1 }, platform: "landing" },
 
   // ---------- Landing Pages — Blocks ----------
-  { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Dynamic 2.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 1 },  platform: "landing" },
+  { image: "Dynamic 2.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 7 },  platform: "landing" },
   { image: "Dynamic 3.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 4.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 5.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1205,17 +1205,17 @@ window.ADS = [
   { image: "Dynamic 7.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 8.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Logos 2.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Logos 3.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 2 },  platform: "landing" },
+  { image: "Logos 2.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 8 },  platform: "landing" },
+  { image: "Logos 3.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 14 }, platform: "landing" },
   { image: "Logos 4.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Logos 5.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Logos 6.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Logos 7.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Logos 8.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Product Hero 1.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Product Hero 2.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Product Hero 1.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 3 }, platform: "landing" },
+  { image: "Product Hero 2.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 9 }, platform: "landing" },
   { image: "Product Hero 3.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Product Hero 4.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Product Hero 5.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1225,14 +1225,14 @@ window.ADS = [
   { image: "Product Hero 9.webp",  title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Product Hero 10.webp", title: "Product Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Competitors 1.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Competitors 2.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Competitors 1.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 4 }, platform: "landing" },
+  { image: "Competitors 2.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 5 }, platform: "landing" },
   { image: "Competitors 3.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Competitors 4.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Competitors 5.webp", title: "Competitors", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Boxes 1.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
-  { image: "Boxes 2.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Boxes 1.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 6 },  platform: "landing" },
+  { image: "Boxes 2.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 13 }, platform: "landing" },
   { image: "Boxes 3.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Boxes 4.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Boxes 5.webp", title: "Boxes", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1253,14 +1253,14 @@ window.ADS = [
   { image: "Video 4.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Video 5.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Bookend 1.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 1.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 12 }, platform: "landing" },
   { image: "Bookend 2.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 3.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 4.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 5.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Bookend 6.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Case Study 1.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Case Study 1.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 10 }, platform: "landing" },
   { image: "Case Study 2.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Case Study 3.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Case Study 4.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1268,7 +1268,7 @@ window.ADS = [
   { image: "Icons 1.webp", title: "Icons", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Icons 2.webp", title: "Icons", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Social 1.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 1.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 11 }, platform: "landing" },
   { image: "Social 2.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Social 3.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Social 4.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1276,7 +1276,7 @@ window.ADS = [
   { image: "Social 6.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Social 7.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Software Hero 1.webp", title: "Software Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Software Hero 1.webp", title: "Software Hero", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 15 }, platform: "landing" },
   { image: "Software Hero 2.webp", title: "Software Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
   { image: "Steps 1.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1284,20 +1284,20 @@ window.ADS = [
   { image: "Steps 3.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
   // ---------- Landing Pages — Product Visuals ----------
-  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "Devices 2.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "Devices 3.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 1 }, platform: "landing" },
+  { image: "Devices 2.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 5 }, platform: "landing" },
+  { image: "Devices 3.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 9 }, platform: "landing" },
 
-  { image: "Laptops 1.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "Laptops 2.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Laptops 1.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 2 }, platform: "landing" },
+  { image: "Laptops 2.webp",    title: "Laptops",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 6 }, platform: "landing" },
 
-  { image: "People 1.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "People 2.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "People 3.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "People 1.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 3 }, platform: "landing" },
+  { image: "People 2.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 7 }, platform: "landing" },
+  { image: "People 3.webp",     title: "People",     formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 10 }, platform: "landing" },
 
-  { image: "Screenshot 1.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "Screenshot 2.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
-  { image: "Screenshot 3.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", platform: "landing" },
+  { image: "Screenshot 1.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 4 }, platform: "landing" },
+  { image: "Screenshot 2.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 8 }, platform: "landing" },
+  { image: "Screenshot 3.webp", title: "Screenshot", formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 11 }, platform: "landing" },
 
   // ---------- LinkedIn — Problem (continued) ----------
   { image: "Problem 68.webp", title: "Pop Culture Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
