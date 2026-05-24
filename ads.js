@@ -1253,6 +1253,36 @@ window.ADS = [
   { image: "Video 4.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Video 5.webp", title: "Video", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
+  { image: "Bookend 1.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 2.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 3.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 4.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 5.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Bookend 6.webp", title: "Bookend", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Case Study 1.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Case Study 2.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Case Study 3.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Case Study 4.webp", title: "Case Study", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Icons 1.webp", title: "Icons", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Icons 2.webp", title: "Icons", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Social 1.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 2.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 3.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 4.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 5.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 6.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Social 7.webp", title: "Social", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Software Hero 1.webp", title: "Software Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Software Hero 2.webp", title: "Software Hero", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
+  { image: "Steps 1.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Steps 2.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+  { image: "Steps 3.webp", title: "Steps", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
+
   // ---------- LinkedIn — Problem (continued) ----------
   { image: "Problem 68.webp", title: "Pop Culture Meme", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "Problem 69.webp", title: "Brand Background", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
