@@ -491,7 +491,6 @@ body.gated .site-footer {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  padding-top: 96px; /* leave room so the card never overlaps the header */
   background: rgba(252, 247, 245, 0.35);
   animation: fadeIn 0.35s ease;
 }
@@ -510,17 +509,11 @@ body.gated .site-footer {
   gap: 14px;
 }
 .password-gate-title {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--ink);
   margin: 0;
-}
-.password-gate-sub {
-  font-size: 14px;
-  color: var(--ink-soft);
-  margin: 0 0 6px;
-  line-height: 1.4;
 }
 .password-gate-input {
   appearance: none;
@@ -532,13 +525,14 @@ body.gated .site-footer {
   font-size: 16px;
   width: 100%;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   text-align: center;
   letter-spacing: 0.05em;
 }
 .password-gate-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(118, 160, 156, 0.18);
+  border-color: #E8DFD2;
+  background: #FAF3EB;
+  box-shadow: 0 0 0 3px rgba(232, 223, 210, 0.55);
 }
 .password-gate-btn {
   appearance: none;
@@ -563,8 +557,7 @@ body.gated .site-footer {
 }
 @media (max-width: 480px) {
   .password-gate-card { padding: 28px 24px 24px; }
-  .password-gate-title { font-size: 19px; }
-  .password-gate-sub { font-size: 13px; }
+  .password-gate-title { font-size: 18px; }
 }
 
 /* ---------- Lightbox ---------- */

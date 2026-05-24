@@ -25,6 +25,9 @@ function showGate() {
 }
 function hideGate() {
   gateActive = false;
+  // Re-render the gallery with the pop-in animation so cards visibly arrive
+  // on unlock — same animation users see when they first land on a library.
+  if (typeof render === 'function') render(true);
   document.body.classList.remove('gated');
   const gate = document.getElementById('password-gate');
   if (gate) gate.hidden = true;
