@@ -1160,5 +1160,27 @@ window.ADS = [
   { image: "Question 9.webp",  title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 10.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
   { image: "Question 11.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
-  { image: "Question 13.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" }
+  { image: "Question 13.webp", title: "Question with a Drop-down", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  { image: "Buttons 1.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Buttons 2.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Buttons 3.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Buttons 4.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Buttons 5.webp",  title: "Buttons", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  { image: "Checkbox 1.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 2.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 3.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 4.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 5.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 6.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 7.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 8.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 9.webp",  title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Checkbox 10.webp", title: "Checkbox", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+
+  { image: "Sign Up 1.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Sign Up 2.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Sign Up 3.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" },
+  { image: "Sign Up 4.webp",  title: "Sign Up", formula: "", tag: "Above the Fold", category: "above-the-fold", platform: "landing" }
 ];
