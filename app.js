@@ -121,6 +121,7 @@ const platforms = {
     features: ['30+ Ad Formulas', 'Proven High CTR', 'Higher Quality Scores'],
     defaultTab: 'non-brand',
     tabs: [
+      { key: 'all',         label: 'All',          folder: '' },
       { key: 'brand',       label: 'Brand',        folder: 'Brand' },
       { key: 'non-brand',   label: 'Non Brand',    folder: 'Non Brand' },
       { key: 'competitor',  label: 'Competitor',   folder: 'Competitor' },
@@ -133,6 +134,7 @@ const platforms = {
     features: ['Increase Your CTR', 'Drive More Demos', 'Stop The Scroll'],
     defaultTab: 'problem',
     tabs: [
+      { key: 'all',           label: 'All',           folder: '' },
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
       { key: 'product',       label: 'Product',       folder: 'Product' },
       { key: 'conversion',    label: 'Conversion',    folder: 'Conversion' },
@@ -148,12 +150,40 @@ const platforms = {
     features: ['Increase Your Conversion Rate', 'Tell A Better Story', 'Beat Your Competition'],
     defaultTab: 'above-the-fold',
     tabs: [
+      { key: 'all',             label: 'All',             folder: '' },
       { key: 'above-the-fold',  label: 'Above the Fold',  folder: 'Above the Fold' },
       { key: 'blocks',          label: 'Blocks',          folder: 'Blocks' },
       { key: 'conversion-path', label: 'Conversion Path', folder: 'Conversion Path' }
     ]
   }
 };
+
+// ---------- Favorites ----------
+// Per-ad heart toggle, stored in localStorage. The favorites filter button on
+// the desktop filter bar restricts the gallery to only favorited ads.
+// The filter state is tracked PER-PLATFORM so switching libraries doesn't
+// drag the toggle with you, but coming back to a library restores its state.
+const FAVORITES_KEY = 'ad-library-favorites';
+const favoritesModeByPlatform = { google: false, linkedin: false, landing: false };
+function getFavoritesMode() { return !!favoritesModeByPlatform[activePlatform]; }
+const favorites = new Set();
+try {
+  const raw = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
+  if (Array.isArray(raw)) raw.forEach(k => favorites.add(k));
+} catch (e) {}
+function adKey(ad) {
+  return `${ad.platform || 'google'}|${ad.category}|${ad.id}`;
+}
+function isFavorite(ad) { return favorites.has(adKey(ad)); }
+function persistFavorites() {
+  try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites])); } catch (e) {}
+}
+function toggleFavorite(ad) {
+  const k = adKey(ad);
+  if (favorites.has(k)) favorites.delete(k);
+  else favorites.add(k);
+  persistFavorites();
+}
 
 // ---------- URL routing ----------
 // Each platform has its own clean URL: /google-ads, /linkedin-ads, /landing-pages.
@@ -286,6 +316,28 @@ shuffleBtn.addEventListener('click', () => {
 shuffleBtn.addEventListener('animationend', () => {
   shuffleBtn.classList.remove('is-spinning');
 });
+
+// ---------- Favorites filter (desktop) ----------
+// Toggle: when active, render() restricts visibleAds to favorited ads only.
+// State is per-platform — switching libraries clears the visual filter, and
+// coming back to a library restores whatever state it had.
+const favoritesFilterBtn = document.getElementById('favorites-filter-btn');
+function syncFavoritesButton() {
+  if (!favoritesFilterBtn) return;
+  const on = getFavoritesMode();
+  favoritesFilterBtn.classList.toggle('is-active', on);
+  favoritesFilterBtn.setAttribute('aria-pressed', String(on));
+  const svg = favoritesFilterBtn.querySelector('svg');
+  if (svg) svg.setAttribute('fill', on ? 'currentColor' : 'none');
+}
+if (favoritesFilterBtn) {
+  favoritesFilterBtn.addEventListener('click', () => {
+    favoritesModeByPlatform[activePlatform] = !getFavoritesMode();
+    syncFavoritesButton();
+    render(true);
+  });
+}
+syncFavoritesButton();
 
 // ---------- Search control (desktop) ----------
 // Click the magnifying glass → input slides out, focuses. Press Enter →
@@ -466,7 +518,9 @@ filterDropdownTrigger.addEventListener('click', (e) => {
 function render(animate = false) {
   visibleAds = allAds.filter(ad => {
     if ((ad.platform || 'google') !== activePlatform) return false;
-    if (ad.category !== activeFilter) return false;
+    // 'all' shows every category in the current platform
+    if (activeFilter !== 'all' && ad.category !== activeFilter) return false;
+    if (getFavoritesMode() && !isFavorite(ad)) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const hay = `${ad.title || ''} ${ad.formula || ''} ${ad.tag || ''} ${ad.image || ''}`.toLowerCase();
@@ -500,6 +554,7 @@ function renderCards(animate = false) {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Open ${ad.title}`);
+    const fav = isFavorite(ad);
     card.innerHTML = `
       <div class="card-thumb">
         <img src="${imagePath(ad)}" alt="${escapeHtml(ad.title)}" loading="lazy" />
@@ -510,6 +565,11 @@ function renderCards(animate = false) {
           ${ad.formula ? `<p class="card-sub">${escapeHtml(ad.formula)}</p>` : ''}
         </div>
         ${ad.tag ? `<span class="card-tag">${escapeHtml(ad.tag)}</span>` : ''}
+        <button class="card-heart${fav ? ' is-favorited' : ''}" type="button" aria-label="${fav ? 'Remove favorite' : 'Add favorite'}" title="${fav ? 'Remove favorite' : 'Add favorite'}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="${fav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
       </div>
     `;
     card.addEventListener('click', () => openLightbox(i));
@@ -519,6 +579,27 @@ function renderCards(animate = false) {
         openLightbox(i);
       }
     });
+    // Heart toggle — stop propagation so it doesn't also open the lightbox
+    const heart = card.querySelector('.card-heart');
+    if (heart) {
+      heart.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFavorite(ad);
+        const nowFav = isFavorite(ad);
+        heart.classList.toggle('is-favorited', nowFav);
+        heart.setAttribute('aria-label', nowFav ? 'Remove favorite' : 'Add favorite');
+        heart.setAttribute('title', nowFav ? 'Remove favorite' : 'Add favorite');
+        const svg = heart.querySelector('svg');
+        if (svg) svg.setAttribute('fill', nowFav ? 'currentColor' : 'none');
+        // If favorites filter is on and this card just got unfavorited,
+        // re-render so it disappears from the gallery.
+        if (getFavoritesMode() && !nowFav) render();
+      });
+      heart.addEventListener('keydown', (e) => {
+        // Prevent space/enter from bubbling to the card
+        if (e.key === 'Enter' || e.key === ' ') e.stopPropagation();
+      });
+    }
     gallery.appendChild(card);
   });
   isFirstRender = false;
@@ -542,6 +623,8 @@ function setPlatform(platform, opts = {}) {
   updateHeadline();
   renderFeaturePills();
   renderTabs();
+  // Reflect the new platform's stored favorites-filter state on the button
+  if (typeof syncFavoritesButton === 'function') syncFavoritesButton();
   render(true); // platform switch — animate
   // Push the new URL (unless this was triggered by popstate, or the homepage
   // gate is active — clicking platform pills on the gate should swap the

@@ -211,10 +211,44 @@ a { color: inherit; }
   .view-toggle { display: none; }
 }
 
+/* ---------- Favorites filter button (desktop only) ---------- */
+.favorites-filter-btn {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+  border: none;
+  background: rgba(28, 31, 29, 0.05);
+  color: var(--ink-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.favorites-filter-btn:hover {
+  background: #fff;
+  color: #e15a73;
+  box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
+}
+.favorites-filter-btn svg { display: block; transition: fill 0.15s ease; }
+.favorites-filter-btn.is-active {
+  background: #e15a73;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
+}
+.favorites-filter-btn.is-active:hover { background: #d24b66; color: #fff; }
+@media (max-width: 1100px) { .favorites-filter-btn { left: 40px; } }
+@media (max-width: 960px)  { .favorites-filter-btn { display: none; } }
+
 /* ---------- Search control (desktop only) ---------- */
 .search-control {
   position: absolute;
-  left: 48px;
+  left: 88px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -280,7 +314,7 @@ a { color: inherit; }
   pointer-events: auto;
 }
 .search-input:focus { border-color: var(--accent); }
-@media (max-width: 1100px) { .search-control { left: 44px; } }
+@media (max-width: 1100px) { .search-control { left: 80px; } }
 @media (max-width: 960px) { .search-control { display: none; } }
 
 /* ---------- Shuffle button (desktop only) ---------- */
@@ -482,6 +516,35 @@ a { color: inherit; }
   justify-content: space-between;
   gap: 12px;
 }
+/* Per-card heart (desktop only). Sits in the bottom-right of the card-body. */
+.card-heart {
+  appearance: none;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.85);
+  color: #c2c0bb;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease, border-color 0.15s ease;
+}
+.card-heart:hover {
+  color: #e15a73;
+  background: #fff;
+  border-color: rgba(0,0,0,0.10);
+  transform: scale(1.08);
+}
+.card-heart.is-favorited {
+  color: #e15a73;
+  background: #fff;
+  border-color: rgba(225, 90, 115, 0.35);
+}
+.card-heart svg { display: block; }
+@media (max-width: 960px) { .card-heart { display: none; } }
 .card-text {
   display: flex;
   flex-direction: column;
