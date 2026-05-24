@@ -155,11 +155,13 @@ function setColumns(n) {
   try { localStorage.setItem(COLS_KEY, cols); } catch (e) {}
 }
 
-// Restore saved preference (default 3)
+// Restore saved preference. First-time mobile visitors get 1-col (matches the
+// previous mobile visual); desktop defaults to 2-col. Toggle still overrides.
 const savedCols = (() => {
   try { return localStorage.getItem(COLS_KEY); } catch (e) { return null; }
 })();
-setColumns(savedCols && ['1','2','3'].includes(savedCols) ? savedCols : 2);
+const _isMobileViewport = window.matchMedia('(max-width: 960px)').matches;
+setColumns(savedCols && ['1','2','3'].includes(savedCols) ? savedCols : (_isMobileViewport ? 1 : 2));
 
 viewToggle.querySelectorAll('.view-toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => setColumns(btn.dataset.cols));

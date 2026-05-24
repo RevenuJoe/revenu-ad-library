@@ -578,26 +578,45 @@ a { color: inherit; }
   }
   /* Compact hero */
   .hero { padding: 19px 0 16px; }
-  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 10px; }
+  .hero-title { font-size: clamp(19px, 5vw, 30px); margin-bottom: 12px; }
   .feature-pills { margin-bottom: 14px; gap: 4px; }
   .feature-pill { font-size: 12px; padding: 4px 13px 4px 4px; }
   .feature-pill-num { width: 20px; height: 20px; font-size: 10px; }
-  /* Tabs collapse to the custom filter dropdown */
+  /* Tabs collapse to the custom filter dropdown. Shuffle + column toggle move
+     out of their absolute positioning and join the dropdown in a flex row,
+     pinned to the left so they live next to the filter selector. */
   .tabs { display: none; }
-  .filter-dropdown { display: block; }
   .filters-wrap { padding: 10px 0; }
-  /* Gallery is always 1 column at this size; cols-1/2/3 selection is ignored */
-  .gallery,
-  .gallery.cols-1,
-  .gallery.cols-2,
-  .gallery.cols-3 {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 24px 0 56px;
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+  .filters-wrap .container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
+  .shuffle-btn {
+    display: flex;
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    left: auto; right: auto;
+  }
+  .view-toggle {
+    display: flex;
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    left: auto; right: auto;
+  }
+  .filter-dropdown {
+    display: block;
+    flex: 1 1 auto;
+    max-width: none;
+    margin: 0;
+  }
+  /* Gallery: respect the column toggle selection. Tighter gaps for narrow screens. */
+  .gallery { padding: 24px 0 56px; max-width: none; margin-left: 0; margin-right: 0; }
+  .gallery.cols-1 { gap: 16px; max-width: none; margin-left: 0; margin-right: 0; }
+  .gallery.cols-2 { gap: 12px; }
+  .gallery.cols-3 { gap: 8px; }
   .card-body { padding: 16px 20px 20px; }
   .card-title { font-size: 16px; }
   .card-sub { font-size: 13px; }
