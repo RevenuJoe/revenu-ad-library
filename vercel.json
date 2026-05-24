@@ -2,6 +2,9 @@
   "rewrites": [
     { "source": "/google-ads", "destination": "/index.html" },
     { "source": "/linkedin-ads", "destination": "/index.html" },
-    { "source": "/landing-pages", "destination": "/index.html" }
+    { "source": "/landing-pages", "destination": "/index.html" },
+    { "source": "/google-ads/:rest", "destination": "/index.html" },
+    { "source": "/linkedin-ads/:rest", "destination": "/index.html" },
+    { "source": "/landing-pages/:rest", "destination": "/index.html" }
   ]
 }

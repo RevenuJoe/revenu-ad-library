@@ -68,8 +68,9 @@ const platforms = {
 };
 
 // ---------- URL routing ----------
-// Each platform has its own clean URL. Root URL "/" defaults to LinkedIn.
-// vercel.json rewrites /google-ads, /linkedin-ads, /landing-pages to index.html.
+// Each platform has its own clean URL: /google-ads, /linkedin-ads, /landing-pages.
+// Each ad has a deep-link URL: /<platform>-<id>, e.g. /linkedin-ads-5.
+// Root URL "/" defaults to LinkedIn. vercel.json rewrites all of these to index.html.
 const PATH_TO_PLATFORM = {
   '/google-ads': 'google',
   '/linkedin-ads': 'linkedin',
@@ -80,16 +81,48 @@ const PLATFORM_TO_PATH = {
   linkedin: '/linkedin-ads',
   landing:  '/landing-pages'
 };
-function platformFromPath() {
+
+function parsePath() {
   const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
-  return PATH_TO_PLATFORM[path] || 'linkedin';
+  // /platform or /platform/category[-id]
+  const m = path.match(/^\/(google-ads|linkedin-ads|landing-pages)(?:\/(.+))?$/);
+  if (!m) return { platform: 'linkedin', category: null, adId: null };
+  const platform = PATH_TO_PLATFORM['/' + m[1]];
+  if (!m[2]) return { platform, category: null, adId: null };
+  // Try <category>-<id> first (greedy on the category so multi-hyphen names like
+  // convo-ads-3 or above-the-fold-12 split correctly).
+  const idMatch = m[2].match(/^(.+)-(\d+)$/);
+  if (idMatch) {
+    return { platform, category: idMatch[1], adId: parseInt(idMatch[2], 10) };
+  }
+  return { platform, category: m[2], adId: null };
+}
+function platformFromPath() { return parsePath().platform; }
+
+// Build the URL for a given platform / category / optional ad ID.
+// Drops the category when it's the platform's default (keeps /linkedin-ads clean).
+function buildPath(platform, category, adId) {
+  const platformPath = PLATFORM_TO_PATH[platform];
+  if (adId != null) return `${platformPath}/${category}-${adId}`;
+  if (!category || category === platforms[platform].defaultTab) return platformPath;
+  return `${platformPath}/${category}`;
+}
+function adPath(ad) {
+  return buildPath(ad.platform || 'google', ad.category, ad.id);
+}
+function findAd(platform, category, id) {
+  return allAds.find(a =>
+    (a.platform || 'google') === platform &&
+    a.category === category &&
+    a.id === id
+  );
 }
 
 let allAds = [];
 let visibleAds = [];
 let currentIndex = 0;
 let activePlatform = platformFromPath();
-let activeFilter = platforms[activePlatform].defaultTab;
+let activeFilter; // determined below, once allAds are loaded and we know if a deep-link ad picks a category
 let isFirstRender = true;
 
 function currentPlatform() { return platforms[activePlatform] || platforms.google; }
@@ -160,12 +193,40 @@ shuffleBtn.addEventListener('animationend', () => {
 
 // ---------- Load ads ----------
 allAds = window.ADS || [];
+// Assign per-category sequential IDs (1-based) so each ad has a stable deep-link URL.
+// /linkedin-ads/problem-3, /google-ads/non-brand-1, /landing-pages/above-the-fold-12, etc.
+const _idCounters = {};
+allAds.forEach(ad => {
+  const key = `${ad.platform || 'google'}|${ad.category}`;
+  _idCounters[key] = (_idCounters[key] || 0) + 1;
+  ad.id = _idCounters[key];
+});
+
+// If the URL points at a specific category and/or ad, start the library on that
+// category so the slide-in opens against the matching tab.
+const _initial = parsePath();
+let _initialAd = (_initial.category && _initial.adId != null)
+  ? findAd(activePlatform, _initial.category, _initial.adId)
+  : null;
+activeFilter = (_initialAd && _initialAd.category)
+  || _initial.category
+  || platforms[activePlatform].defaultTab;
+
 // Sync the desktop platform pills to the URL-derived activePlatform
 platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform === activePlatform));
 renderFeaturePills();
 renderTabs();
 updateHeadline();
 render(true); // initial load — animate
+
+// Deep-link: after the library is on screen, fade the backdrop in and slide
+// the image in from the left. Brief delay so the user sees the library first.
+if (_initialAd) {
+  setTimeout(() => {
+    const idx = visibleAds.indexOf(_initialAd);
+    if (idx !== -1) openLightbox(idx, { slideIn: true, updateUrl: false });
+  }, 400);
+}
 
 // ---------- Headline + tab title ----------
 function updateHeadline() {
@@ -207,7 +268,7 @@ function renderTabs() {
   });
 }
 
-function setFilter(key) {
+function setFilter(key, opts = {}) {
   if (!key || key === activeFilter) return;
   activeFilter = key;
   // Sync desktop tabs
@@ -222,6 +283,13 @@ function setFilter(key) {
     o.classList.toggle('is-active', o.dataset.filter === key);
   });
   render();
+  // Push URL so categories are sharable. Skip when popstate / deep-link triggered it.
+  if (opts.updateUrl !== false) {
+    const newPath = buildPath(activePlatform, key, null);
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({ category: key }, '', newPath);
+    }
+  }
 }
 
 // Toggle mobile filter dropdown
@@ -309,7 +377,8 @@ function setPlatform(platform, opts = {}) {
   renderFeaturePills();
   renderTabs();
   render(true); // platform switch — animate
-  // Push the new URL (unless this was triggered by popstate)
+  // Push the new URL (unless this was triggered by popstate). Switching platforms
+  // resets to the default category, so URL stays as /platform (no category).
   if (opts.updateUrl !== false) {
     const newPath = PLATFORM_TO_PATH[platform];
     if (newPath && window.location.pathname !== newPath) {
@@ -318,11 +387,35 @@ function setPlatform(platform, opts = {}) {
   }
 }
 
-// Sync platform when the user hits back / forward
+// Sync platform + category + lightbox state when the user hits back / forward.
 window.addEventListener('popstate', () => {
-  const platform = platformFromPath();
-  if (platform !== activePlatform) {
-    setPlatform(platform, { updateUrl: false });
+  const parsed = parsePath();
+  // Platform change first (e.g., /linkedin-ads/problem-3 → /google-ads)
+  if (parsed.platform !== activePlatform) {
+    setPlatform(parsed.platform, { updateUrl: false });
+  }
+  // Category change (e.g., switching to /linkedin-ads/product)
+  const targetCategory = parsed.category || platforms[parsed.platform].defaultTab;
+  if (targetCategory !== activeFilter) {
+    setFilter(targetCategory, { updateUrl: false });
+  }
+  if (parsed.adId != null && parsed.category) {
+    // Navigated to a deep-link URL — make sure the right ad is open
+    const ad = findAd(parsed.platform, parsed.category, parsed.adId);
+    if (ad) {
+      const idx = visibleAds.indexOf(ad);
+      if (idx !== -1) {
+        if (lightbox.hidden) {
+          openLightbox(idx, { updateUrl: false });
+        } else {
+          currentIndex = idx;
+          updateLightbox();
+        }
+      }
+    }
+  } else if (!lightbox.hidden) {
+    // Navigated away from a deep-link URL — close the lightbox
+    closeLightbox({ updateUrl: false });
   }
 });
 
@@ -374,20 +467,61 @@ document.addEventListener('click', (e) => {
 });
 
 // ---------- Lightbox ----------
-function openLightbox(index) {
+function openLightbox(index, opts = {}) {
   currentIndex = index;
   updateLightbox();
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
+
+  if (opts.slideIn) {
+    // Image starts off-screen left, then springs into center as the
+    // backdrop fades in (handled by the .lightbox fadeIn keyframe).
+    lbImage.style.transition = 'none';
+    lbImage.style.transform = 'translateX(-110vw) rotate(-4deg)';
+    lbImage.style.opacity = '0';
+    void lbImage.offsetWidth; // flush layout so the next change animates
+    requestAnimationFrame(() => {
+      lbImage.style.transition = 'transform 0.6s cubic-bezier(0.22, 1.15, 0.36, 1), opacity 0.45s ease';
+      lbImage.style.transform = '';
+      lbImage.style.opacity = '';
+      // Strip the inline transition once it's done so drag interactions stay snappy
+      const cleanup = () => {
+        lbImage.removeEventListener('transitionend', cleanup);
+        lbImage.style.transition = '';
+      };
+      lbImage.addEventListener('transitionend', cleanup, { once: true });
+    });
+  }
+
+  // Push the ad's URL so it can be shared / linked.
+  if (opts.updateUrl !== false) {
+    const ad = visibleAds[currentIndex];
+    if (ad && ad.id != null) {
+      const newPath = adPath(ad);
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({ adId: ad.id, platform: ad.platform || 'google' }, '', newPath);
+      }
+    }
+  }
 }
-function closeLightbox() {
+
+function closeLightbox(opts = {}) {
   lightbox.hidden = true;
   document.body.style.overflow = '';
-  // Reset any in-flight drag transform so next open is clean
+  // Reset any in-flight drag / slide transform so next open is clean
   lbImage.style.transition = 'none';
   lbImage.style.transform = '';
   lbImage.style.opacity = '';
+  // Drop the ad-specific URL but keep the category — replaceState so we don't
+  // pile up history entries from close events.
+  if (opts.updateUrl !== false) {
+    const newPath = buildPath(activePlatform, activeFilter, null);
+    if (newPath && window.location.pathname !== newPath) {
+      window.history.replaceState({}, '', newPath);
+    }
+  }
 }
+
 function updateLightbox() {
   const ad = visibleAds[currentIndex];
   if (!ad) return;
@@ -397,9 +531,18 @@ function updateLightbox() {
   if (ad.formula) parts.push(ad.formula);
   lbCaption.textContent = parts.join(' — ');
 }
+
 function step(delta) {
   currentIndex = (currentIndex + delta + visibleAds.length) % visibleAds.length;
   updateLightbox();
+  // Reflect the new ad in the URL without pushing a history entry per step.
+  const ad = visibleAds[currentIndex];
+  if (ad && ad.id != null) {
+    const newPath = adPath(ad);
+    if (window.location.pathname !== newPath) {
+      window.history.replaceState({ adId: ad.id }, '', newPath);
+    }
+  }
 }
 lbClose.addEventListener('click', closeLightbox);
 lbPrev.addEventListener('click', () => step(-1));
