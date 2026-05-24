@@ -44,6 +44,8 @@ function hideGate() {
     gate.classList.remove('is-entering');
     gate.hidden = true;
   }
+  // Jump to the very top so the user sees REVENU + platform nav + headline first
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   // Sync URL to whatever platform is currently visible (user may have toggled
   // platforms while the gate was up — the URL was held at "/" until now).
   const newPath = PLATFORM_TO_PATH[activePlatform];
