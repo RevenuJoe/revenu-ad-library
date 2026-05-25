@@ -977,6 +977,18 @@ function renderCards(animate = false) {
       }
       return;
     }
+    // Favorites filter is on but nothing matches in this library — friendly
+    // message in the same tone as the /saved page (never the dev-only
+    // "drop images / edit ads.js" hint).
+    if (getFavoritesMode()) {
+      // Landing-page cards are sections of a page, not "ads", so use "block"
+      // there. LinkedIn + Google use "ad".
+      const itemWord = activePlatform === 'landing' ? 'block' : 'ad';
+      emptyState.innerHTML = `<strong>No favorites yet.</strong><br>Tap the <span aria-label="heart">❤</span> on any ${itemWord} to save it here for later.`;
+      return;
+    }
+    // Truly empty category (no ads at all) — this is a dev-only state since
+    // every category ships with content, but keep a sane fallback just in case.
     const cfg = currentPlatform();
     const tab = findTab(activePlatform, activeFilter);
     const tabFolder = tab ? tab.folder : activeFilter;
