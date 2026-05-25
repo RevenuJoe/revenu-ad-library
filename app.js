@@ -11,8 +11,13 @@ function hasUnlocked() {
   try { return localStorage.getItem(PASSWORD_KEY) === 'ok'; } catch (e) { return false; }
 }
 function shouldGate() {
-  const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
-  if (path !== '/') return false;
+  // Gate appears on the chooser homepage only — including the file:// preview.
+  if (typeof isHomepage === 'function') {
+    if (!isHomepage()) return false;
+  } else {
+    const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+    if (path !== '/') return false;
+  }
   return !hasUnlocked();
 }
 function showGate() {
@@ -46,12 +51,21 @@ function hideGate() {
   }
   // Jump to the very top so the user sees REVENU + platform nav + headline first
   window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  // Sync URL to whatever platform is currently visible (user may have toggled
-  // platforms while the gate was up — the URL was held at "/" until now).
-  const newPath = PLATFORM_TO_PATH[activePlatform];
-  if (newPath && window.location.pathname === '/' && activePlatform !== 'linkedin') {
-    window.history.replaceState({}, '', newPath);
+  // If the user explicitly picked a platform (pill / dropdown) while the gate
+  // was up, send them straight into that library on unlock. Otherwise leave
+  // the URL at "/" so they land on the chooser homepage.
+  if (pickedDuringGate) {
+    const newPath = PLATFORM_TO_PATH[activePlatform];
+    if (newPath && window.location.pathname === '/') {
+      safeReplaceState({}, newPath);
+    }
+    chooserActive = false;
+    pickedDuringGate = false;
   }
+  // Sync chooser <-> gallery visibility now that the URL is final.
+  if (typeof applyHomepageMode === 'function') applyHomepageMode();
+  if (typeof updateHeadline === 'function') updateHeadline();
+  if (typeof animateChooserIfHome === 'function') animateChooserIfHome();
 }
 // Wire up the password form (scripts load at body bottom, so the form exists).
 (function attachGateForm() {
@@ -103,7 +117,39 @@ function playSuccessThenReveal() {
   }, 2600);
 }
 
+// Whether the current view should be the chooser. We derive this from the URL
+// on initial load and on popstate, but otherwise track it as a JS variable so
+// the chooser <-> library flip works even when history.pushState is blocked
+// (e.g. file:// origin restrictions when previewing index.html locally).
+function _isChooserUrl() {
+  const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+  if (path === '/') return true;
+  // file:// support — opening index.html directly should show the chooser too.
+  if (window.location.protocol === 'file:' && /\/index\.html$/i.test(path)) return true;
+  return false;
+}
+let chooserActive = _isChooserUrl();
+function isHomepage() { return chooserActive; }
+
+// pushState/replaceState throw under file:// when the target path leaves the
+// current file's directory. Wrap them so a navigation attempt that the
+// browser refuses doesn't blow up the rest of the click handler.
+function safePushState(state, url) {
+  try { window.history.pushState(state, '', url); } catch (e) { /* file:// — ignore */ }
+}
+function safeReplaceState(state, url) {
+  try { window.history.replaceState(state, '', url); } catch (e) { /* file:// — ignore */ }
+}
+
+// Set to true the moment a user picks a platform via the pills/dropdown while
+// the password gate is still on screen. Lets hideGate() know whether the user
+// actively chose to skip the chooser (then redirect to that platform's URL) or
+// just typed the password (then keep them on "/" so they see the chooser).
+let pickedDuringGate = false;
+
 const gallery = document.getElementById('gallery');
+const chooser = document.getElementById('chooser');
+const filtersWrap = document.getElementById('filters-wrap');
 const emptyState = document.getElementById('empty-state');
 const tabsContainer = document.getElementById('filters');
 const filterDropdown = document.getElementById('filter-dropdown');
@@ -444,6 +490,10 @@ renderFeaturePills();
 renderTabs();
 updateHeadline();
 render(true); // initial load — animate
+// If this is the chooser homepage, hide the library chrome we just rendered
+// (the gallery sits behind the chooser, ready for when the user picks a tile).
+applyHomepageMode();
+animateChooserIfHome();
 
 // Deep-link: after the library is on screen, fade the backdrop in and slide
 // the image in from the left. Brief delay so the user sees the library first.
@@ -459,10 +509,66 @@ if (shouldGate()) showGate();
 
 // ---------- Headline + tab title ----------
 function updateHeadline() {
-  const cfg = currentPlatform();
-  heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
-  document.title = `${cfg.label} Library | Revenu`;
+  if (isHomepage()) {
+    // Chooser headline: "Select your library" — same font/size as the platform
+    // headline, with "library" picked out in the same green accent.
+    heroTitle.innerHTML = `Select your <span class="hero-title-accent">library</span>`;
+    document.title = 'Revenu Ad Library — Select your library';
+  } else {
+    const cfg = currentPlatform();
+    heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
+    document.title = `${cfg.label} Library | Revenu`;
+  }
   updateSEOTags();
+}
+
+// ---------- Homepage chooser ----------
+// On "/" we show three tiles (Google Ads, LinkedIn Ads, Landing Pages) and
+// hide the regular library chrome (filters, feature pills, gallery). Picking
+// a tile or a platform pill pushes the URL to /<platform> and reveals the
+// gallery again. Back-button to "/" re-shows the chooser.
+function applyHomepageMode() {
+  const home = isHomepage();
+  if (chooser) chooser.hidden = !home;
+  if (filtersWrap) filtersWrap.hidden = home;
+  if (gallery) gallery.hidden = home;
+  if (featurePillsContainer) featurePillsContainer.hidden = home;
+  // No active platform pill on the chooser
+  platformPills.forEach(p => p.classList.toggle('is-active', !home && p.dataset.platform === activePlatform));
+  if (platformDropdownLabel) {
+    platformDropdownLabel.textContent = home ? 'Select library' : currentPlatform().label;
+  }
+  // Empty state belongs to the library view, never the chooser
+  if (home && emptyState) emptyState.hidden = true;
+}
+
+// Re-trigger the card-pop keyframes on the three chooser tiles. Called on
+// initial homepage load and after the password gate lifts.
+function animateChooserIfHome() {
+  if (!isHomepage() || !chooser) return;
+  const tiles = chooser.querySelectorAll('.chooser-tile');
+  tiles.forEach((tile, i) => {
+    tile.classList.remove('chooser-pop');
+    // Force reflow so the keyframes re-run cleanly when re-applied.
+    void tile.offsetWidth;
+    tile.style.animationDelay = `${i * 0.10}s`;
+    tile.classList.add('chooser-pop');
+  });
+}
+
+// Wire chooser-tile clicks to setPlatform — same effect as clicking a pill.
+if (chooser) {
+  chooser.querySelectorAll('.chooser-tile').forEach(tile => {
+    tile.addEventListener('click', (e) => {
+      // Anchor href is set for SEO + middle-click; cmd/ctrl-click should still
+      // open in a new tab via the browser default, so we only preventDefault
+      // on plain left-clicks.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      const platform = tile.dataset.platform;
+      if (platform) setPlatform(platform);
+    });
+  });
 }
 
 // ---------- SEO: title, description, canonical, JSON-LD per URL ----------
@@ -506,6 +612,31 @@ function updateSEOTags() {
   try { _updateSEOTagsImpl(); } catch (e) { /* SEO failures must never break the UI */ }
 }
 function _updateSEOTagsImpl() {
+  // Homepage chooser — its own title, description, and CollectionPage JSON-LD
+  // that points at the three sub-library URLs.
+  if (isHomepage()) {
+    const canonical = SITE_ORIGIN + '/';
+    setCanonical(canonical);
+    document.title = 'Revenu Ad Library — Select your library';
+    setMeta(
+      'description',
+      'The Revenu Ad Library — pick a library to explore: high-performing Google Ads, LinkedIn Ads, and Landing Pages examples for B2B SaaS, categorized by formula.'
+    );
+    setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': canonical,
+      name: 'Revenu Ad Library',
+      description: 'Choose a library: Google Ads, LinkedIn Ads, or Landing Pages — curated B2B SaaS examples categorized by formula.',
+      isPartOf: { '@id': SITE_ORIGIN + '/#website' },
+      hasPart: [
+        { '@type': 'CollectionPage', name: 'Google Ads Library',   url: SITE_ORIGIN + '/google-ads' },
+        { '@type': 'CollectionPage', name: 'LinkedIn Ads Library', url: SITE_ORIGIN + '/linkedin-ads' },
+        { '@type': 'CollectionPage', name: 'Landing Pages Library', url: SITE_ORIGIN + '/landing-pages' }
+      ]
+    });
+    return;
+  }
   const parsed = parsePath();
   const platform = parsed.platform;
   const cfg = platforms[platform];
@@ -660,7 +791,7 @@ function setFilter(key, opts = {}) {
   if (opts.updateUrl !== false) {
     const newPath = buildPath(activePlatform, key, null);
     if (window.location.pathname !== newPath) {
-      window.history.pushState({ category: key }, '', newPath);
+      safePushState({ category: key }, newPath);
     }
   }
   if (typeof updateSEOTags === 'function') updateSEOTags();
@@ -796,36 +927,58 @@ function renderCards(animate = false) {
 const platformNav = document.querySelector('.platform-nav');
 
 function setPlatform(platform, opts = {}) {
-  if (!platform || platform === activePlatform) return;
+  if (!platform) return;
+  // Coming from the chooser homepage, the user can pick the same platform that
+  // happens to be the current default (e.g. clicking "LinkedIn Ads" while
+  // activePlatform === 'linkedin'). We still need to navigate away from "/",
+  // so don't early-return when we're on the homepage.
+  const wasHomepage = isHomepage();
+  if (platform === activePlatform && !wasHomepage) return;
+  // Picking a platform while the gate is up means "skip the chooser on unlock".
+  if (gateActive) pickedDuringGate = true;
   // Sync desktop pills
   platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform === platform));
   activePlatform = platform;
   activeFilter = currentPlatform().defaultTab;
+  // Flip the chooser flag BEFORE the URL update so applyHomepageMode (which
+  // runs even if pushState fails) sees the correct state.
+  chooserActive = false;
+  // Push the new URL — wrapped because pushState throws on file:// when the
+  // target path leaves the file's directory. Skipped during popstate / gate.
+  if (opts.updateUrl !== false && !gateActive) {
+    const newPath = PLATFORM_TO_PATH[platform];
+    if (newPath && window.location.pathname !== newPath) {
+      safePushState({ platform }, newPath);
+    }
+  }
   // Sync mobile dropdown label + active option
   const cfg = currentPlatform();
   platformDropdownLabel.textContent = cfg.label;
   platformDropdownMenu.querySelectorAll('.dropdown-option').forEach(o => {
     o.classList.toggle('is-active', o.dataset.platform === platform);
   });
+  // Flip chooser <-> gallery for the new URL, then update the rest.
+  applyHomepageMode();
   updateHeadline();
   renderFeaturePills();
   renderTabs();
   // Reflect the new platform's stored favorites-filter state on the button
   if (typeof syncFavoritesButton === 'function') syncFavoritesButton();
   render(true); // platform switch — animate
-  // Push the new URL (unless this was triggered by popstate, or the homepage
-  // gate is active — clicking platform pills on the gate should swap the
-  // blurred preview without revealing the deep-link URL).
-  if (opts.updateUrl !== false && !gateActive) {
-    const newPath = PLATFORM_TO_PATH[platform];
-    if (newPath && window.location.pathname !== newPath) {
-      window.history.pushState({ platform }, '', newPath);
-    }
-  }
 }
 
 // Sync platform + category + lightbox state when the user hits back / forward.
 window.addEventListener('popstate', () => {
+  // Re-derive chooser state from the URL the browser just navigated to.
+  chooserActive = _isChooserUrl();
+  // Back-button to homepage: show the chooser, close any open lightbox.
+  if (isHomepage()) {
+    if (!lightbox.hidden) closeLightbox({ updateUrl: false });
+    applyHomepageMode();
+    updateHeadline();
+    animateChooserIfHome();
+    return;
+  }
   const parsed = parsePath();
   // Platform change first (e.g., /linkedin-ads/problem-3 → /google-ads)
   if (parsed.platform !== activePlatform) {
@@ -943,7 +1096,7 @@ function syncUrlToCurrentAd() {
   if (!ad || ad.id == null) return;
   const newPath = adPath(ad);
   if (window.location.pathname !== newPath) {
-    window.history.replaceState({ adId: ad.id }, '', newPath);
+    safeReplaceState({ adId: ad.id }, newPath);
   }
   if (typeof updateSEOTags === 'function') updateSEOTags();
 }
@@ -1000,7 +1153,7 @@ async function openLightbox(index, opts = {}) {
   if (opts.updateUrl !== false && ad.id != null) {
     const newPath = adPath(ad);
     if (window.location.pathname !== newPath) {
-      window.history.pushState({ adId: ad.id, platform: ad.platform || 'google' }, '', newPath);
+      safePushState({ adId: ad.id, platform: ad.platform || 'google' }, newPath);
     }
   }
 
@@ -1021,7 +1174,7 @@ function closeLightbox(opts = {}) {
   if (opts.updateUrl !== false) {
     const newPath = buildPath(activePlatform, activeFilter, null);
     if (newPath && window.location.pathname !== newPath) {
-      window.history.replaceState({}, '', newPath);
+      safeReplaceState({}, newPath);
     }
   }
   if (typeof updateSEOTags === 'function') updateSEOTags();

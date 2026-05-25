@@ -598,6 +598,67 @@ a { color: inherit; }
   font-size: 13px;
 }
 
+/* `display: grid/flex` on a class beats the user-agent [hidden] rule, so we
+   need explicit overrides for the elements app.js toggles on/off when
+   switching between the chooser homepage and a normal library view. */
+.gallery[hidden],
+.filters-wrap[hidden] {
+  display: none !important;
+}
+
+/* ---------- Homepage chooser ----------
+   Three large tiles linking to each platform's library. Lives in <main> just
+   above .gallery and is shown only when location.pathname === "/" (app.js
+   toggles its [hidden] attribute). Sized to match a 3-column gallery row so
+   the homepage feels structurally identical to the library it gates. */
+.chooser {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 32px 0 64px;
+  align-items: start;
+}
+.chooser[hidden] { display: none; }
+/* Tile = same border + shadow + hover behaviour as .card, but the whole tile
+   is one image (no body/title — the artwork carries the platform). */
+.chooser-tile {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.chooser-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(20,30,28,0.05), 0 18px 40px rgba(20,30,28,0.10);
+}
+.chooser-tile:active { transform: translateY(-1px); }
+.chooser-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Reuse the card-pop keyframes for first-load animation on chooser tiles. */
+.chooser-tile.chooser-pop {
+  animation: card-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transform-origin: center bottom;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chooser-tile.chooser-pop { animation: none; }
+}
+@media (max-width: 960px) {
+  .chooser {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 0 56px;
+  }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--line);

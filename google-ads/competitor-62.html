@@ -163,6 +163,19 @@
   </div>
 
   <main class="container">
+    <!-- Homepage chooser: shown only when pathname is "/". Three tiles linking
+         to each platform's library. Same border + shadow as gallery cards. -->
+    <section class="chooser" id="chooser" hidden aria-label="Choose a library">
+      <a class="chooser-tile" href="/google-ads" data-platform="google" aria-label="Browse the Google Ads library">
+        <img src="images/Homepage/google-ads.webp" alt="Google Ads library" loading="eager" />
+      </a>
+      <a class="chooser-tile" href="/linkedin-ads" data-platform="linkedin" aria-label="Browse the LinkedIn Ads library">
+        <img src="images/Homepage/linkedin-ads.webp" alt="LinkedIn Ads library" loading="eager" />
+      </a>
+      <a class="chooser-tile" href="/landing-pages" data-platform="landing" aria-label="Browse the Landing Pages library">
+        <img src="images/Homepage/landing-pages.webp" alt="Landing Pages library" loading="eager" />
+      </a>
+    </section>
     <div id="gallery" class="gallery" aria-live="polite"></div>
     <p id="empty-state" class="empty-state" hidden></p>
   </main>
