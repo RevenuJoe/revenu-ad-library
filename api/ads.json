@@ -1,15 +1,15 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-05-25T21:18:26.306Z",
+  "generated": "2026-05-25T21:38:26.616Z",
   "total": 503,
   "platforms": {
-    "google": {
-      "label": "Google Ads",
-      "path": "/google-ads"
-    },
     "linkedin": {
       "label": "LinkedIn Ads",
       "path": "/linkedin-ads"
+    },
+    "google": {
+      "label": "Google Ads",
+      "path": "/google-ads"
     },
     "landing": {
       "label": "Landing Pages",

@@ -176,19 +176,6 @@ const lbNext = document.getElementById('lb-next');
 // points, tabs, and default tab. Tabs map category keys (used in ads.js) to
 // the folder name on disk.
 const platforms = {
-  google: {
-    label: 'Google Ads',
-    folder: 'Google Ads',
-    features: ['30+ Ad Formulas', 'Proven High CTR', 'Higher Quality Scores'],
-    defaultTab: 'all',
-    tabs: [
-      { key: 'all',         label: 'All',          folder: '' },
-      { key: 'brand',       label: 'Brand',        folder: 'Brand' },
-      { key: 'non-brand',   label: 'Non Brand',    folder: 'Non Brand' },
-      { key: 'competitor',  label: 'Competitor',   folder: 'Competitor' },
-      { key: 'playbook',    label: 'The Playbook', folder: 'The Playbook' }
-    ]
-  },
   linkedin: {
     label: 'LinkedIn Ads',
     folder: 'LinkedIn Ads',
@@ -203,6 +190,19 @@ const platforms = {
       { key: 'gated-content', label: 'Gated Content', folder: 'Gated Content' },
       { key: 'playbook',      label: 'The Playbook',  folder: 'The Playbook' },
       { key: 'animations',    label: 'Animations',    folder: 'Animations' }
+    ]
+  },
+  google: {
+    label: 'Google Ads',
+    folder: 'Google Ads',
+    features: ['30+ Ad Formulas', 'Proven High CTR', 'Higher Quality Scores'],
+    defaultTab: 'all',
+    tabs: [
+      { key: 'all',         label: 'All',          folder: '' },
+      { key: 'brand',       label: 'Brand',        folder: 'Brand' },
+      { key: 'non-brand',   label: 'Non Brand',    folder: 'Non Brand' },
+      { key: 'competitor',  label: 'Competitor',   folder: 'Competitor' },
+      { key: 'playbook',    label: 'The Playbook', folder: 'The Playbook' }
     ]
   },
   landing: {
@@ -630,8 +630,8 @@ function _updateSEOTagsImpl() {
       description: 'Choose a library: Google Ads, LinkedIn Ads, or Landing Pages — curated B2B SaaS examples categorized by formula.',
       isPartOf: { '@id': SITE_ORIGIN + '/#website' },
       hasPart: [
-        { '@type': 'CollectionPage', name: 'Google Ads Library',   url: SITE_ORIGIN + '/google-ads' },
         { '@type': 'CollectionPage', name: 'LinkedIn Ads Library', url: SITE_ORIGIN + '/linkedin-ads' },
+        { '@type': 'CollectionPage', name: 'Google Ads Library',   url: SITE_ORIGIN + '/google-ads' },
         { '@type': 'CollectionPage', name: 'Landing Pages Library', url: SITE_ORIGIN + '/landing-pages' }
       ]
     });

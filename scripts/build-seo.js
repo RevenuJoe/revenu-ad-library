@@ -20,19 +20,6 @@ const REPO_ROOT = path.join(__dirname, '..');
 
 // Mirror app.js' platform config (kept in sync manually — verify on changes).
 const PLATFORMS = {
-  google: {
-    path: '/google-ads',
-    label: 'Google Ads',
-    defaultTab: 'all',
-    folder: 'Google Ads',
-    tabs: [
-      { key: 'all',         label: 'All',          folder: '' },
-      { key: 'brand',       label: 'Brand',        folder: 'Brand' },
-      { key: 'non-brand',   label: 'Non Brand',    folder: 'Non Brand' },
-      { key: 'competitor',  label: 'Competitor',   folder: 'Competitor' },
-      { key: 'playbook',    label: 'The Playbook', folder: 'The Playbook' },
-    ],
-  },
   linkedin: {
     path: '/linkedin-ads',
     label: 'LinkedIn Ads',
@@ -47,6 +34,19 @@ const PLATFORMS = {
       { key: 'gated-content', label: 'Gated Content', folder: 'Gated Content' },
       { key: 'playbook',      label: 'The Playbook',  folder: 'The Playbook' },
       { key: 'animations',    label: 'Animations',    folder: 'Animations' },
+    ],
+  },
+  google: {
+    path: '/google-ads',
+    label: 'Google Ads',
+    defaultTab: 'all',
+    folder: 'Google Ads',
+    tabs: [
+      { key: 'all',         label: 'All',          folder: '' },
+      { key: 'brand',       label: 'Brand',        folder: 'Brand' },
+      { key: 'non-brand',   label: 'Non Brand',    folder: 'Non Brand' },
+      { key: 'competitor',  label: 'Competitor',   folder: 'Competitor' },
+      { key: 'playbook',    label: 'The Playbook', folder: 'The Playbook' },
     ],
   },
   landing: {
