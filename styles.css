@@ -71,13 +71,44 @@ a { color: inherit; }
   transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
   line-height: 1;
 }
-.platform-pill:hover { background: #ddd2c2; color: #4a4a4a; }
+/* Inactive hover: light green "preview" of the active state, so the user
+   sees the green tint when they're considering a pill but only commits to
+   the full dark-accent fill on click. */
+.platform-pill:hover {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
 .platform-pill.is-active {
   background: var(--accent);
   color: #fff;
 }
 .platform-pill.is-active:hover { background: var(--accent-dark); }
 .platform-pill:active { transform: scale(0.98); }
+
+/* ---------- Saved (favorites) pill ---------- */
+/* Fourth pill — desktop-only. Inherits ALL color states (beige inactive,
+   soft-green hover, dark-teal active) from .platform-pill — so the heart
+   icon and the count number track the pill's text colour automatically and
+   match every other platform pill exactly. */
+.platform-pill-saved {
+  gap: 7px;
+  padding: 8px 14px 8px 12px;
+}
+.platform-pill-saved-icon {
+  display: block;
+  flex-shrink: 0;
+  /* fill="currentColor" on the SVG means the heart picks up the pill's
+     text colour (#707070 idle, accent-dark on hover, white on active). */
+}
+.platform-pill-saved-count {
+  /* Match the font of the surrounding pill labels exactly. */
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 8px;
+  text-align: center;
+  line-height: 1;
+}
+/* When zero favorites, the count span is hidden via [hidden] in app.js. */
 
 /* ---------- Hero ---------- */
 .hero {
@@ -245,6 +276,10 @@ a { color: inherit; }
   box-shadow: 0 1px 2px rgba(28, 31, 29, 0.10);
 }
 .favorites-filter-btn.is-active:hover { background: #d24b66; color: #fff; }
+/* On /saved the button is pinned active — show default cursor + no hover swap
+   so it visually reads as "this is the state, you can't change it here." */
+.favorites-filter-btn.is-locked,
+.favorites-filter-btn.is-locked:hover { cursor: default; background: #e15a73; }
 @media (max-width: 1100px) { .favorites-filter-btn { left: 40px; } }
 @media (max-width: 960px)  { .favorites-filter-btn { display: none; } }
 
@@ -609,14 +644,39 @@ a { color: inherit; }
 /* ---------- Homepage chooser ----------
    Three large tiles linking to each platform's library. Lives in <main> just
    above .gallery and is shown only when location.pathname === "/" (app.js
-   toggles its [hidden] attribute). Sized to match a 3-column gallery row so
-   the homepage feels structurally identical to the library it gates. */
+   toggles its [hidden] attribute). On the chooser homepage the .container's
+   max-width is widened (see body.is-chooser rule below) so the three tiles
+   render visibly larger than a 3-column gallery row. */
 .chooser {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 32px 0 64px;
+  gap: 29px; /* ~20% wider than the gallery's 24px */
+  /* Desktop top padding bumped ~20% (32 -> 42) so the hero title has more
+     breathing room above the tiles. Mobile override below restores the
+     original tighter spacing. */
+  padding: 42px 0 64px;
   align-items: start;
+}
+
+/* On the chooser homepage only, allow main + chooser to break out wider and
+   make body a flex column so the footer sits at the bottom of the viewport
+   even when content is short. */
+body.is-chooser {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body.is-chooser main.container {
+  /* Wider than the standard 1280px container but ~15% narrower than the
+     previous 1540px — keeps tiles a touch bigger than gallery cards
+     without dominating the viewport. */
+  max-width: 1330px;
+  flex: 1 0 auto; /* take remaining vertical space, pushing footer down */
+  display: flex;
+  flex-direction: column;
+}
+body.is-chooser .site-footer {
+  flex-shrink: 0;
 }
 .chooser[hidden] { display: none; }
 /* Tile = same border + shadow + hover behaviour as .card, but the whole tile
@@ -643,9 +703,17 @@ a { color: inherit; }
   width: 100%;
   height: auto;
 }
-/* Reuse the card-pop keyframes for first-load animation on chooser tiles. */
+/* Chooser-specific keyframes. The gallery uses card-pop which scales from
+   0.85 (a ~15% jump). With chooser tiles being so much larger that motion
+   is too pronounced, so we use a gentler scale + an opacity fade-in which
+   masks the moment the JS class is applied. */
+@keyframes chooser-pop {
+  0%   { opacity: 0; transform: scale(0.94) translateY(14px); }
+  60%  { opacity: 1; transform: scale(1.015) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
 .chooser-tile.chooser-pop {
-  animation: card-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: chooser-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   transform-origin: center bottom;
 }
 @media (prefers-reduced-motion: reduce) {

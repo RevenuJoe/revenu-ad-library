@@ -79,9 +79,15 @@
     <div class="container header-inner">
       <a href="https://www.revenuagency.io" class="brand-logo">REVENU</a>
       <nav class="platform-nav" aria-label="Platform">
-        <a href="/linkedin-ads" class="platform-pill is-active" data-platform="linkedin">LinkedIn Ads</a>
-        <a href="/google-ads" class="platform-pill" data-platform="google">Google Ads</a>
+        <a href="/linkedin-ads" class="platform-pill" data-platform="linkedin">LinkedIn Ads</a>
+        <a href="/google-ads" class="platform-pill is-active" data-platform="google">Google Ads</a>
         <a href="/landing-pages" class="platform-pill" data-platform="landing">Landing Pages</a>
+        <a href="/saved" class="platform-pill platform-pill-saved" data-platform="saved" aria-label="Saved ads" title="Saved ads">
+          <svg class="platform-pill-saved-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span class="platform-pill-saved-count" id="saved-count" hidden>0</span>
+        </a>
         <div class="dropdown platform-dropdown" id="platform-dropdown">
           <button class="dropdown-trigger" type="button" id="platform-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
             <span class="dropdown-label" id="platform-dropdown-label">LinkedIn Ads</span>
@@ -182,7 +188,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© Revenu · Built for marketers who like ads that convert.</p>
+      <p>© Revenu</p>
     </div>
   </footer>
 

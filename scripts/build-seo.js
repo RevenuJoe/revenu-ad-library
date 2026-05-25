@@ -308,7 +308,7 @@ function buildJsonLdFor({ platform, category, ad, canonical }) {
   };
 }
 
-function buildPageHtml({ title, description, canonical, ogImage, jsonLd }) {
+function buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform }) {
   let html = indexTemplate;
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
   html = html.replace(/(<meta name="description" content=")[\s\S]*?(")/, `$1${esc(description)}$2`);
@@ -326,6 +326,15 @@ function buildPageHtml({ title, description, canonical, ogImage, jsonLd }) {
     /(<script type="application\/ld\+json" id="page-jsonld">)([\s\S]*?)(<\/script>)/,
     `$1${JSON.stringify(jsonLd)}$3`
   );
+  // Inject is-active on the right header pill so it's highlighted from the
+  // very first paint. Avoids the "wrong pill briefly active" flash that
+  // happens when the static template carries a hard-coded is-active class.
+  if (activePlatform) {
+    html = html.replace(
+      new RegExp(`(<a [^>]*?class="platform-pill(?:\\s+platform-pill-saved)?)(")(\\s+[^>]*?data-platform="${activePlatform}")`),
+      '$1 is-active$2$3'
+    );
+  }
   return html;
 }
 
@@ -340,13 +349,21 @@ function writePage(urlPath, html) {
 }
 
 let pagesWritten = 0;
+// Saved view (/saved). User-specific content, so JSON-LD is intentionally null.
+{
+  const canonical = BASE_URL + '/saved';
+  const title = 'Saved | Revenu Ad Library';
+  const description = 'Your saved ads from across the Revenu Ad Library — every Google, LinkedIn, and Landing Page example you have favorited, in one place.';
+  writePage('/saved', buildPageHtml({ title, description, canonical, jsonLd: {}, activePlatform: 'saved' }));
+  pagesWritten++;
+}
 // Platform-level pages (/google-ads, /linkedin-ads, /landing-pages)
 for (const [platform, cfg] of Object.entries(PLATFORMS)) {
   const canonical = BASE_URL + cfg.path;
   const title = `${cfg.label} Library | Revenu`;
   const description = `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world templates categorized by formula.`;
   const jsonLd = buildJsonLdFor({ platform, category: null, ad: null, canonical });
-  writePage(cfg.path, buildPageHtml({ title, description, canonical, jsonLd }));
+  writePage(cfg.path, buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
   pagesWritten++;
 }
 // Category pages
@@ -358,7 +375,7 @@ for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
     const title = `All ${cfg.label} examples | Revenu`;
     const description = `Every ${cfg.label} example in the Revenu Ad Library — all categories, all formulas.`;
     const jsonLd = buildJsonLdFor({ platform, category: 'all', ad: null, canonical });
-    writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, jsonLd }));
+    writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
     pagesWritten++;
   }
   for (const cat of cats) {
@@ -368,7 +385,7 @@ for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
     const title = `${catLabel} — ${cfg.label} examples | Revenu`;
     const description = `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS templates categorized by formula.`;
     const jsonLd = buildJsonLdFor({ platform, category: cat, ad: null, canonical });
-    writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, jsonLd }));
+    writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
     pagesWritten++;
   }
 }
@@ -383,7 +400,7 @@ for (const ad of ads) {
   const description = `${ad.title}${ad.formula ? ' — ' + ad.formula : ''} — a real ${catLabel} ${cfg.label} example from the Revenu Ad Library, a curated collection of high-performing B2B SaaS ad and landing page templates.`;
   const ogImage = BASE_URL + '/' + imagePathFor(ad); // ad's own image as fallback OG
   const jsonLd = buildJsonLdFor({ platform, category: ad.category, ad, canonical });
-  writePage(urlPath, buildPageHtml({ title, description, canonical, ogImage, jsonLd }));
+  writePage(urlPath, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
   pagesWritten++;
 }
 console.log(`✓ Pre-rendered HTML — ${pagesWritten} pages`);

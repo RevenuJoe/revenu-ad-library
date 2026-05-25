@@ -216,6 +216,21 @@ const platforms = {
       { key: 'blocks',           label: 'Blocks',           folder: 'Blocks' },
       { key: 'product-visuals',  label: 'Product Visuals',  folder: 'Product Visuals' }
     ]
+  },
+  // Pseudo-platform: cross-library "Saved" view. Same gallery + lightbox UI
+  // as a real platform, but visibleAds is filtered from the user's favorites
+  // (localStorage) and the "category" tabs are the source platforms.
+  saved: {
+    label: 'Saved',
+    folder: '',
+    features: [],
+    defaultTab: 'all',
+    tabs: [
+      { key: 'all',      label: 'All',           folder: '' },
+      { key: 'linkedin', label: 'LinkedIn Ads',  folder: '' },
+      { key: 'google',   label: 'Google Ads',    folder: '' },
+      { key: 'landing',  label: 'Landing Pages', folder: '' }
+    ]
   }
 };
 
@@ -244,6 +259,18 @@ function toggleFavorite(ad) {
   if (favorites.has(k)) favorites.delete(k);
   else favorites.add(k);
   persistFavorites();
+  // Sync the header heart-pill count to the new total.
+  if (typeof syncSavedCount === 'function') syncSavedCount();
+}
+// Update the header heart-pill count badge. Called on init and whenever
+// toggleFavorite mutates the set. Hides the count entirely when there are
+// zero favorites so the pill reads as just a heart icon.
+function syncSavedCount() {
+  const el = document.getElementById('saved-count');
+  if (!el) return;
+  const n = favorites.size;
+  el.textContent = String(n);
+  el.hidden = n === 0;
 }
 
 // ---------- URL routing ----------
@@ -253,16 +280,20 @@ function toggleFavorite(ad) {
 const PATH_TO_PLATFORM = {
   '/google-ads': 'google',
   '/linkedin-ads': 'linkedin',
-  '/landing-pages': 'landing'
+  '/landing-pages': 'landing',
+  '/saved': 'saved'
 };
 const PLATFORM_TO_PATH = {
   google:   '/google-ads',
   linkedin: '/linkedin-ads',
-  landing:  '/landing-pages'
+  landing:  '/landing-pages',
+  saved:    '/saved'
 };
 
 function parsePath() {
   const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+  // /saved has no sub-paths (categories are JS-only state, not URLs).
+  if (path === '/saved') return { platform: 'saved', category: null, adId: null };
   // /platform or /platform/category[-id]
   const m = path.match(/^\/(google-ads|linkedin-ads|landing-pages)(?:\/(.+))?$/);
   if (!m) return { platform: 'linkedin', category: null, adId: null };
@@ -282,6 +313,8 @@ function platformFromPath() { return parsePath().platform; }
 // Drops the category when it's the platform's default (keeps /linkedin-ads clean).
 function buildPath(platform, category, adId) {
   const platformPath = PLATFORM_TO_PATH[platform];
+  // Saved view: category is JS-only state — URL always stays /saved.
+  if (platform === 'saved') return platformPath;
   if (adId != null) return `${platformPath}/${category}-${adId}`;
   if (!category || category === platforms[platform].defaultTab) return platformPath;
   return `${platformPath}/${category}`;
@@ -387,14 +420,31 @@ shuffleBtn.addEventListener('animationend', () => {
 const favoritesFilterBtn = document.getElementById('favorites-filter-btn');
 function syncFavoritesButton() {
   if (!favoritesFilterBtn) return;
-  const on = getFavoritesMode();
+  favoritesFilterBtn.hidden = false;
+  // On /saved the favorites filter is conceptually "always on" — the entire
+  // view IS the filter — so we lock the button into its active appearance.
+  // The click handler is a no-op there, and toggling it has no effect on the
+  // favorites-mode state of any other library.
+  const isSaved = activePlatform === 'saved';
+  const on = isSaved || getFavoritesMode();
   favoritesFilterBtn.classList.toggle('is-active', on);
+  favoritesFilterBtn.classList.toggle('is-locked', isSaved);
   favoritesFilterBtn.setAttribute('aria-pressed', String(on));
+  favoritesFilterBtn.setAttribute('aria-label', isSaved
+    ? 'Saved view — favorites filter is always on here'
+    : (on ? 'Hide favorites' : 'Show favorites'));
+  favoritesFilterBtn.title = isSaved
+    ? 'Saved view — always shows your favorites'
+    : 'Favorites';
   const svg = favoritesFilterBtn.querySelector('svg');
   if (svg) svg.setAttribute('fill', on ? 'currentColor' : 'none');
 }
 if (favoritesFilterBtn) {
   favoritesFilterBtn.addEventListener('click', () => {
+    // On /saved the filter is always-on. Clicks here mustn't disable it AND
+    // mustn't write into favoritesModeByPlatform — that map only tracks the
+    // three real libraries.
+    if (activePlatform === 'saved') return;
     favoritesModeByPlatform[activePlatform] = !getFavoritesMode();
     syncFavoritesButton();
     render(true);
@@ -489,6 +539,7 @@ platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform ==
 renderFeaturePills();
 renderTabs();
 updateHeadline();
+syncSavedCount(); // header heart pill — show count badge on page load
 render(true); // initial load — animate
 // If this is the chooser homepage, hide the library chrome we just rendered
 // (the gallery sits behind the chooser, ready for when the user picks a tile).
@@ -510,10 +561,17 @@ if (shouldGate()) showGate();
 // ---------- Headline + tab title ----------
 function updateHeadline() {
   if (isHomepage()) {
-    // Chooser headline: "Select your library" — same font/size as the platform
-    // headline, with "library" picked out in the same green accent.
-    heroTitle.innerHTML = `Select your <span class="hero-title-accent">library</span>`;
-    document.title = 'Revenu Ad Library — Select your library';
+    // Chooser headline: "Select Your Library" — title case across all three
+    // words, with "Library" picked out in the same green accent.
+    heroTitle.innerHTML = `Select Your <span class="hero-title-accent">Library</span>`;
+    document.title = 'Revenu Ad Library — Select Your Library';
+  } else if (activePlatform === 'saved') {
+    // Saved view headline: "Your" in the dark ink colour (mirrors "Library"
+    // on each platform's title), "Saved Items" picked out in the brand
+    // accent green. Matches the LinkedIn Ads Library headline's structure
+    // but with the accent on the second half instead of the first.
+    heroTitle.innerHTML = `Your <span class="hero-title-accent">Saved Items</span>`;
+    document.title = 'Saved | Revenu Ad Library';
   } else {
     const cfg = currentPlatform();
     heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
@@ -529,6 +587,9 @@ function updateHeadline() {
 // gallery again. Back-button to "/" re-shows the chooser.
 function applyHomepageMode() {
   const home = isHomepage();
+  // Body class so the chooser homepage can opt into a wider .container and
+  // the sticky-footer layout without those rules leaking to library views.
+  document.body.classList.toggle('is-chooser', home);
   if (chooser) chooser.hidden = !home;
   if (filtersWrap) filtersWrap.hidden = home;
   if (gallery) gallery.hidden = home;
@@ -547,12 +608,30 @@ function applyHomepageMode() {
 function animateChooserIfHome() {
   if (!isHomepage() || !chooser) return;
   const tiles = chooser.querySelectorAll('.chooser-tile');
-  tiles.forEach((tile, i) => {
+  // Step 1: clear any previous animation state and pre-snap each tile to the
+  // animation's 0% keyframe (opacity 0, scaled-down, offset). Setting these
+  // inline BEFORE adding the .chooser-pop class means there's no visible
+  // jump from "scale 1" to "scale 0.94" when the class kicks in — the tile
+  // is already there.
+  tiles.forEach(tile => {
     tile.classList.remove('chooser-pop');
-    // Force reflow so the keyframes re-run cleanly when re-applied.
-    void tile.offsetWidth;
-    tile.style.animationDelay = `${i * 0.10}s`;
+    tile.style.opacity = '0';
+    tile.style.transform = 'scale(0.94) translateY(14px)';
+  });
+  // Single reflow for all tiles
+  void chooser.offsetWidth;
+  // Step 2: stagger the animation on each tile (matches the gallery's 0.08s
+  // cadence so the chooser feels structurally similar to the libraries).
+  tiles.forEach((tile, i) => {
+    tile.style.animationDelay = `${i * 0.08}s`;
     tile.classList.add('chooser-pop');
+    // Step 3: clear the inline holdover on the next frame so the animation
+    // has full control. The animation's `both` fill mode keeps the tile at
+    // the right state in between.
+    requestAnimationFrame(() => {
+      tile.style.opacity = '';
+      tile.style.transform = '';
+    });
   });
 }
 
@@ -612,6 +691,20 @@ function updateSEOTags() {
   try { _updateSEOTagsImpl(); } catch (e) { /* SEO failures must never break the UI */ }
 }
 function _updateSEOTagsImpl() {
+  // Saved view — user-specific content (favorites live in localStorage), so
+  // it doesn't really belong in the index. We give it a real title for the
+  // browser tab + sharing, but no JSON-LD (nothing universal to describe).
+  if (activePlatform === 'saved') {
+    const canonical = SITE_ORIGIN + '/saved';
+    setCanonical(canonical);
+    document.title = 'Saved | Revenu Ad Library';
+    setMeta(
+      'description',
+      'Your saved ads from across the Revenu Ad Library — every Google, LinkedIn, and Landing Page example you have favorited, in one place.'
+    );
+    setJsonLd(null);
+    return;
+  }
   // Homepage chooser — its own title, description, and CollectionPage JSON-LD
   // that points at the three sub-library URLs.
   if (isHomepage()) {
@@ -821,6 +914,24 @@ function adPriority(ad, filter) {
 }
 
 function render(animate = false) {
+  if (activePlatform === 'saved') {
+    // Saved view: every favorited ad across all platforms. The "category"
+    // tabs here represent the SOURCE platform (linkedin / google / landing).
+    visibleAds = allAds.filter(ad => {
+      if (!isFavorite(ad)) return false;
+      if (activeFilter !== 'all' && (ad.platform || 'google') !== activeFilter) return false;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const hay = `${ad.title || ''} ${ad.formula || ''} ${ad.tag || ''} ${ad.image || ''}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    // No priority sort for saved — favorites surface in the order ads.js
+    // declares them, so categories cluster naturally (linkedin then google then landing).
+    renderCards(animate);
+    return;
+  }
   visibleAds = allAds.filter(ad => {
     if ((ad.platform || 'google') !== activePlatform) return false;
     // 'all' shows every category in the current platform
@@ -852,10 +963,23 @@ function applyPinnedSort(arr) {
 function renderCards(animate = false) {
   gallery.innerHTML = '';
   if (visibleAds.length === 0) {
+    emptyState.hidden = false;
+    if (activePlatform === 'saved') {
+      // User-facing message — not a developer hint. Different copy depending
+      // on whether they have zero favorites or just zero in this sub-category.
+      const totalFavs = favorites.size;
+      const tab = findTab('saved', activeFilter);
+      const tabLabel = tab ? tab.label : '';
+      if (totalFavs === 0) {
+        emptyState.innerHTML = `<strong>No favorites yet.</strong><br>Tap the <span aria-label="heart">❤</span> on any ad to save it here for later.`;
+      } else {
+        emptyState.innerHTML = `No favorites in <strong>${escapeHtml(tabLabel)}</strong> yet — try the All tab.`;
+      }
+      return;
+    }
     const cfg = currentPlatform();
     const tab = findTab(activePlatform, activeFilter);
     const tabFolder = tab ? tab.folder : activeFilter;
-    emptyState.hidden = false;
     emptyState.innerHTML = `No ads in <code>${escapeHtml(cfg.label)} → ${escapeHtml(tabFolder)}</code> yet. Drop images into <code>images/${escapeHtml(cfg.folder)}/${escapeHtml(tabFolder)}/</code> and add an entry to <code>ads.js</code> with <code>platform: "${activePlatform}"</code> and <code>category: "${activeFilter}"</code>.`;
     return;
   }
@@ -909,9 +1033,9 @@ function renderCards(animate = false) {
         heart.setAttribute('title', nowFav ? 'Remove favorite' : 'Add favorite');
         const svg = heart.querySelector('svg');
         if (svg) svg.setAttribute('fill', nowFav ? 'currentColor' : 'none');
-        // If favorites filter is on and this card just got unfavorited,
-        // re-render so it disappears from the gallery.
-        if (getFavoritesMode() && !nowFav) render();
+        // If favorites filter is on (or we're on the /saved view) and this
+        // card just got unfavorited, re-render so it disappears.
+        if ((getFavoritesMode() || activePlatform === 'saved') && !nowFav) render();
       });
       heart.addEventListener('keydown', (e) => {
         // Prevent space/enter from bubbling to the card
@@ -1020,9 +1144,12 @@ platformPills.forEach(pill => {
 
 // Build the mobile platform dropdown menu options
 function renderPlatformDropdown() {
-  const options = Object.entries(platforms).map(([key, cfg]) => ({
-    key, label: cfg.label
-  }));
+  // Saved is a desktop-only feature — the heart pill in the header is hidden
+  // on mobile, and we deliberately keep "Saved" out of the mobile dropdown
+  // too so the experience there stays focused on the three core libraries.
+  const options = Object.entries(platforms)
+    .filter(([key]) => key !== 'saved')
+    .map(([key, cfg]) => ({ key, label: cfg.label }));
   platformDropdownLabel.textContent = currentPlatform().label;
   platformDropdownMenu.innerHTML = options.map(o => `
     <button type="button" role="option" class="dropdown-option${o.key === activePlatform ? ' is-active' : ''}" data-platform="${escapeHtml(o.key)}">${escapeHtml(o.label)}</button>
