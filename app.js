@@ -564,7 +564,7 @@ function updateHeadline() {
     // Chooser headline: "Select Your Library" — title case across all three
     // words, with "Library" picked out in the same green accent.
     heroTitle.innerHTML = `Select Your <span class="hero-title-accent">Library</span>`;
-    document.title = 'The Revenu Library · Select your library';
+    document.title = 'The Library | Revenu';
   } else if (activePlatform === 'saved') {
     // Saved view headline: "Your" in the dark ink colour (mirrors "Library"
     // on each platform's title), "Saved Items" picked out in the brand
@@ -710,7 +710,7 @@ function _updateSEOTagsImpl() {
   if (isHomepage()) {
     const canonical = SITE_ORIGIN + '/';
     setCanonical(canonical);
-    document.title = 'The Revenu Library · Select your library';
+    document.title = 'The Library | Revenu';
     setMeta(
       'description',
       'The Revenu Library — pick a library to explore: high-performing Google Ads, LinkedIn Ads, and Landing Pages examples for B2B SaaS, categorized by formula.'
