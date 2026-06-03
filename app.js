@@ -10,6 +10,27 @@ let gateActive = false;
 function hasUnlocked() {
   try { return localStorage.getItem(PASSWORD_KEY) === 'ok'; } catch (e) { return false; }
 }
+// Campaign-friendly auto-unlock: if the URL carries ?password=fox (alongside
+// any utm_* params, etc.) we silently flip the "ok" flag in localStorage and
+// strip the password param out of the address bar. Lets us send leads to a
+// link like ?utm_source=leads&password=fox and they bypass the gate without
+// ever seeing the prompt. Other query params (utm_*, etc.) are preserved.
+function autoUnlockIfQueryProvided() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const supplied = (params.get('password') || '').trim().toLowerCase();
+    if (!supplied || supplied !== PASSWORD.toLowerCase()) return false;
+    try { localStorage.setItem(PASSWORD_KEY, 'ok'); } catch (e) {}
+    // Remove just the password param; leave utm_* and any others intact.
+    params.delete('password');
+    const qs = params.toString();
+    const cleanUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+    try { window.history.replaceState({}, '', cleanUrl); } catch (e) {}
+    return true;
+  } catch (e) { return false; }
+}
+// Run immediately so the unlock flag is set before shouldGate() is consulted.
+autoUnlockIfQueryProvided();
 function shouldGate() {
   // Gate appears on the chooser homepage only — including the file:// preview.
   if (typeof isHomepage === 'function') {
