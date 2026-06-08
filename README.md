@@ -12,7 +12,16 @@ Three libraries, each broken down by category:
 - **Google Ads** — Brand · Non Brand · Competitor · The Playbook
 - **Landing Pages** — Above the Fold · Blocks · Product Visuals
 
-Every ad has its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox with prev/next, swipe, drag, favorites, search, and shuffle. There's a password gate (`fox`) at the root URL; deep-link URLs are public.
+Every ad has its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox with prev/next, swipe, drag, favorites, search, and shuffle. The whole site requires **Sign in with LinkedIn** (the static HTML stays SEO-indexable; a JS-rendered modal blocks the UI for humans until they authenticate). Saved favorites sync to Upstash Redis per user and follow them across browsers. Admins (configured via `ADMIN_EMAILS`) can manage users at `/admin`.
+
+## Setup (one-time, in Vercel)
+
+1. **Env vars** (Vercel → Settings → Environment Variables):
+   - `LINKEDIN_CLIENT_ID`, `LINKEDIN_CLIENT_SECRET` — same values as the audience-explorer project
+   - `SESSION_SECRET` — any long random string
+   - Optional: `ADMIN_EMAILS` (comma-separated, defaults to `joe@revenuagency.io,ukjosephhill@gmail.com`)
+2. **Database**: Vercel → Storage / Marketplace → add **Upstash Redis** to this project (injects `UPSTASH_REDIS_REST_URL`/`TOKEN`).
+3. **LinkedIn developer portal**: app → Auth → add redirect URL `https://library.revenuagency.io/api/linkedin-callback`. The "Sign In with LinkedIn using OpenID Connect" product must be enabled.
 
 ## Local preview
 

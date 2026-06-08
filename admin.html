@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Users · The Revenu Library</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCF7F5;--card:#fff;--ink:#1c1f1d;--ink-soft:#5b6361;--beige:#E8DFD2;
+    --accent:#2f7d6f;--accent-dark:#1f6155;--accent-soft:#d6e6e2;--bad:#C44536;
+    --shadow:0 1px 2px rgba(20,30,28,.04),0 6px 20px rgba(20,30,28,.05);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:6px}
+  .logo{font-weight:600;letter-spacing:5.76px;font-size:22px;color:var(--ink);text-decoration:none}
+  a.back{color:var(--accent-dark);font-size:13px;font-weight:700;text-decoration:none}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:18px 0 4px}
+  .sub{color:var(--ink-soft);font-size:14px;margin:0 0 22px}
+  .bar{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .search{position:relative;flex:1;min-width:220px}
+  .search input{width:100%;border:1px solid var(--beige);background:var(--card);border-radius:12px;padding:11px 14px 11px 38px;font:inherit;font-size:14px;outline:none}
+  .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--ink-soft)}
+  .btn{border:1px solid var(--beige);background:var(--card);border-radius:12px;padding:11px 16px;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .stat{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .stat .card{background:var(--card);border:1px solid var(--beige);border-radius:14px;padding:13px 18px;min-width:140px}
+  .stat b{display:block;font-size:24px;letter-spacing:-.02em}
+  .stat span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .panel{background:var(--card);border:1px solid var(--beige);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding:13px 16px;border-bottom:1px solid var(--beige);white-space:nowrap}
+  td{padding:12px 16px;border-bottom:1px solid #f1ece5;font-size:13.5px;vertical-align:middle}
+  tr:last-child td{border-bottom:0}
+  tr:hover td{background:#fbf7f4}
+  .who{display:flex;align-items:center;gap:11px;min-width:0}
+  .who img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none;background:var(--accent-soft)}
+  .who .nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .em{color:var(--ink-soft)}
+  .dim{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
+  .favs{font-weight:700;color:var(--accent-dark)}
+  .del{border:1px solid #e3c2bb;background:#fff;color:var(--bad);border-radius:9px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+  .del:hover{background:#faf0ee}
+  .del:disabled{opacity:.5;cursor:default}
+  td.actions{text-align:right;white-space:nowrap}
+  .msg{padding:50px 20px;text-align:center;color:var(--ink-soft)}
+  .msg a{color:var(--accent-dark);font-weight:700;text-decoration:none}
+  .spin{display:inline-block;width:18px;height:18px;border-radius:50%;border:3px solid var(--accent-soft);border-top-color:var(--accent);animation:sp .7s linear infinite;vertical-align:-3px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="logo" href="/">REVENU</a>
+      <a class="back" href="/">← Back to the library</a>
+    </div>
+    <h1>Users</h1>
+    <p class="sub">Everyone who has signed in to the Revenu Library with LinkedIn.</p>
+
+    <div class="stat" id="stat" style="display:none">
+      <div class="card"><b id="sTotal">0</b><span>Total accounts</span></div>
+      <div class="card"><b id="sActive">0</b><span>Active last 7 days</span></div>
+      <div class="card"><b id="sFavs">0</b><span>Ads saved total</span></div>
+    </div>
+
+    <div class="bar" id="bar" style="display:none">
+      <span class="search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Search name or email…" autocomplete="off"></span>
+      <button class="btn" id="csv">Export CSV</button>
+    </div>
+
+    <div class="panel"><div id="body"><div class="msg"><span class="spin"></span> &nbsp;Loading users…</div></div></div>
+  </div>
+
+<script>
+let USERS=[];
+const fmt=d=>{if(!d)return '—';const t=new Date(d);return t.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});};
+const ago=d=>{if(!d)return '—';const s=(Date.now()-Date.parse(d))/1000;if(s<3600)return Math.max(1,Math.round(s/60))+'m ago';if(s<86400)return Math.round(s/3600)+'h ago';return Math.round(s/86400)+'d ago';};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const initials=u=>((u.firstName||' ')[0]+(u.lastName||' ')[0]).trim().toUpperCase()||'?';
+
+function render(list){
+  const body=document.getElementById('body');
+  if(!list.length){body.innerHTML='<div class="msg">No users match that search.</div>';return;}
+  body.innerHTML='<table><thead><tr><th>Name</th><th>Email</th><th>Saved ads</th><th>Signed up</th><th>Last active</th><th></th></tr></thead><tbody>'+
+    list.map(u=>{
+      const name=((u.firstName||'')+' '+(u.lastName||'')).trim()||'LinkedIn member';
+      const pic=u.picture?'<img src="'+esc(u.picture)+'" alt="">':'<img alt="" src="data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34"><rect width="34" height="34" fill="%23d6e6e2"/><text x="17" y="22" font-size="13" font-family="sans-serif" font-weight="700" fill="%231f6155" text-anchor="middle">'+initials(u)+'</text></svg>')+'">';
+      return '<tr><td><div class="who">'+pic+'<span class="nm">'+esc(name)+'</span></div></td>'+
+        '<td class="em">'+esc(u.email||'—')+'</td>'+
+        '<td class="favs">'+(u.favoritesCount||0)+'</td>'+
+        '<td class="dim">'+fmt(u.createdAt)+'</td>'+
+        '<td class="dim">'+ago(u.lastActiveAt)+'</td>'+
+        '<td class="actions">'+(u.sub?'<button class="del" data-del="'+esc(u.sub)+'" data-nm="'+esc(name)+'">Delete</button>':'')+'</td></tr>';
+    }).join('')+'</tbody></table>';
+  body.querySelectorAll('[data-del]').forEach(b=>{b.onclick=()=>deleteUser(b.dataset.del,b.dataset.nm,b);});
+}
+async function deleteUser(sub,name,btn){
+  if(!confirm('Delete '+name+'? This permanently removes their account and every ad they\'ve saved. This cannot be undone.'))return;
+  btn.disabled=true;btn.textContent='Deleting…';
+  try{
+    const r=await fetch('/api/linkedin',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({action:'admindelete',sub})});
+    const j=await r.json().catch(()=>({}));
+    if(r.status>=400)throw new Error(j.error||('Error '+r.status));
+    USERS=USERS.filter(u=>u.sub!==sub);
+    refreshStats();
+    applyFilter();
+  }catch(e){alert('Could not delete: '+e.message);btn.disabled=false;btn.textContent='Delete';}
+}
+function refreshStats(){
+  document.getElementById('sTotal').textContent=USERS.length;
+  document.getElementById('sActive').textContent=USERS.filter(u=>u.lastActiveAt&&Date.now()-Date.parse(u.lastActiveAt)<7*86400e3).length;
+  document.getElementById('sFavs').textContent=USERS.reduce((sum,u)=>sum+(u.favoritesCount||0),0);
+}
+function applyFilter(){
+  const q=document.getElementById('q').value.toLowerCase().trim();
+  render(!q?USERS:USERS.filter(u=>(((u.firstName||'')+' '+(u.lastName||'')+' '+(u.email||'')).toLowerCase()).includes(q)));
+}
+document.getElementById('q').addEventListener('input',applyFilter);
+document.getElementById('csv').onclick=()=>{
+  const rows=[['First name','Last name','Email','Saved ads','Signed up','Last active']].concat(
+    USERS.map(u=>[u.firstName||'',u.lastName||'',u.email||'',u.favoritesCount||0,u.createdAt||'',u.lastActiveAt||'']));
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='revenu-library-users.csv';a.click();
+};
+
+(async()=>{
+  try{
+    const r=await fetch('/api/linkedin?action=admin',{credentials:'same-origin'});
+    const j=await r.json().catch(()=>({}));
+    if(r.status===401){document.getElementById('body').innerHTML='<div class="msg">You need to <a href="/">sign in</a> first, then return to this page.</div>';return;}
+    if(r.status===403){document.getElementById('body').innerHTML='<div class="msg">This page is restricted to admins.</div>';return;}
+    if(r.status>=400)throw new Error(j.error||('Error '+r.status));
+    USERS=j.users||[];
+    refreshStats();
+    document.getElementById('stat').style.display='flex';
+    document.getElementById('bar').style.display='flex';
+    render(USERS);
+  }catch(e){document.getElementById('body').innerHTML='<div class="msg">Could not load users: '+esc(e.message)+'</div>';}
+})();
+</script>
+</body>
+</html>
