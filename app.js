@@ -1,220 +1,8 @@
 // ---------- Ad Library — gallery + lightbox ----------
 
-// ---------- LinkedIn sign-in gate ----------
-// Every visitor must sign in with LinkedIn to use the site. The static HTML
-// still carries full content + meta + JSON-LD (so Googlebot indexes everything)
-// but a JS-rendered overlay blocks interaction for humans until they're
-// authenticated. After sign-in we get a signed httpOnly session cookie from
-// /api/linkedin-callback — page JS never sees the cookie, just calls /api
-// to ask "who am I?" via ?action=me.
-let signedInUser = null;       // { sub, firstName, lastName, email, picture, createdAt } | null
-let isAdmin = false;            // joe@revenuagency.io etc. — true when current user is in ADMIN_EMAILS
-const FAVORITES_KEY = 'ad-library-favorites'; // localStorage cache + first-login migration source
-const PROFILE_POP_ID = 'profile-pop';
-const FAVORITES_LOCAL_MIGRATED_KEY = 'ad-library-favorites-migrated';
-
-// Tiny wrappers around fetch — central place to deal with JSON + errors.
-async function api(action, params) {
-  const qs = new URLSearchParams(Object.assign({ action }, params || {})).toString();
-  const r = await fetch('/api/linkedin?' + qs, { credentials: 'same-origin' });
-  let j = null;
-  try { j = await r.json(); } catch (e) {}
-  if (r.status >= 400) throw new Error((j && (j.error || j.message)) || ('Error ' + r.status));
-  return j || {};
-}
-async function apiPost(body) {
-  const r = await fetch('/api/linkedin', {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(body || {}),
-  });
-  let j = null;
-  try { j = await r.json(); } catch (e) {}
-  if (r.status >= 400) throw new Error((j && (j.error || j.message)) || ('Error ' + r.status));
-  return j || {};
-}
-
-// ---------- Gate visibility ----------
-// The gate is shown until /api/linkedin?action=me returns a user. We default
-// to body.gated on script load so there's no flash of un-gated content for
-// real users; Googlebot reads the static HTML and meta before JS runs.
-function showSigninGate() {
-  document.body.classList.add('gated');
-  const gate = document.getElementById('signin-gate');
-  if (gate) gate.hidden = false;
-}
-function hideSigninGate() {
-  document.body.classList.remove('gated');
-  const gate = document.getElementById('signin-gate');
-  if (gate) gate.hidden = true;
-}
-
-// ---------- Auth initialization ----------
-async function initAuth() {
-  // Apply the gate immediately so there's no flash for real users.
-  showSigninGate();
-
-  // Handle the post-callback redirect (?linkedin=ok or ?linkedin=error).
-  try {
-    const u = new URL(window.location.href);
-    if (u.searchParams.get('linkedin') === 'error') {
-      const reason = u.searchParams.get('reason') || 'unknown error';
-      const err = document.getElementById('signin-err');
-      if (err) { err.textContent = 'LinkedIn said no: ' + reason; err.hidden = false; }
-    } else if (u.searchParams.get('linkedin') === 'ok' && u.searchParams.get('signin') === 'failed') {
-      const err = document.getElementById('signin-err');
-      if (err) {
-        err.textContent = 'LinkedIn connected, but sign-in failed' + (u.searchParams.get('why') ? ': ' + u.searchParams.get('why') : '. The database may not be set up yet.');
-        err.hidden = false;
-      }
-    }
-    if (u.searchParams.get('linkedin')) {
-      // Clean the ?linkedin=* params out of the URL.
-      ['linkedin', 'reason', 'signin', 'why'].forEach(k => u.searchParams.delete(k));
-      const clean = u.pathname + (u.searchParams.toString() ? '?' + u.searchParams.toString() : '') + u.hash;
-      try { window.history.replaceState({}, '', clean); } catch (e) {}
-    }
-  } catch (e) {}
-
-  // Wire up sign-in buttons (idempotent — fine if they're hooked twice).
-  const startSignin = () => { window.location.href = '/api/linkedin?action=authurl'; };
-  const sb1 = document.getElementById('signin-btn');
-  const sb2 = document.getElementById('signin-btn-tile');
-  if (sb1) sb1.addEventListener('click', startSignin);
-  if (sb2) sb2.addEventListener('click', startSignin);
-
-  // Ask the server who's signed in. On a fresh visit this returns user:null
-  // and we leave the gate up. After OAuth this returns the user object.
-  try {
-    const j = await api('me');
-    if (j && j.user) {
-      signedInUser = j.user;
-      isAdmin = isAdminEmail(j.user.email);
-      // Server-stored favorites take precedence — replace the local set.
-      const serverFavs = Array.isArray(j.favorites) ? j.favorites : [];
-      // First sign-in on this browser: migrate any localStorage favorites up
-      // so existing users don't lose what they'd already saved.
-      const migrated = (() => { try { return localStorage.getItem(FAVORITES_LOCAL_MIGRATED_KEY) === 'ok'; } catch (e) { return false; } })();
-      if (!migrated) {
-        try {
-          const raw = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
-          if (Array.isArray(raw) && raw.length) {
-            const merged = Array.from(new Set([...serverFavs, ...raw]));
-            if (merged.length !== serverFavs.length) {
-              // Push the merged list up.
-              try { await apiPost({ action: 'savefavs', favorites: merged }); } catch (e) {}
-              serverFavs.length = 0;
-              serverFavs.push(...merged);
-            }
-          }
-        } catch (e) {}
-        try { localStorage.setItem(FAVORITES_LOCAL_MIGRATED_KEY, 'ok'); } catch (e) {}
-      }
-      // Sync into the in-memory favorites Set + localStorage cache.
-      favorites.clear();
-      serverFavs.forEach(k => favorites.add(k));
-      try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(serverFavs)); } catch (e) {}
-      if (typeof syncSavedCount === 'function') syncSavedCount();
-      if (typeof render === 'function') render(true);
-      hideSigninGate();
-      updateProfileChip();
-    }
-    // No user — gate stays visible, leave the page as-is.
-  } catch (e) {
-    // Network or server error: keep the gate visible. Surface a hint.
-    const err = document.getElementById('signin-err');
-    if (err) { err.textContent = 'Could not reach the server. Refresh to try again.'; err.hidden = false; }
-  }
-}
-
-function isAdminEmail(email) {
-  // Has to be kept in sync with ADMIN_EMAILS env on the server. Used purely
-  // to decide whether to show the "Manage users" link in the profile popover;
-  // the real authorization check happens server-side in /api/linkedin.
-  const ADMINS = ['joe@revenuagency.io', 'ukjosephhill@gmail.com'];
-  return ADMINS.includes(String(email || '').toLowerCase());
-}
-
-// ---------- Profile chip + popover ----------
-function updateProfileChip() {
-  const wrap = document.getElementById('user-wrap');
-  const u = signedInUser;
-  if (!wrap) return;
-  if (!u) { wrap.hidden = true; return; }
-  wrap.hidden = false;
-  const pic = document.getElementById('user-pic');
-  const ic = document.getElementById('user-icon');
-  if (u.picture && pic) { pic.src = u.picture; pic.hidden = false; if (ic) ic.style.display = 'none'; }
-  else { if (pic) pic.hidden = true; if (ic) ic.style.display = ''; }
-  const first = document.getElementById('user-first');
-  if (first) first.textContent = u.firstName || 'Account';
-  const ppPic = document.getElementById('pp-pic');
-  if (ppPic) { if (u.picture) { ppPic.src = u.picture; ppPic.hidden = false; } else ppPic.hidden = true; }
-  const ppName = document.getElementById('pp-name');
-  if (ppName) ppName.textContent = ((u.firstName || '') + ' ' + (u.lastName || '')).trim() || 'LinkedIn member';
-  const ppEmail = document.getElementById('pp-email');
-  if (ppEmail) ppEmail.textContent = u.email || '';
-  const ppSince = document.getElementById('pp-since');
-  if (ppSince) ppSince.textContent = u.createdAt ? new Date(u.createdAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
-  const ppFavs = document.getElementById('pp-favs');
-  if (ppFavs) ppFavs.textContent = String(favorites.size);
-  const ppAdmin = document.getElementById('pp-admin');
-  if (ppAdmin) ppAdmin.style.display = isAdmin ? '' : 'none';
-}
-
-(function wireProfilePop() {
-  const chip = document.getElementById('user-chip');
-  const pop = document.getElementById(PROFILE_POP_ID);
-  if (chip && pop) {
-    chip.addEventListener('click', (e) => { e.stopPropagation(); pop.hidden = !pop.hidden; });
-    document.addEventListener('click', (e) => {
-      if (pop.hidden) return;
-      const wrap = document.getElementById('user-wrap');
-      if (wrap && !wrap.contains(e.target)) pop.hidden = true;
-    });
-  }
-  const out = document.getElementById('signout-btn');
-  if (out) out.addEventListener('click', async () => {
-    if (pop) pop.hidden = true;
-    try { await api('signout'); } catch (e) {}
-    signedInUser = null; isAdmin = false;
-    updateProfileChip();
-    showSigninGate();
-    // Wipe the local favorites cache + migration flag so the next user on
-    // this browser starts clean (and gets their own favorites migrated).
-    try { localStorage.removeItem(FAVORITES_KEY); localStorage.removeItem(FAVORITES_LOCAL_MIGRATED_KEY); } catch (e) {}
-    favorites.clear();
-    if (typeof syncSavedCount === 'function') syncSavedCount();
-    if (typeof render === 'function') render();
-  });
-  const del = document.getElementById('delete-account-btn');
-  if (del) del.addEventListener('click', async () => {
-    if (pop) pop.hidden = true;
-    if (!confirm("Delete your account?\n\nYour profile and every saved ad will be permanently removed. This can't be undone.")) return;
-    try { await apiPost({ action: 'deleteaccount' }); }
-    catch (e) { alert('Could not delete account: ' + e.message); return; }
-    signedInUser = null; isAdmin = false;
-    try { localStorage.removeItem(FAVORITES_KEY); localStorage.removeItem(FAVORITES_LOCAL_MIGRATED_KEY); } catch (e) {}
-    favorites.clear();
-    if (typeof syncSavedCount === 'function') syncSavedCount();
-    if (typeof render === 'function') render();
-    updateProfileChip();
-    showSigninGate();
-  });
-})();
-
-// ---------- Server sync of favorites (debounced auto-save) ----------
-let _favsSaveTimer = null;
-function scheduleFavsSync() {
-  if (!signedInUser) return; // can't sync if not signed in (shouldn't happen with the gate)
-  if (_favsSaveTimer) clearTimeout(_favsSaveTimer);
-  _favsSaveTimer = setTimeout(async () => {
-    _favsSaveTimer = null;
-    try { await apiPost({ action: 'savefavs', favorites: [...favorites] }); }
-    catch (e) { /* offline — localStorage cache will catch up next time */ }
-  }, 350);
-}
+// Favorites are stored in localStorage only — no gate, no sign-in, no server
+// sync. Anyone can browse and "save" ads; the saved set lives in their browser.
+const FAVORITES_KEY = 'ad-library-favorites';
 
 // Whether the current view should be the chooser. We derive this from the URL
 // on initial load and on popstate, but otherwise track it as a JS variable so
@@ -328,17 +116,13 @@ const platforms = {
 };
 
 // ---------- Favorites ----------
-// Per-ad heart toggle. Source of truth is the server (`favs:{sub}` in Redis),
-// with localStorage as a small cache so the UI feels instant. initAuth()
-// reconciles the two on every sign-in. Each toggle is debounced into a single
-// PUT to /api/linkedin?action=savefavs so we don't spam the server.
-// FAVORITES_KEY is declared near the top, in the auth block.
+// Per-ad heart toggle, stored in localStorage. The favorites filter button on
+// the desktop filter bar restricts the gallery to only favorited ads.
+// The filter state is tracked PER-PLATFORM so switching libraries doesn't
+// drag the toggle with you, but coming back to a library restores its state.
 const favoritesModeByPlatform = { google: false, linkedin: false, landing: false };
 function getFavoritesMode() { return !!favoritesModeByPlatform[activePlatform]; }
 const favorites = new Set();
-// Hydrate from localStorage so the page renders favorites instantly while
-// /api/linkedin?action=me is still inflight. initAuth() replaces these with
-// the server's authoritative list as soon as it returns.
 try {
   const raw = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
   if (Array.isArray(raw)) raw.forEach(k => favorites.add(k));
@@ -347,20 +131,16 @@ function adKey(ad) {
   return `${ad.platform || 'google'}|${ad.category}|${ad.id}`;
 }
 function isFavorite(ad) { return favorites.has(adKey(ad)); }
-function persistFavoritesLocal() {
+function persistFavorites() {
   try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites])); } catch (e) {}
 }
 function toggleFavorite(ad) {
   const k = adKey(ad);
   if (favorites.has(k)) favorites.delete(k);
   else favorites.add(k);
-  persistFavoritesLocal();
-  // Schedule a debounced server save so a rapid burst of clicks collapses
-  // into one round-trip, but every change is durably synced.
-  if (typeof scheduleFavsSync === 'function') scheduleFavsSync();
-  // Sync the header heart-pill count + profile popover count to the new total.
+  persistFavorites();
+  // Sync the header heart-pill count to the new total.
   if (typeof syncSavedCount === 'function') syncSavedCount();
-  if (typeof updateProfileChip === 'function') updateProfileChip();
 }
 // Update the header heart-pill count badge. Called on init and whenever
 // toggleFavorite mutates the set. Hides the count entirely when there are
@@ -654,10 +434,6 @@ if (_initialAd) {
     if (idx !== -1) openLightbox(idx, { slideIn: true, updateUrl: false });
   }, 400);
 }
-
-// Kick off the LinkedIn auth check — applies the gate immediately, then
-// hides it as soon as /api/linkedin?action=me confirms a session.
-initAuth();
 
 // ---------- Headline + tab title ----------
 function updateHeadline() {

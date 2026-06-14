@@ -96,34 +96,6 @@
           </svg>
           <span class="platform-pill-saved-count" id="saved-count" hidden>0</span>
         </a>
-        <!-- Signed-in profile chip + popover (hidden until /api/linkedin?action=me confirms a session). -->
-        <span class="user-wrap" id="user-wrap" hidden>
-          <button class="user-chip" id="user-chip" type="button" title="Your profile">
-            <img class="user-pic" id="user-pic" alt="" hidden />
-            <svg class="user-icon" id="user-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span id="user-first"></span>
-            <span class="udot"></span>
-          </button>
-          <div class="profile-pop" id="profile-pop" hidden>
-            <div class="pp-top">
-              <img class="pp-pic" id="pp-pic" alt="" hidden />
-              <div class="pp-id">
-                <div class="pp-name" id="pp-name"></div>
-                <div class="pp-email" id="pp-email"></div>
-              </div>
-            </div>
-            <div class="pp-rows">
-              <div class="pp-row"><span class="pp-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg></span>Signed in with LinkedIn</div>
-              <div class="pp-row"><span class="pp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Member since <span id="pp-since">&nbsp;</span></div>
-              <div class="pp-row" id="pp-favs-row"><span class="pp-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>Saved ads: <span id="pp-favs">0</span></div>
-              <a class="pp-row pp-link" id="pp-admin" href="/admin" style="display:none"><span class="pp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Manage users</a>
-            </div>
-            <div class="pp-acts">
-              <button class="pp-btn" id="signout-btn" type="button">Sign out</button>
-              <button class="pp-btn pp-danger" id="delete-account-btn" type="button">Delete account</button>
-            </div>
-          </div>
-        </span>
         <div class="dropdown platform-dropdown" id="platform-dropdown">
           <button class="dropdown-trigger" type="button" id="platform-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
             <span class="dropdown-label" id="platform-dropdown-label">LinkedIn Ads</span>
@@ -237,20 +209,6 @@
       <img id="lb-image" alt="" />
       <figcaption id="lb-caption"></figcaption>
     </figure>
-  </div>
-
-  <!-- Sign-in gate. Blocks every page until the visitor authenticates with
-       LinkedIn. The static HTML keeps full content + meta + JSON-LD for SEO;
-       this overlay is a JS-rendered modal layered on top for human visitors. -->
-  <div class="signin-gate" id="signin-gate" hidden>
-    <div class="connect-card" id="connect-card">
-      <button class="li-signin" id="signin-btn" type="button">Sign in with LinkedIn</button>
-      <button class="in-tile" id="signin-btn-tile" type="button" aria-label="Sign in with LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>
-      </button>
-      <p class="signin-sub" id="signin-sub">One click, no passwords.<br>Get started for free.</p>
-    </div>
-    <div class="signin-err" id="signin-err" hidden></div>
   </div>
 
   <script src="ads.js"></script>
