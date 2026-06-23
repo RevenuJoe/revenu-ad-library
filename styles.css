@@ -802,17 +802,32 @@ body.is-chooser .site-footer {
   }
   .chooser-tile { flex: 0 0 45%; }
 }
-/* Mobile — show ~1.15 tiles so the next one peeks at the right edge,
-   signalling that the strip is swipeable. Align inset to container's 20px. */
+/* Mobile — drop the carousel entirely. The 4 libraries stack vertically inside
+   the regular page container (one tile per row), top-to-bottom. Joe's call:
+   desktop = horizontal carousel, mobile = vertical scroll. */
 @media (max-width: 720px) {
   .chooser {
+    flex-direction: column;
+    /* undo the full-bleed negative-margin trick we use on desktop */
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 24px 0 56px;
     gap: 16px;
-    padding-top: 24px;
-    padding-bottom: 56px;
-    padding-left: 20px;
-    scroll-padding-left: 20px;
+    /* kill horizontal scroll affordances — vertical stack handles itself */
+    overflow-x: visible;
+    overflow-y: visible;
+    scroll-snap-type: none;
+    cursor: default;
+    /* reset scroll-padding so it doesn't accidentally indent column items */
+    scroll-padding-left: 0;
   }
-  .chooser-tile { flex: 0 0 86%; }
+  .chooser-tile {
+    /* full container width, height adapts to image aspect ratio */
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: none;
+  }
 }
 
 /* ---------- Footer ---------- */
