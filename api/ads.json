@@ -1,6 +1,6 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-06-23T01:42:35.959Z",
+  "generated": "2026-06-23T01:47:15.818Z",
   "total": 541,
   "platforms": {
     "linkedin": {
@@ -5946,9 +5946,9 @@
       "title": "Prompt + URL",
       "formula": "Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly",
       "tag": "Setup",
-      "image": "Prompt + URL.webp",
+      "image": "Prompt URL.webp",
       "url": "https://library.revenuagency.io/chatgpt/setup-9",
-      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Prompt + URL.webp"
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Prompt URL.webp"
     },
     {
       "platform": "chatgpt",

@@ -1635,7 +1635,7 @@ window.ADS = [
   { image: "Tracking Setup.webp", title: "Tracking Setup", formula: "To set up conversion tracking, go to Tools and you'll see Conversions", tag: "Setup", category: "setup", platform: "chatgpt" },
   { image: "Install Guide.webp", title: "Install Guide", formula: "The install guide they made is quite good. Hit the learn how to install link for a really good guide", tag: "Setup", category: "setup", platform: "chatgpt" },
   { image: "Pixel Install.webp", title: "Pixel Install", formula: "It's easy to install the pixel. Install yourself or send the link to your developer to add", tag: "Setup", category: "setup", platform: "chatgpt" },
-  { image: "Prompt + URL.webp", title: "Prompt + URL", formula: "Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Prompt URL.webp", title: "Prompt + URL", formula: "Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly", tag: "Setup", category: "setup", platform: "chatgpt" },
   { image: "Four Components.webp", title: "Four Components", formula: "The ads are short and have 4 components: URL, headline, description, image", tag: "Setup", category: "setup", platform: "chatgpt" },
   { image: "Short and Small.webp", title: "Short and Small", formula: "Focus on short copy as you don't get much. Use an image which is simple as it's very small", tag: "Setup", category: "setup", platform: "chatgpt" },
 ];
