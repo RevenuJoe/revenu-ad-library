@@ -937,10 +937,14 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
     gap: 12px;
   }
   .platform-nav { gap: 6px; }
-  /* Mobile: keep the icon chips visible, just shrink them slightly so all 6
-     fit alongside the REVENU wordmark on narrow phones. */
+  /* Mobile: keep the icon chips visible, just shrink them slightly so all
+     remaining chips fit alongside the REVENU wordmark on narrow phones. */
   .platform-pill { width: 34px; height: 34px; }
   .platform-pill svg { width: 16px; height: 16px; }
+  /* Joe's call — Google + Landing Pages chips are desktop-only. On phones we
+     trim the nav to Home / LinkedIn / ChatGPT / Saved so it breathes. */
+  .platform-pill[data-platform="google"],
+  .platform-pill[data-platform="landing"] { display: none; }
   .platform-pill-saved-count {
     top: -2px; right: -2px;
     min-width: 14px; height: 14px; font-size: 9px;
