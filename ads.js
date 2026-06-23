@@ -406,7 +406,7 @@ window.ADS = [
   {
     image: "Playbook 9.webp",
     title: "Two Aspects Of An Ad",
-    formula: "Element one — your copy",
+    formula: "Element one is your copy",
     tag: "Playbook",
     category: "playbook",
     platform: "linkedin"
@@ -422,7 +422,7 @@ window.ADS = [
   {
     image: "Playbook 11.webp",
     title: "Visual In Harmony",
-    formula: "Element two — the visual must match the copy",
+    formula: "Element two is the visual, which must match the copy",
     tag: "Playbook",
     category: "playbook",
     platform: "linkedin"
@@ -454,7 +454,7 @@ window.ADS = [
   {
     image: "Playbook 15.webp",
     title: "Tell A Good Story",
-    formula: "You can't control the journey — just be memorable",
+    formula: "You can't control the journey, just be memorable",
     tag: "Playbook",
     category: "playbook",
     platform: "linkedin"
@@ -1582,7 +1582,7 @@ window.ADS = [
   { image: "Playbook 22.webp", title: "Scale Demos With Incentives",     formula: "Add an incentive when you need to scale demo flow",  tag: "Playbook", category: "playbook", platform: "linkedin" },
   { image: "Playbook 23.webp", title: "More Than Just An Incentive",     formula: "Pair the incentive with a strong second reason",    tag: "Playbook", category: "playbook", platform: "linkedin" },
   { image: "Playbook 24.webp", title: "The Subject Line",                formula: "First part of a well-written convo ad",              tag: "Playbook", category: "playbook", platform: "linkedin" },
-  { image: "Playbook 25.webp", title: "The Primary Message",             formula: "Short and punchy — the second part of the ad",       tag: "Playbook", category: "playbook", platform: "linkedin" },
+  { image: "Playbook 25.webp", title: "The Primary Message",             formula: "Short and punchy, the second part of the ad",       tag: "Playbook", category: "playbook", platform: "linkedin" },
   { image: "Playbook 26.webp", title: "The Secondary Message",           formula: "Reinforce the previous message in a new way",        tag: "Playbook", category: "playbook", platform: "linkedin" },
   { image: "Playbook 27.webp", title: "The Last Chance Message",         formula: "Promote something else like a case study",           tag: "Playbook", category: "playbook", platform: "linkedin" },
   { image: "Playbook 28.webp", title: "Grab Their Attention",            formula: "Lead with something powerful to open the ad",        tag: "Playbook", category: "playbook", platform: "linkedin" },
@@ -1593,5 +1593,49 @@ window.ADS = [
   { image: "GIF in Message.webp",    title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 4 },                          platform: "linkedin" },
   { image: "GIF in Message 2.webp",  title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 20 },                         platform: "linkedin" },
   { image: "Scroll Through.webp",    title: "Scroll Through",   formula: "", tag: "Animation", category: "animations", priority: { animations: 3, "gated-content": 2 },   platform: "linkedin" },
-  { image: "Transformation.webp",    title: "Transformation",   formula: "", tag: "Animation", category: "animations", priority: { product: 6 },                          platform: "linkedin" }
+  { image: "Transformation.webp",    title: "Transformation",   formula: "", tag: "Animation", category: "animations", priority: { product: 6 },                          platform: "linkedin" },
+  // ====================== ChatGPT Ads ======================
+  // ---------- ChatGPT — The Playbook ----------
+  { image: "30 of ChatGPT users are mobile Make sure youre page Is ready.webp", title: "Mobile-Ready Pages", formula: "30% of ChatGPT users are on mobile, make sure your landing page is ready", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Ads appears after an AI answer Copy should be fit for that.webp", title: "Ad Placement", formula: "Ads appear after the AI's answer, so the copy should fit that context", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "ChatGPT is a new ad platform Its basic and will keep.webp", title: "A New Platform", formula: "ChatGPT is a new ad platform. It's basic, and it will keep changing", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Dont repeat your brand name in the ad It already contains.webp", title: "Skip the Brand Name", formula: "Don't repeat your brand name, the ad placement already shows it", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Every element should be optimized separately to create a.webp", title: "Optimize Each Element", formula: "Optimize every element of the ad separately to build something strong", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Its different to google but similar Instead of searching.webp", title: "Different to Google", formula: "Similar to Google, but different. Users get answers, not links", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Same with descriptions they say 100 but make it 70 to be.webp", title: "Description Character Limit", formula: "Descriptions say 100, but make them 70 to be safe on mobile", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "Short 4 to 5 word headlines look best They draw the user in.webp", title: "Short Headlines", formula: "4 to 5 word headlines look best, they draw the user in", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "The character limit says 50 but make it 30 to avoid it.webp", title: "Headline Character Limit", formula: "The limit says 50, but make it 30 so it isn't cut off on mobile", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "The image needs to be simple Big screenshots of platforms.webp", title: "Simple Images", formula: "Keep the image simple. Big screenshots of platforms work best", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "The key to a good ChatGPT ad is short and sweet You have.webp", title: "Short and Sweet", formula: "The key to a good ChatGPT ad is short and sweet. You have limited space", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+  { image: "You can fit a full sentence in the description But the key.webp", title: "Sentence Descriptions", formula: "You can fit a full sentence in the description, but keep it punchy", tag: "Playbook", category: "playbook", platform: "chatgpt" },
+
+  // ---------- ChatGPT — Formulas ----------
+  { image: "Adopt AI.webp", title: "Adopt AI", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Need Help 2.webp", title: "Need Help", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Need Help.webp", title: "Need Help", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Protect 2.webp", title: "Protect", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Protect 3.webp", title: "Protect", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Protect 4.webp", title: "Protect", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Protect.webp", title: "Protect", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Question 2.webp", title: "Question", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Question 3.webp", title: "Question", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Question 4.webp", title: "Question", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Question.webp", title: "Question", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Struggle.webp", title: "Struggle", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "Switch.webp", title: "Switch", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "The Old Way.webp", title: "The Old Way", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+  { image: "You Need.webp", title: "You Need", formula: "", tag: "Formula", category: "formulas", platform: "chatgpt" },
+
+  // ----- ChatGPT — The Setup -----
+  { image: "Easy Setup.webp", title: "Easy Setup", formula: "The campaign set-up is very easy. The options are basic", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Country Selection.webp", title: "Country Selection", formula: "You select your country. The selection is limited right now", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Daily Budget.webp", title: "Daily Budget", formula: "Two options for budget pacing. Go with daily for more budget control", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Campaign Objective.webp", title: "Campaign Objective", formula: "There are two options for objective. Conversions has a coming soon message", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Conversion Event.webp", title: "Conversion Event", formula: "After you've set up the campaign, click edit and scroll to the bottom to add a conversion event", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Tracking Setup.webp", title: "Tracking Setup", formula: "To set up conversion tracking, go to Tools and you'll see Conversions", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Install Guide.webp", title: "Install Guide", formula: "The install guide they made is quite good. Hit the learn how to install link for a really good guide", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Pixel Install.webp", title: "Pixel Install", formula: "It's easy to install the pixel. Install yourself or send the link to your developer to add", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Prompt + URL.webp", title: "Prompt + URL", formula: "Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Four Components.webp", title: "Four Components", formula: "The ads are short and have 4 components: URL, headline, description, image", tag: "Setup", category: "setup", platform: "chatgpt" },
+  { image: "Short and Small.webp", title: "Short and Small", formula: "Focus on short copy as you don't get much. Use an image which is simple as it's very small", tag: "Setup", category: "setup", platform: "chatgpt" },
 ];

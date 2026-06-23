@@ -61,6 +61,18 @@ const PLATFORMS = {
       { key: 'product-visuals',  label: 'Product Visuals',  folder: 'Product Visuals' },
     ],
   },
+  chatgpt: {
+    path: '/chatgpt',
+    label: 'ChatGPT Ads',
+    defaultTab: 'all',
+    folder: 'ChatGPT Ads',
+    tabs: [
+      { key: 'all',      label: 'All',          folder: '' },
+      { key: 'playbook', label: 'The Playbook', folder: 'Playbook' },
+      { key: 'formulas', label: 'Formulas',     folder: 'Formulas' },
+      { key: 'setup',    label: 'The Setup',    folder: 'Setup' },
+    ],
+  },
 };
 
 // Load ads.js by faking `window` then evaluating the file in this scope.

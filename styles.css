@@ -647,15 +647,53 @@ a { color: inherit; }
    toggles its [hidden] attribute). On the chooser homepage the .container's
    max-width is widened (see body.is-chooser rule below) so the three tiles
    render visibly larger than a 3-column gallery row. */
+/* Horizontal carousel: 4 tiles laid out in a strip that spans the full viewport
+   so the tiles can extend right out to the edges of the screen. The strip
+   "breaks out" of <main class="container"> with a negative margin trick.
+   - Left padding aligns the first tile under the hero title (i.e. at the
+     container's normal content edge).
+   - Right padding is small so the last tile peeks just off the right edge of
+     the viewport when scrolled to the start, signalling "swipe for more". */
 .chooser {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 29px; /* ~20% wider than the gallery's 24px */
-  /* Desktop top padding bumped ~20% (32 -> 42) so the hero title has more
-     breathing room above the tiles. Mobile override below restores the
-     original tighter spacing. */
+  display: flex;
+  gap: 22px;
   padding: 42px 0 64px;
-  align-items: start;
+  align-items: stretch;
+  /* Break out of the parent container's max-width to span the full viewport.
+     50% is half the container; 50vw is half the viewport — the difference is
+     exactly the gap from the container's edge to the viewport's edge. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  /* Inset the first tile to where the hero title's content begins:
+     (vw - container_max) / 2 + container_pad.
+     The max() clamps to container padding on narrow viewports. */
+  padding-left: max(56px, calc((100vw - 1330px) / 2 + 56px));
+  padding-right: 24px;
+  /* Horizontal scroll with hidden scrollbar — drag/swipe is the affordance. */
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* legacy Edge */
+  scroll-snap-type: x proximity;  /* gentle snap so a drop near a tile aligns */
+  scroll-behavior: smooth;        /* smooth programmatic scrolls (snap settle) */
+  /* Cursor hints that the strip is draggable; flips to "grabbing" while held. */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* When jumping to a tile via keyboard / hash, leave room on the left so
+     the tile lines up with the content edge rather than the viewport edge. */
+  scroll-padding-left: max(56px, calc((100vw - 1330px) / 2 + 56px));
+}
+.chooser::-webkit-scrollbar { display: none; }
+/* Disable snap + smooth-scroll while dragging — otherwise the browser would
+   lerp each mid-drag scrollLeft write and the carousel would feel laggy. */
+.chooser.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 
 /* On the chooser homepage only, allow main + chooser to break out wider and
@@ -667,9 +705,9 @@ body.is-chooser {
   flex-direction: column;
 }
 body.is-chooser main.container {
-  /* Wider than the standard 1280px container but ~15% narrower than the
-     previous 1540px — keeps tiles a touch bigger than gallery cards
-     without dominating the viewport. */
+  /* Carousel container — keep the original "3 big tiles" width used when the
+     site only had LinkedIn / Google / Landing. The 4th tile sits off-screen
+     to the right and is reached by drag/swipe. */
   max-width: 1330px;
   flex: 1 0 auto; /* take remaining vertical space, pushing footer down */
   display: flex;
@@ -680,7 +718,9 @@ body.is-chooser .site-footer {
 }
 .chooser[hidden] { display: none; }
 /* Tile = same border + shadow + hover behaviour as .card, but the whole tile
-   is one image (no body/title — the artwork carries the platform). */
+   is one image (no body/title — the artwork carries the platform). Carousel
+   sizing: each tile takes one-third of the visible track (minus the two gaps),
+   so 3 tiles fill the viewport and the 4th sits just off-screen. */
 .chooser-tile {
   background: var(--bg-card);
   border-radius: var(--radius);
@@ -692,16 +732,33 @@ body.is-chooser .site-footer {
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* ~30% of the carousel's visible width gives roughly 3 tiles per viewport,
+     with the 4th peeking off the right edge — Joe's exact requested feel. */
+  flex: 0 0 30%;
+  scroll-snap-align: start;
+}
+/* Snap the last tile to the right edge so when fully scrolled it sits against
+   the viewport's right edge instead of leaving a huge empty gap. */
+.chooser-tile:last-child {
+  scroll-snap-align: end;
 }
 .chooser-tile:hover {
   transform: translateY(-3px);
   box-shadow: 0 2px 4px rgba(20,30,28,0.05), 0 18px 40px rgba(20,30,28,0.10);
 }
 .chooser-tile:active { transform: translateY(-1px); }
+/* Suppress hover lift while the user is dragging the strip — the translate
+   makes the cards feel jittery when the cursor is being held down. */
+.chooser.is-dragging .chooser-tile:hover { transform: none; }
 .chooser-tile img {
   display: block;
   width: 100%;
   height: auto;
+  /* Stop the browser's native image-drag ghost (which would otherwise steal
+     the mousedown gesture and prevent the carousel from scrolling). */
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 /* Chooser-specific keyframes. The gallery uses card-pop which scales from
    0.85 (a ~15% jump). With chooser tiles being so much larger that motion
@@ -719,12 +776,27 @@ body.is-chooser .site-footer {
 @media (prefers-reduced-motion: reduce) {
   .chooser-tile.chooser-pop { animation: none; }
 }
-@media (max-width: 960px) {
+/* Tablet — narrower viewports: realign first-tile inset to the container's
+   tablet padding (32px) and bump tile width to ~45% so 2 tiles + a peek fit. */
+@media (max-width: 1100px) {
   .chooser {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 24px 0 56px;
+    gap: 20px;
+    padding-left: 32px;
+    scroll-padding-left: 32px;
   }
+  .chooser-tile { flex: 0 0 45%; }
+}
+/* Mobile — show ~1.15 tiles so the next one peeks at the right edge,
+   signalling that the strip is swipeable. Align inset to container's 20px. */
+@media (max-width: 720px) {
+  .chooser {
+    gap: 16px;
+    padding-top: 24px;
+    padding-bottom: 56px;
+    padding-left: 20px;
+    scroll-padding-left: 20px;
+  }
+  .chooser-tile { flex: 0 0 86%; }
 }
 
 /* ---------- Footer ---------- */

@@ -4,8 +4,8 @@
 > Each entry includes the formula name and a direct URL to view it.
 
 Site: https://library.revenuagency.io
-Total entries: 503
-Generated: 2026-06-14T00:45:06.269Z
+Total entries: 541
+Generated: 2026-06-23T01:18:12.530Z
 
 ## Google Ads (158 examples)
 
@@ -191,13 +191,13 @@ Generated: 2026-06-14T00:45:06.269Z
 - **Reminder** (Negative visuals trigger the problem) — [https://library.revenuagency.io/linkedin-ads/playbook-6](https://library.revenuagency.io/linkedin-ads/playbook-6)
 - **Text Message** (Keep copy short, make reading effortless) — [https://library.revenuagency.io/linkedin-ads/playbook-7](https://library.revenuagency.io/linkedin-ads/playbook-7)
 - **Cheeky Profanity** (A little profanity makes you stand out) — [https://library.revenuagency.io/linkedin-ads/playbook-8](https://library.revenuagency.io/linkedin-ads/playbook-8)
-- **Two Aspects Of An Ad** (Element one — your copy) — [https://library.revenuagency.io/linkedin-ads/playbook-9](https://library.revenuagency.io/linkedin-ads/playbook-9)
+- **Two Aspects Of An Ad** (Element one is your copy) — [https://library.revenuagency.io/linkedin-ads/playbook-9](https://library.revenuagency.io/linkedin-ads/playbook-9)
 - **Clarity Before Cleverness** (Many ways to write, only one to be clear) — [https://library.revenuagency.io/linkedin-ads/playbook-10](https://library.revenuagency.io/linkedin-ads/playbook-10)
-- **Visual In Harmony** (Element two — the visual must match the copy) — [https://library.revenuagency.io/linkedin-ads/playbook-11](https://library.revenuagency.io/linkedin-ads/playbook-11)
+- **Visual In Harmony** (Element two is the visual, which must match the copy) — [https://library.revenuagency.io/linkedin-ads/playbook-11](https://library.revenuagency.io/linkedin-ads/playbook-11)
 - **Storytelling Is An Art** (Problem · Solution · Benefit) — [https://library.revenuagency.io/linkedin-ads/playbook-12](https://library.revenuagency.io/linkedin-ads/playbook-12)
 - **The #SexyAd Formula** (Copy + visual telling one good story) — [https://library.revenuagency.io/linkedin-ads/playbook-13](https://library.revenuagency.io/linkedin-ads/playbook-13)
 - **Read This First** (Section opener for the formula library) — [https://library.revenuagency.io/linkedin-ads/playbook-14](https://library.revenuagency.io/linkedin-ads/playbook-14)
-- **Tell A Good Story** (You can't control the journey — just be memorable) — [https://library.revenuagency.io/linkedin-ads/playbook-15](https://library.revenuagency.io/linkedin-ads/playbook-15)
+- **Tell A Good Story** (You can't control the journey, just be memorable) — [https://library.revenuagency.io/linkedin-ads/playbook-15](https://library.revenuagency.io/linkedin-ads/playbook-15)
 - **The Problem Funnel** (The best model for B2B marketers) — [https://library.revenuagency.io/linkedin-ads/playbook-16](https://library.revenuagency.io/linkedin-ads/playbook-16)
 - **Incentive Headlines** (50%+ open rate with an incentive in the subject) — [https://library.revenuagency.io/linkedin-ads/playbook-17](https://library.revenuagency.io/linkedin-ads/playbook-17)
 - **Problem → Solution** (Open with a problem, follow with a solution) — [https://library.revenuagency.io/linkedin-ads/playbook-18](https://library.revenuagency.io/linkedin-ads/playbook-18)
@@ -207,7 +207,7 @@ Generated: 2026-06-14T00:45:06.269Z
 - **Scale Demos With Incentives** (Add an incentive when you need to scale demo flow) — [https://library.revenuagency.io/linkedin-ads/playbook-22](https://library.revenuagency.io/linkedin-ads/playbook-22)
 - **More Than Just An Incentive** (Pair the incentive with a strong second reason) — [https://library.revenuagency.io/linkedin-ads/playbook-23](https://library.revenuagency.io/linkedin-ads/playbook-23)
 - **The Subject Line** (First part of a well-written convo ad) — [https://library.revenuagency.io/linkedin-ads/playbook-24](https://library.revenuagency.io/linkedin-ads/playbook-24)
-- **The Primary Message** (Short and punchy — the second part of the ad) — [https://library.revenuagency.io/linkedin-ads/playbook-25](https://library.revenuagency.io/linkedin-ads/playbook-25)
+- **The Primary Message** (Short and punchy, the second part of the ad) — [https://library.revenuagency.io/linkedin-ads/playbook-25](https://library.revenuagency.io/linkedin-ads/playbook-25)
 - **The Secondary Message** (Reinforce the previous message in a new way) — [https://library.revenuagency.io/linkedin-ads/playbook-26](https://library.revenuagency.io/linkedin-ads/playbook-26)
 - **The Last Chance Message** (Promote something else like a case study) — [https://library.revenuagency.io/linkedin-ads/playbook-27](https://library.revenuagency.io/linkedin-ads/playbook-27)
 - **Grab Their Attention** (Lead with something powerful to open the ad) — [https://library.revenuagency.io/linkedin-ads/playbook-28](https://library.revenuagency.io/linkedin-ads/playbook-28)
@@ -557,4 +557,53 @@ Generated: 2026-06-14T00:45:06.269Z
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-9](https://library.revenuagency.io/landing-pages/product-visuals-9)
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-10](https://library.revenuagency.io/landing-pages/product-visuals-10)
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-11](https://library.revenuagency.io/landing-pages/product-visuals-11)
+
+## ChatGPT Ads (38 examples)
+
+### The Playbook — 12 examples
+
+- **Mobile-Ready Pages** (30% of ChatGPT users are on mobile, make sure your landing page is ready) — [https://library.revenuagency.io/chatgpt/playbook-1](https://library.revenuagency.io/chatgpt/playbook-1)
+- **Ad Placement** (Ads appear after the AI's answer, so the copy should fit that context) — [https://library.revenuagency.io/chatgpt/playbook-2](https://library.revenuagency.io/chatgpt/playbook-2)
+- **A New Platform** (ChatGPT is a new ad platform. It's basic, and it will keep changing) — [https://library.revenuagency.io/chatgpt/playbook-3](https://library.revenuagency.io/chatgpt/playbook-3)
+- **Skip the Brand Name** (Don't repeat your brand name, the ad placement already shows it) — [https://library.revenuagency.io/chatgpt/playbook-4](https://library.revenuagency.io/chatgpt/playbook-4)
+- **Optimize Each Element** (Optimize every element of the ad separately to build something strong) — [https://library.revenuagency.io/chatgpt/playbook-5](https://library.revenuagency.io/chatgpt/playbook-5)
+- **Different to Google** (Similar to Google, but different. Users get answers, not links) — [https://library.revenuagency.io/chatgpt/playbook-6](https://library.revenuagency.io/chatgpt/playbook-6)
+- **Description Character Limit** (Descriptions say 100, but make them 70 to be safe on mobile) — [https://library.revenuagency.io/chatgpt/playbook-7](https://library.revenuagency.io/chatgpt/playbook-7)
+- **Short Headlines** (4 to 5 word headlines look best, they draw the user in) — [https://library.revenuagency.io/chatgpt/playbook-8](https://library.revenuagency.io/chatgpt/playbook-8)
+- **Headline Character Limit** (The limit says 50, but make it 30 so it isn't cut off on mobile) — [https://library.revenuagency.io/chatgpt/playbook-9](https://library.revenuagency.io/chatgpt/playbook-9)
+- **Simple Images** (Keep the image simple. Big screenshots of platforms work best) — [https://library.revenuagency.io/chatgpt/playbook-10](https://library.revenuagency.io/chatgpt/playbook-10)
+- **Short and Sweet** (The key to a good ChatGPT ad is short and sweet. You have limited space) — [https://library.revenuagency.io/chatgpt/playbook-11](https://library.revenuagency.io/chatgpt/playbook-11)
+- **Sentence Descriptions** (You can fit a full sentence in the description, but keep it punchy) — [https://library.revenuagency.io/chatgpt/playbook-12](https://library.revenuagency.io/chatgpt/playbook-12)
+
+### Formulas — 15 examples
+
+- **Adopt AI** — [https://library.revenuagency.io/chatgpt/formulas-1](https://library.revenuagency.io/chatgpt/formulas-1)
+- **Need Help** — [https://library.revenuagency.io/chatgpt/formulas-2](https://library.revenuagency.io/chatgpt/formulas-2)
+- **Need Help** — [https://library.revenuagency.io/chatgpt/formulas-3](https://library.revenuagency.io/chatgpt/formulas-3)
+- **Protect** — [https://library.revenuagency.io/chatgpt/formulas-4](https://library.revenuagency.io/chatgpt/formulas-4)
+- **Protect** — [https://library.revenuagency.io/chatgpt/formulas-5](https://library.revenuagency.io/chatgpt/formulas-5)
+- **Protect** — [https://library.revenuagency.io/chatgpt/formulas-6](https://library.revenuagency.io/chatgpt/formulas-6)
+- **Protect** — [https://library.revenuagency.io/chatgpt/formulas-7](https://library.revenuagency.io/chatgpt/formulas-7)
+- **Question** — [https://library.revenuagency.io/chatgpt/formulas-8](https://library.revenuagency.io/chatgpt/formulas-8)
+- **Question** — [https://library.revenuagency.io/chatgpt/formulas-9](https://library.revenuagency.io/chatgpt/formulas-9)
+- **Question** — [https://library.revenuagency.io/chatgpt/formulas-10](https://library.revenuagency.io/chatgpt/formulas-10)
+- **Question** — [https://library.revenuagency.io/chatgpt/formulas-11](https://library.revenuagency.io/chatgpt/formulas-11)
+- **Struggle** — [https://library.revenuagency.io/chatgpt/formulas-12](https://library.revenuagency.io/chatgpt/formulas-12)
+- **Switch** — [https://library.revenuagency.io/chatgpt/formulas-13](https://library.revenuagency.io/chatgpt/formulas-13)
+- **The Old Way** — [https://library.revenuagency.io/chatgpt/formulas-14](https://library.revenuagency.io/chatgpt/formulas-14)
+- **You Need** — [https://library.revenuagency.io/chatgpt/formulas-15](https://library.revenuagency.io/chatgpt/formulas-15)
+
+### The Setup — 11 examples
+
+- **Easy Setup** (The campaign set-up is very easy. The options are basic) — [https://library.revenuagency.io/chatgpt/setup-1](https://library.revenuagency.io/chatgpt/setup-1)
+- **Country Selection** (You select your country. The selection is limited right now) — [https://library.revenuagency.io/chatgpt/setup-2](https://library.revenuagency.io/chatgpt/setup-2)
+- **Daily Budget** (Two options for budget pacing. Go with daily for more budget control) — [https://library.revenuagency.io/chatgpt/setup-3](https://library.revenuagency.io/chatgpt/setup-3)
+- **Campaign Objective** (There are two options for objective. Conversions has a coming soon message) — [https://library.revenuagency.io/chatgpt/setup-4](https://library.revenuagency.io/chatgpt/setup-4)
+- **Conversion Event** (After you've set up the campaign, click edit and scroll to the bottom to add a conversion event) — [https://library.revenuagency.io/chatgpt/setup-5](https://library.revenuagency.io/chatgpt/setup-5)
+- **Tracking Setup** (To set up conversion tracking, go to Tools and you'll see Conversions) — [https://library.revenuagency.io/chatgpt/setup-6](https://library.revenuagency.io/chatgpt/setup-6)
+- **Install Guide** (The install guide they made is quite good. Hit the learn how to install link for a really good guide) — [https://library.revenuagency.io/chatgpt/setup-7](https://library.revenuagency.io/chatgpt/setup-7)
+- **Pixel Install** (It's easy to install the pixel. Install yourself or send the link to your developer to add) — [https://library.revenuagency.io/chatgpt/setup-8](https://library.revenuagency.io/chatgpt/setup-8)
+- **Prompt + URL** (Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly) — [https://library.revenuagency.io/chatgpt/setup-9](https://library.revenuagency.io/chatgpt/setup-9)
+- **Four Components** (The ads are short and have 4 components: URL, headline, description, image) — [https://library.revenuagency.io/chatgpt/setup-10](https://library.revenuagency.io/chatgpt/setup-10)
+- **Short and Small** (Focus on short copy as you don't get much. Use an image which is simple as it's very small) — [https://library.revenuagency.io/chatgpt/setup-11](https://library.revenuagency.io/chatgpt/setup-11)
 

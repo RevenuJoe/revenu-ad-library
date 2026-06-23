@@ -11,8 +11,9 @@ const FAVORITES_KEY = 'ad-library-favorites';
 function _isChooserUrl() {
   const path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
   if (path === '/') return true;
-  // file:// support — opening index.html directly should show the chooser too.
-  if (window.location.protocol === 'file:' && /\/index\.html$/i.test(path)) return true;
+  // file:// support — opening index.html (or the chatgpt-ads.html stealth
+  // preview file) directly should show the chooser too.
+  if (window.location.protocol === 'file:' && /\/(index|chatgpt-ads)\.html$/i.test(path)) return true;
   return false;
 }
 let chooserActive = _isChooserUrl();
@@ -98,6 +99,18 @@ const platforms = {
       { key: 'product-visuals',  label: 'Product Visuals',  folder: 'Product Visuals' }
     ]
   },
+  chatgpt: {
+    label: 'ChatGPT Ads',
+    folder: 'ChatGPT Ads',
+    features: ['First-Mover Edge', 'Get Seen On AI', 'Steal Search Traffic'],
+    defaultTab: 'all',
+    tabs: [
+      { key: 'all',       label: 'All',          folder: '' },
+      { key: 'playbook',  label: 'The Playbook', folder: 'Playbook' },
+      { key: 'formulas',  label: 'Formulas',     folder: 'Formulas' },
+      { key: 'setup',     label: 'The Setup',    folder: 'Setup' }
+    ]
+  },
   // Pseudo-platform: cross-library "Saved" view. Same gallery + lightbox UI
   // as a real platform, but visibleAds is filtered from the user's favorites
   // (localStorage) and the "category" tabs are the source platforms.
@@ -110,7 +123,8 @@ const platforms = {
       { key: 'all',      label: 'All',           folder: '' },
       { key: 'linkedin', label: 'LinkedIn Ads',  folder: '' },
       { key: 'google',   label: 'Google Ads',    folder: '' },
-      { key: 'landing',  label: 'Landing Pages', folder: '' }
+      { key: 'landing',  label: 'Landing Pages', folder: '' },
+      { key: 'chatgpt',  label: 'ChatGPT Ads',   folder: '' }
     ]
   }
 };
@@ -161,12 +175,14 @@ const PATH_TO_PLATFORM = {
   '/google-ads': 'google',
   '/linkedin-ads': 'linkedin',
   '/landing-pages': 'landing',
+  '/chatgpt': 'chatgpt',
   '/saved': 'saved'
 };
 const PLATFORM_TO_PATH = {
   google:   '/google-ads',
   linkedin: '/linkedin-ads',
   landing:  '/landing-pages',
+  chatgpt:  '/chatgpt',
   saved:    '/saved'
 };
 
@@ -175,7 +191,7 @@ function parsePath() {
   // /saved has no sub-paths (categories are JS-only state, not URLs).
   if (path === '/saved') return { platform: 'saved', category: null, adId: null };
   // /platform or /platform/category[-id]
-  const m = path.match(/^\/(google-ads|linkedin-ads|landing-pages)(?:\/(.+))?$/);
+  const m = path.match(/^\/(google-ads|linkedin-ads|landing-pages|chatgpt)(?:\/(.+))?$/);
   if (!m) return { platform: 'linkedin', category: null, adId: null };
   const platform = PATH_TO_PLATFORM['/' + m[1]];
   if (!m[2]) return { platform, category: null, adId: null };
@@ -512,10 +528,63 @@ function animateChooserIfHome() {
   });
 }
 
-// Wire chooser-tile clicks to setPlatform — same effect as clicking a pill.
+// ---------- Chooser carousel ----------
+// The chooser is a horizontal flex strip with overflow-x:auto. Native swipe
+// works on touch out of the box; this block adds mouse click-and-drag on
+// desktop, and suppresses the tile-click that would otherwise fire when the
+// user releases after a drag.
+let _chooserDragSuppress = false;   // set true on a real drag, consumed by the click handler
 if (chooser) {
+  // --- Mouse drag → horizontal scroll ---
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+  let moved = 0;
+  const DRAG_THRESHOLD = 6; // px of movement before we treat the gesture as a drag
+
+  chooser.addEventListener('mousedown', (e) => {
+    // Only left-button drags; let middle/right clicks pass through (so middle-
+    // click on an anchor still opens in a new tab).
+    if (e.button !== 0) return;
+    isDown = true;
+    startX = e.clientX;
+    startScroll = chooser.scrollLeft;
+    moved = 0;
+    chooser.classList.add('is-dragging');
+  });
+  // Listen on the window so we keep tracking even if the pointer leaves the
+  // carousel mid-drag.
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > moved) moved = Math.abs(dx);
+    if (moved > DRAG_THRESHOLD) {
+      // Once it's a real drag, prevent text selection / native drag artifacts.
+      e.preventDefault();
+      chooser.scrollLeft = startScroll - dx;
+    }
+  });
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    chooser.classList.remove('is-dragging');
+    // Was the gesture a meaningful drag? If yes, swallow the next click so the
+    // user doesn't get teleported into a library by accident at the end of a
+    // pan. The flag is consumed by the click handler below.
+    _chooserDragSuppress = moved > DRAG_THRESHOLD;
+  });
+
+  // Wire chooser-tile clicks to setPlatform — same effect as clicking a pill.
   chooser.querySelectorAll('.chooser-tile').forEach(tile => {
     tile.addEventListener('click', (e) => {
+      // If the user just dragged, this click is the tail of the drag gesture
+      // — eat it and reset the flag so the *next* real click works.
+      if (_chooserDragSuppress) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        _chooserDragSuppress = false;
+        return;
+      }
       // Anchor href is set for SEO + middle-click; cmd/ctrl-click should still
       // open in a new tab via the browser default, so we only preventDefault
       // on plain left-clicks.
@@ -524,6 +593,9 @@ if (chooser) {
       const platform = tile.dataset.platform;
       if (platform) setPlatform(platform);
     });
+    // Catch the native HTML5 dragstart that fires on anchors — without this,
+    // some browsers begin a link-drag operation that competes with the scroll.
+    tile.addEventListener('dragstart', (e) => e.preventDefault());
   });
 }
 
@@ -886,6 +958,9 @@ function renderCards(animate = false) {
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Open ${ad.title}`);
     const fav = isFavorite(ad);
+    // ChatGPT Playbook + Setup cards show title + tag only in the grid (description
+    // is kept in ads.js so it still drives SEO meta / JSON-LD on the per-ad URL).
+    const hideCardSub = ad.platform === 'chatgpt' && (ad.category === 'playbook' || ad.category === 'setup');
     card.innerHTML = `
       <div class="card-thumb">
         <img src="${imagePath(ad)}" alt="${escapeHtml(ad.title)}" loading="lazy" />
@@ -893,7 +968,7 @@ function renderCards(animate = false) {
       <div class="card-body">
         <div class="card-text">
           <h3 class="card-title">${escapeHtml(ad.title)}</h3>
-          ${ad.formula ? `<p class="card-sub">${escapeHtml(ad.formula)}</p>` : ''}
+          ${ad.formula && !hideCardSub ? `<p class="card-sub">${escapeHtml(ad.formula)}</p>` : ''}
         </div>
         ${ad.tag ? `<span class="card-tag">${escapeHtml(ad.tag)}</span>` : ''}
         <button class="card-heart${fav ? ' is-favorited' : ''}" type="button" aria-label="${fav ? 'Remove favorite' : 'Add favorite'}" title="${fav ? 'Remove favorite' : 'Add favorite'}">

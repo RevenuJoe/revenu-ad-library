@@ -1,7 +1,7 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-06-14T00:45:06.260Z",
-  "total": 503,
+  "generated": "2026-06-23T01:18:12.524Z",
+  "total": 541,
   "platforms": {
     "linkedin": {
       "label": "LinkedIn Ads",
@@ -14,6 +14,10 @@
     "landing": {
       "label": "Landing Pages",
       "path": "/landing-pages"
+    },
+    "chatgpt": {
+      "label": "ChatGPT Ads",
+      "path": "/chatgpt"
     }
   },
   "ads": [
@@ -1848,7 +1852,7 @@
       "category": "playbook",
       "id": 9,
       "title": "Two Aspects Of An Ad",
-      "formula": "Element one — your copy",
+      "formula": "Element one is your copy",
       "tag": "Playbook",
       "image": "Playbook 9.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/playbook-9",
@@ -1870,7 +1874,7 @@
       "category": "playbook",
       "id": 11,
       "title": "Visual In Harmony",
-      "formula": "Element two — the visual must match the copy",
+      "formula": "Element two is the visual, which must match the copy",
       "tag": "Playbook",
       "image": "Playbook 11.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/playbook-11",
@@ -1914,7 +1918,7 @@
       "category": "playbook",
       "id": 15,
       "title": "Tell A Good Story",
-      "formula": "You can't control the journey — just be memorable",
+      "formula": "You can't control the journey, just be memorable",
       "tag": "Playbook",
       "image": "Playbook 15.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/playbook-15",
@@ -5445,7 +5449,7 @@
       "category": "playbook",
       "id": 25,
       "title": "The Primary Message",
-      "formula": "Short and punchy — the second part of the ad",
+      "formula": "Short and punchy, the second part of the ad",
       "tag": "Playbook",
       "image": "Playbook 25.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/playbook-25",
@@ -5549,6 +5553,424 @@
       "image": "Transformation.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/animations-7",
       "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Animations/Transformation.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 1,
+      "title": "Mobile-Ready Pages",
+      "formula": "30% of ChatGPT users are on mobile, make sure your landing page is ready",
+      "tag": "Playbook",
+      "image": "30 of ChatGPT users are mobile Make sure youre page Is ready.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-1",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/30 of ChatGPT users are mobile Make sure youre page Is ready.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 2,
+      "title": "Ad Placement",
+      "formula": "Ads appear after the AI's answer, so the copy should fit that context",
+      "tag": "Playbook",
+      "image": "Ads appears after an AI answer Copy should be fit for that.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-2",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Ads appears after an AI answer Copy should be fit for that.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 3,
+      "title": "A New Platform",
+      "formula": "ChatGPT is a new ad platform. It's basic, and it will keep changing",
+      "tag": "Playbook",
+      "image": "ChatGPT is a new ad platform Its basic and will keep.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-3",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/ChatGPT is a new ad platform Its basic and will keep.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 4,
+      "title": "Skip the Brand Name",
+      "formula": "Don't repeat your brand name, the ad placement already shows it",
+      "tag": "Playbook",
+      "image": "Dont repeat your brand name in the ad It already contains.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-4",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Dont repeat your brand name in the ad It already contains.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 5,
+      "title": "Optimize Each Element",
+      "formula": "Optimize every element of the ad separately to build something strong",
+      "tag": "Playbook",
+      "image": "Every element should be optimized separately to create a.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-5",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Every element should be optimized separately to create a.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 6,
+      "title": "Different to Google",
+      "formula": "Similar to Google, but different. Users get answers, not links",
+      "tag": "Playbook",
+      "image": "Its different to google but similar Instead of searching.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-6",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Its different to google but similar Instead of searching.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 7,
+      "title": "Description Character Limit",
+      "formula": "Descriptions say 100, but make them 70 to be safe on mobile",
+      "tag": "Playbook",
+      "image": "Same with descriptions they say 100 but make it 70 to be.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-7",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Same with descriptions they say 100 but make it 70 to be.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 8,
+      "title": "Short Headlines",
+      "formula": "4 to 5 word headlines look best, they draw the user in",
+      "tag": "Playbook",
+      "image": "Short 4 to 5 word headlines look best They draw the user in.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-8",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/Short 4 to 5 word headlines look best They draw the user in.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 9,
+      "title": "Headline Character Limit",
+      "formula": "The limit says 50, but make it 30 so it isn't cut off on mobile",
+      "tag": "Playbook",
+      "image": "The character limit says 50 but make it 30 to avoid it.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-9",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/The character limit says 50 but make it 30 to avoid it.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 10,
+      "title": "Simple Images",
+      "formula": "Keep the image simple. Big screenshots of platforms work best",
+      "tag": "Playbook",
+      "image": "The image needs to be simple Big screenshots of platforms.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-10",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/The image needs to be simple Big screenshots of platforms.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 11,
+      "title": "Short and Sweet",
+      "formula": "The key to a good ChatGPT ad is short and sweet. You have limited space",
+      "tag": "Playbook",
+      "image": "The key to a good ChatGPT ad is short and sweet You have.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-11",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/The key to a good ChatGPT ad is short and sweet You have.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "playbook",
+      "id": 12,
+      "title": "Sentence Descriptions",
+      "formula": "You can fit a full sentence in the description, but keep it punchy",
+      "tag": "Playbook",
+      "image": "You can fit a full sentence in the description But the key.webp",
+      "url": "https://library.revenuagency.io/chatgpt/playbook-12",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Playbook/You can fit a full sentence in the description But the key.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 1,
+      "title": "Adopt AI",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Adopt AI.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-1",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Adopt AI.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 2,
+      "title": "Need Help",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Need Help 2.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-2",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Need Help 2.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 3,
+      "title": "Need Help",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Need Help.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-3",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Need Help.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 4,
+      "title": "Protect",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Protect 2.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-4",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Protect 2.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 5,
+      "title": "Protect",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Protect 3.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-5",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Protect 3.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 6,
+      "title": "Protect",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Protect 4.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-6",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Protect 4.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 7,
+      "title": "Protect",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Protect.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-7",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Protect.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 8,
+      "title": "Question",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Question 2.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-8",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Question 2.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 9,
+      "title": "Question",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Question 3.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-9",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Question 3.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 10,
+      "title": "Question",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Question 4.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-10",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Question 4.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 11,
+      "title": "Question",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Question.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-11",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Question.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 12,
+      "title": "Struggle",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Struggle.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-12",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Struggle.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 13,
+      "title": "Switch",
+      "formula": "",
+      "tag": "Formula",
+      "image": "Switch.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-13",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/Switch.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 14,
+      "title": "The Old Way",
+      "formula": "",
+      "tag": "Formula",
+      "image": "The Old Way.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-14",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/The Old Way.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "formulas",
+      "id": 15,
+      "title": "You Need",
+      "formula": "",
+      "tag": "Formula",
+      "image": "You Need.webp",
+      "url": "https://library.revenuagency.io/chatgpt/formulas-15",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Formulas/You Need.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 1,
+      "title": "Easy Setup",
+      "formula": "The campaign set-up is very easy. The options are basic",
+      "tag": "Setup",
+      "image": "Easy Setup.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-1",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Easy Setup.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 2,
+      "title": "Country Selection",
+      "formula": "You select your country. The selection is limited right now",
+      "tag": "Setup",
+      "image": "Country Selection.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-2",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Country Selection.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 3,
+      "title": "Daily Budget",
+      "formula": "Two options for budget pacing. Go with daily for more budget control",
+      "tag": "Setup",
+      "image": "Daily Budget.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-3",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Daily Budget.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 4,
+      "title": "Campaign Objective",
+      "formula": "There are two options for objective. Conversions has a coming soon message",
+      "tag": "Setup",
+      "image": "Campaign Objective.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-4",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Campaign Objective.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 5,
+      "title": "Conversion Event",
+      "formula": "After you've set up the campaign, click edit and scroll to the bottom to add a conversion event",
+      "tag": "Setup",
+      "image": "Conversion Event.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-5",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Conversion Event.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 6,
+      "title": "Tracking Setup",
+      "formula": "To set up conversion tracking, go to Tools and you'll see Conversions",
+      "tag": "Setup",
+      "image": "Tracking Setup.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-6",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Tracking Setup.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 7,
+      "title": "Install Guide",
+      "formula": "The install guide they made is quite good. Hit the learn how to install link for a really good guide",
+      "tag": "Setup",
+      "image": "Install Guide.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-7",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Install Guide.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 8,
+      "title": "Pixel Install",
+      "formula": "It's easy to install the pixel. Install yourself or send the link to your developer to add",
+      "tag": "Setup",
+      "image": "Pixel Install.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-8",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Pixel Install.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 9,
+      "title": "Prompt + URL",
+      "formula": "Targeting is a prompt plus a URL. Pick the URL carefully and describe the personas and keywords clearly",
+      "tag": "Setup",
+      "image": "Prompt + URL.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-9",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Prompt + URL.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 10,
+      "title": "Four Components",
+      "formula": "The ads are short and have 4 components: URL, headline, description, image",
+      "tag": "Setup",
+      "image": "Four Components.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-10",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Four Components.webp"
+    },
+    {
+      "platform": "chatgpt",
+      "category": "setup",
+      "id": 11,
+      "title": "Short and Small",
+      "formula": "Focus on short copy as you don't get much. Use an image which is simple as it's very small",
+      "tag": "Setup",
+      "image": "Short and Small.webp",
+      "url": "https://library.revenuagency.io/chatgpt/setup-11",
+      "imageUrl": "https://library.revenuagency.io/images/ChatGPT Ads/Setup/Short and Small.webp"
     }
   ]
 }

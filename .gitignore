@@ -17,3 +17,6 @@ node_modules/
 .vercel
 .env
 *.log
+
+# Stealth project — local-only, never deploy
+chatgpt-ads.html
