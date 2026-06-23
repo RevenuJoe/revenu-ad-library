@@ -54,59 +54,75 @@ a { color: inherit; }
 }
 .platform-nav {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
+/* Icon-only nav chips. Style ported from audience.revenuagency.io's
+   `.rep-chip` pattern (40×40 circle, accent-soft idle, full-accent on
+   hover/active). Each chip is a logo of the destination library, monochrome
+   in our brand colour. */
 .platform-pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 18px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
   text-decoration: none;
-  background: var(--bg-pill-inactive);
-  color: #707070;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  line-height: 1;
-}
-/* Inactive hover: light green "preview" of the active state, so the user
-   sees the green tint when they're considering a pill but only commits to
-   the full dark-accent fill on click. */
-.platform-pill:hover {
   background: var(--accent-soft);
   color: var(--accent-dark);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.platform-pill svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+.platform-pill:hover {
+  background: var(--accent);
+  color: #fff;
 }
 .platform-pill.is-active {
   background: var(--accent);
   color: #fff;
 }
 .platform-pill.is-active:hover { background: var(--accent-dark); }
-.platform-pill:active { transform: scale(0.98); }
+.platform-pill:active { transform: scale(0.94); }
 
 /* ---------- Saved (favorites) pill ---------- */
-/* Fourth pill — desktop-only. Inherits ALL color states (beige inactive,
-   soft-green hover, dark-teal active) from .platform-pill — so the heart
-   icon and the count number track the pill's text colour automatically and
-   match every other platform pill exactly. */
-.platform-pill-saved {
-  gap: 7px;
-  padding: 8px 14px 8px 12px;
-}
+/* Same chip shape as the rest of the nav — the heart sits centred and the
+   count appears as a small dark badge in the top-right corner (hidden when
+   the user has zero favorites). */
 .platform-pill-saved-icon {
   display: block;
   flex-shrink: 0;
-  /* fill="currentColor" on the SVG means the heart picks up the pill's
-     text colour (#707070 idle, accent-dark on hover, white on active). */
 }
 .platform-pill-saved-count {
-  /* Match the font of the surrounding pill labels exactly. */
-  font-weight: 600;
-  font-size: 13px;
-  min-width: 8px;
-  text-align: center;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+  border: 2px solid var(--bg);
+  box-sizing: content-box;
+}
+/* On the active saved chip, invert the badge so it stays visible. */
+.platform-pill.is-active .platform-pill-saved-count {
+  background: #fff;
+  color: var(--accent);
 }
 /* When zero favorites, the count span is hidden via [hidden] in app.js. */
 
@@ -893,7 +909,6 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
 
 @media (max-width: 1100px) {
   .container { padding: 0 32px; }
-  .platform-pill { padding: 9px 18px; font-size: 15px; }
   .view-toggle { right: 0; }
   .tab { padding: 14px 16px; }
 }
@@ -906,25 +921,18 @@ body.lb-dragging .lb-figure img { cursor: grabbing; }
     justify-content: space-between;
     gap: 12px;
   }
-  .platform-nav { position: relative; width: auto; }
-  /* Replace the row of platform pills with the custom dropdown */
-  .platform-pill { display: none; }
-  .platform-dropdown {
-    display: block;
-    width: auto;
-    max-width: none;
-    margin: 0;
+  .platform-nav { gap: 6px; }
+  /* Mobile: keep the icon chips visible, just shrink them slightly so all 6
+     fit alongside the REVENU wordmark on narrow phones. */
+  .platform-pill { width: 34px; height: 34px; }
+  .platform-pill svg { width: 16px; height: 16px; }
+  .platform-pill-saved-count {
+    top: -2px; right: -2px;
+    min-width: 14px; height: 14px; font-size: 9px;
+    border-width: 1.5px;
   }
-  .platform-dropdown .dropdown-menu {
-    left: auto;
-    right: 0;
-    min-width: 100%;
-    width: max-content;
-  }
-  .platform-dropdown .dropdown-trigger {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
+  /* The mobile-only dropdown is retired — icons fit on mobile now. */
+  .platform-dropdown { display: none !important; }
   /* Compact hero — bullet pills are hidden so title sits flush above filters */
   .hero { padding: 14px 0 14px; }
   .hero-title { font-size: clamp(14px, 3.75vw, 22px); margin-bottom: 0; }

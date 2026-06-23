@@ -369,25 +369,37 @@ let pagesWritten = 0;
   writePage('/saved', buildPageHtml({ title, description, canonical, jsonLd: {}, activePlatform: 'saved' }));
   pagesWritten++;
 }
-// Platform-level pages (/google-ads, /linkedin-ads, /landing-pages)
+// Per-platform OG preview images. These sit alongside the default og-image.png
+// (which is now homepage-only) and are picked up by social link unfurlers
+// (LinkedIn, Slack, X, FB) when sharing a library URL.
+const PLATFORM_OG_IMAGE = {
+  linkedin: '/og/linkedin-ads.png',
+  google:   '/og/google-ads.png',
+  landing:  '/og/landing-pages.png',
+  chatgpt:  '/og/chatgpt.png',
+};
+// Platform-level pages (/google-ads, /linkedin-ads, /landing-pages, /chatgpt)
 for (const [platform, cfg] of Object.entries(PLATFORMS)) {
   const canonical = BASE_URL + cfg.path;
   const title = `${cfg.label} Library | Revenu`;
   const description = `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world templates categorized by formula.`;
+  const ogImage = BASE_URL + (PLATFORM_OG_IMAGE[platform] || '/og-image.png');
   const jsonLd = buildJsonLdFor({ platform, category: null, ad: null, canonical });
-  writePage(cfg.path, buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
+  writePage(cfg.path, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
   pagesWritten++;
 }
-// Category pages
+// Category pages — inherit the platform's OG image so shares of /chatgpt/playbook,
+// /linkedin-ads/conversion, etc. show the correct library cover, not the LinkedIn default.
 for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
   const cfg = PLATFORMS[platform];
+  const ogImage = BASE_URL + (PLATFORM_OG_IMAGE[platform] || '/og-image.png');
   // explicit /all
   {
     const canonical = BASE_URL + cfg.path + '/all';
     const title = `All ${cfg.label} examples | Revenu`;
     const description = `Every ${cfg.label} example in the Revenu Ad Library — all categories, all formulas.`;
     const jsonLd = buildJsonLdFor({ platform, category: 'all', ad: null, canonical });
-    writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
+    writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
     pagesWritten++;
   }
   for (const cat of cats) {
@@ -397,7 +409,7 @@ for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
     const title = `${catLabel} — ${cfg.label} examples | Revenu`;
     const description = `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS templates categorized by formula.`;
     const jsonLd = buildJsonLdFor({ platform, category: cat, ad: null, canonical });
-    writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, jsonLd, activePlatform: platform }));
+    writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
     pagesWritten++;
   }
 }

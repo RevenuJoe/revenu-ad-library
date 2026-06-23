@@ -487,8 +487,13 @@ function applyHomepageMode() {
   if (filtersWrap) filtersWrap.hidden = home;
   if (gallery) gallery.hidden = home;
   if (featurePillsContainer) featurePillsContainer.hidden = home;
-  // No active platform pill on the chooser
-  platformPills.forEach(p => p.classList.toggle('is-active', !home && p.dataset.platform === activePlatform));
+  // Sync the chip active state:
+  //  - on the chooser homepage  → only the Home chip lights up
+  //  - on a library page        → the matching platform chip lights up
+  platformPills.forEach(p => {
+    const want = home ? p.dataset.platform === 'home' : p.dataset.platform === activePlatform;
+    p.classList.toggle('is-active', want);
+  });
   if (platformDropdownLabel) {
     platformDropdownLabel.textContent = home ? 'Select library' : currentPlatform().label;
   }
@@ -1100,9 +1105,29 @@ platformPills.forEach(pill => {
   pill.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setPlatform(pill.dataset.platform);
+    const target = pill.dataset.platform;
+    if (target === 'home') {
+      goHome();
+    } else {
+      setPlatform(target);
+    }
   });
 });
+
+// Navigate back to the chooser homepage (/) without a full page reload. Mirrors
+// what setPlatform does for libraries, but for the no-platform homepage state.
+function goHome() {
+  if (isHomepage()) return; // already there
+  chooserActive = true;
+  if (window.location.pathname !== '/') {
+    safePushState({ home: true }, '/');
+  }
+  // Sync chip active-state: only the Home chip is active on the homepage.
+  platformPills.forEach(p => p.classList.toggle('is-active', p.dataset.platform === 'home'));
+  applyHomepageMode();
+  updateHeadline();
+  animateChooserIfHome();
+}
 
 // Build the mobile platform dropdown menu options
 function renderPlatformDropdown() {
