@@ -1,7 +1,7 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-06-23T18:20:12.699Z",
-  "total": 541,
+  "generated": "2026-06-24T17:49:54.324Z",
+  "total": 544,
   "platforms": {
     "linkedin": {
       "label": "LinkedIn Ads",
@@ -3532,6 +3532,17 @@
     },
     {
       "platform": "landing",
+      "category": "above-the-fold",
+      "id": 39,
+      "title": "Sourcegraph",
+      "formula": "",
+      "tag": "Above the Fold",
+      "image": "Sourcegraph Hero.webp",
+      "url": "https://library.revenuagency.io/landing-pages/above-the-fold-39",
+      "imageUrl": "https://library.revenuagency.io/images/Landing Pages/Above the Fold/Sourcegraph Hero.webp"
+    },
+    {
+      "platform": "landing",
       "category": "blocks",
       "id": 1,
       "title": "Dynamic",
@@ -4335,6 +4346,17 @@
     },
     {
       "platform": "landing",
+      "category": "blocks",
+      "id": 74,
+      "title": "Sourcegraph",
+      "formula": "",
+      "tag": "Blocks",
+      "image": "Sourcegraph Comparison.webp",
+      "url": "https://library.revenuagency.io/landing-pages/blocks-74",
+      "imageUrl": "https://library.revenuagency.io/images/Landing Pages/Blocks/Sourcegraph Comparison.webp"
+    },
+    {
+      "platform": "landing",
       "category": "product-visuals",
       "id": 1,
       "title": "Devices",
@@ -4453,6 +4475,17 @@
       "image": "Screenshot 3.webp",
       "url": "https://library.revenuagency.io/landing-pages/product-visuals-11",
       "imageUrl": "https://library.revenuagency.io/images/Landing Pages/Product Visuals/Screenshot 3.webp"
+    },
+    {
+      "platform": "landing",
+      "category": "product-visuals",
+      "id": 12,
+      "title": "Sourcegraph",
+      "formula": "",
+      "tag": "Product Visuals",
+      "image": "Sourcegraph Product Hero.webp",
+      "url": "https://library.revenuagency.io/landing-pages/product-visuals-12",
+      "imageUrl": "https://library.revenuagency.io/images/Landing Pages/Product Visuals/Sourcegraph Product Hero.webp"
     },
     {
       "platform": "linkedin",

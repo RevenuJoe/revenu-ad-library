@@ -4,8 +4,8 @@
 > Each entry includes the formula name and a direct URL to view it.
 
 Site: https://library.revenuagency.io
-Total entries: 541
-Generated: 2026-06-23T18:20:12.707Z
+Total entries: 544
+Generated: 2026-06-24T17:49:54.330Z
 
 ## Google Ads (158 examples)
 
@@ -425,9 +425,9 @@ Generated: 2026-06-23T18:20:12.707Z
 - **Problem Statement** — [https://library.revenuagency.io/linkedin-ads/convo-ads-24](https://library.revenuagency.io/linkedin-ads/convo-ads-24)
 - **Problem Statement** — [https://library.revenuagency.io/linkedin-ads/convo-ads-25](https://library.revenuagency.io/linkedin-ads/convo-ads-25)
 
-## Landing Pages (122 examples)
+## Landing Pages (125 examples)
 
-### Above the Fold — 38 examples
+### Above the Fold — 39 examples
 
 - **One Field Email** — [https://library.revenuagency.io/landing-pages/above-the-fold-1](https://library.revenuagency.io/landing-pages/above-the-fold-1)
 - **One Field Email** — [https://library.revenuagency.io/landing-pages/above-the-fold-2](https://library.revenuagency.io/landing-pages/above-the-fold-2)
@@ -467,8 +467,9 @@ Generated: 2026-06-23T18:20:12.707Z
 - **Sign Up** — [https://library.revenuagency.io/landing-pages/above-the-fold-36](https://library.revenuagency.io/landing-pages/above-the-fold-36)
 - **Sign Up** — [https://library.revenuagency.io/landing-pages/above-the-fold-37](https://library.revenuagency.io/landing-pages/above-the-fold-37)
 - **Question** — [https://library.revenuagency.io/landing-pages/above-the-fold-38](https://library.revenuagency.io/landing-pages/above-the-fold-38)
+- **Sourcegraph** — [https://library.revenuagency.io/landing-pages/above-the-fold-39](https://library.revenuagency.io/landing-pages/above-the-fold-39)
 
-### Blocks — 73 examples
+### Blocks — 74 examples
 
 - **Dynamic** — [https://library.revenuagency.io/landing-pages/blocks-1](https://library.revenuagency.io/landing-pages/blocks-1)
 - **Dynamic** — [https://library.revenuagency.io/landing-pages/blocks-2](https://library.revenuagency.io/landing-pages/blocks-2)
@@ -543,8 +544,9 @@ Generated: 2026-06-23T18:20:12.707Z
 - **Steps** — [https://library.revenuagency.io/landing-pages/blocks-71](https://library.revenuagency.io/landing-pages/blocks-71)
 - **Steps** — [https://library.revenuagency.io/landing-pages/blocks-72](https://library.revenuagency.io/landing-pages/blocks-72)
 - **Steps** — [https://library.revenuagency.io/landing-pages/blocks-73](https://library.revenuagency.io/landing-pages/blocks-73)
+- **Sourcegraph** — [https://library.revenuagency.io/landing-pages/blocks-74](https://library.revenuagency.io/landing-pages/blocks-74)
 
-### Product Visuals — 11 examples
+### Product Visuals — 12 examples
 
 - **Devices** — [https://library.revenuagency.io/landing-pages/product-visuals-1](https://library.revenuagency.io/landing-pages/product-visuals-1)
 - **Devices** — [https://library.revenuagency.io/landing-pages/product-visuals-2](https://library.revenuagency.io/landing-pages/product-visuals-2)
@@ -557,6 +559,7 @@ Generated: 2026-06-23T18:20:12.707Z
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-9](https://library.revenuagency.io/landing-pages/product-visuals-9)
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-10](https://library.revenuagency.io/landing-pages/product-visuals-10)
 - **Screenshot** — [https://library.revenuagency.io/landing-pages/product-visuals-11](https://library.revenuagency.io/landing-pages/product-visuals-11)
+- **Sourcegraph** — [https://library.revenuagency.io/landing-pages/product-visuals-12](https://library.revenuagency.io/landing-pages/product-visuals-12)
 
 ## ChatGPT Ads (38 examples)
 
