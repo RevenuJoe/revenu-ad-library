@@ -1337,7 +1337,7 @@ window.ADS = [
   { image: "1 Field - 2.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 8 },  platform: "landing" },
   { image: "1 Field - 3.webp", title: "One Field Email", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 13 }, platform: "landing" },
 
-  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 3, all: 7 },  platform: "landing" },
+  { image: "Long Form 1.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 3, all: 6 },  platform: "landing" },
   { image: "Long Form 2.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 9 },  platform: "landing" },
   { image: "Long Form 3.webp", title: "Long Standard Form", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 14 }, platform: "landing" },
 
@@ -1378,7 +1378,7 @@ window.ADS = [
 
   // Animated standout — pinned to the top of Above the Fold and the All view
   { image: "Question Animated.webp", title: "Question", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { "above-the-fold": 1, all: 1 }, platform: "landing" },
-  { image: "Sourcegraph Hero.webp", title: "Sourcegraph", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { all: 4 }, platform: "landing" },
+  { image: "Sourcegraph Hero.webp", title: "Sourcegraph", formula: "", tag: "Above the Fold", category: "above-the-fold", priority: { all: 7 }, platform: "landing" },
 
   // ---------- Landing Pages — Blocks ----------
   { image: "Dynamic 1.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 1, all: 2 },  platform: "landing" },
@@ -1390,7 +1390,7 @@ window.ADS = [
   { image: "Dynamic 7.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
   { image: "Dynamic 8.webp",  title: "Dynamic", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
-  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 2, all: 5 },  platform: "landing" },
+  { image: "Logos 1.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 2, all: 4 },  platform: "landing" },
   { image: "Logos 2.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 8 },  platform: "landing" },
   { image: "Logos 3.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", priority: { blocks: 14 }, platform: "landing" },
   { image: "Logos 4.webp",  title: "Logos", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
@@ -1470,7 +1470,7 @@ window.ADS = [
   { image: "Sourcegraph Comparison.webp", title: "Sourcegraph", formula: "", tag: "Blocks", category: "blocks", platform: "landing" },
 
   // ---------- Landing Pages — Product Visuals ----------
-  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 1, all: 6 }, platform: "landing" },
+  { image: "Devices 1.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 1, all: 5 }, platform: "landing" },
   { image: "Devices 2.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 5 }, platform: "landing" },
   { image: "Devices 3.webp",    title: "Devices",    formula: "", tag: "Product Visuals", category: "product-visuals", priority: { "product-visuals": 9 }, platform: "landing" },
 
