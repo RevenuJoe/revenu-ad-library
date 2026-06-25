@@ -138,16 +138,16 @@ const PLATFORM_TIPS = {
   linkedin: {
     title: 'About this LinkedIn Ads library',
     items: [
-      { icon: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20|M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z',
+      { icon: 'rect:3 3 7 7 1|rect:14 3 7 7 1|rect:3 14 7 7 1|rect:14 14 7 7 1',
         label: '200+ LinkedIn ad examples',
         blurb: 'real B2B SaaS LinkedIn ads, sortable by intent and formula.' },
-      { icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+      { icon: 'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z',
         label: 'Conversation, Convo, Problem, Product, Gated',
         blurb: 'every LinkedIn ad format we use, with proven creative examples.' },
-      { icon: 'polygon:23 7 16 12 23 17 23 7|rect:1 5 15 14 2 2',
+      { icon: 'polygon:5 3 19 12 5 21 5 3',
         label: 'LinkedIn animated ads',
         blurb: 'dynamic creative templates and motion design patterns that get attention.' },
-      { icon: 'polyline:22 12 18 12 15 21 9 3 6 12 2 12',
+      { icon: 'polyline:23 6 13.5 15.5 8.5 10.5 1 18|polyline:17 6 23 6 23 12',
         label: 'Conversion-tested copy',
         blurb: 'headline patterns and CTAs from campaigns that actually drove demos.' },
     ],
@@ -155,16 +155,16 @@ const PLATFORM_TIPS = {
   google: {
     title: 'About this Google Ads library',
     items: [
-      { icon: 'circle:11 11 7|m20 20-3.5-3.5',
+      { icon: 'circle:11 11 8|m21 21-4.35-4.35',
         label: '150+ Google Ads examples',
         blurb: 'real B2B SaaS Google Ads, every keyword intent covered.' },
-      { icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z',
+      { icon: 'circle:12 12 10|circle:12 12 6|circle:12 12 2',
         label: 'Brand, Non-Brand, Competitor',
         blurb: 'Google Ads formulas for every funnel stage, from category to brand to competitor capture.' },
-      { icon: 'polyline:22 12 18 12 15 21 9 3 6 12 2 12',
+      { icon: 'polyline:4 7 4 4 20 4 20 7|line:9 20 15 20|line:12 4 12 20',
         label: 'Headline patterns that convert',
         blurb: 'responsive search ad copy frameworks pulled from high-CTR campaigns.' },
-      { icon: 'M3 3v18h18|m7 14 4-4 4 4 6-6',
+      { icon: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z|M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z',
         label: 'Playbook insights',
         blurb: 'campaign structure, bidding, match types, and what actually moves CPL.' },
     ],
@@ -172,16 +172,16 @@ const PLATFORM_TIPS = {
   landing: {
     title: 'About this Landing Pages library',
     items: [
-      { icon: 'rect:3 4 18 16 2 2|M3 8h18',
+      { icon: 'rect:3 3 18 18 2 2|line:3 9 21 9',
         label: '120+ landing page examples',
         blurb: 'real B2B SaaS landing page templates ready to inspire your next test.' },
-      { icon: 'M12 3v18|M5 10l7-7 7 7',
+      { icon: 'line:12 3 12 21|polyline:6 9 12 3 18 9',
         label: 'Above the Fold patterns',
         blurb: 'hero sections, headlines, and form layouts proven to convert.' },
-      { icon: 'rect:3 3 7 7|rect:14 3 7 7|rect:3 14 7 7|rect:14 14 7 7',
+      { icon: 'rect:3 3 7 7 1|rect:14 3 7 7 1|rect:3 14 7 7 1|rect:14 14 7 7 1',
         label: 'Reusable conversion Blocks',
         blurb: 'testimonials, features, comparisons, logos, and proof sections.' },
-      { icon: 'rect:2 4 20 14 2 2|M2 18h20',
+      { icon: 'rect:3 3 18 18 2 2|circle:8.5 8.5 1.5|polyline:21 15 16 10 5 21',
         label: 'Product Visuals and screenshots',
         blurb: 'mockups, devices, and product hero treatments that sell the experience.' },
     ],
@@ -189,16 +189,16 @@ const PLATFORM_TIPS = {
   chatgpt: {
     title: 'About this ChatGPT Ads library',
     items: [
-      { icon: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z|M8 12h8|M12 8v8',
+      { icon: 'M12 3l1.9 4.7 4.6.5-3.5 3.1 1 4.6L12 13.8 7.9 16l1-4.6L5.5 8.2l4.6-.5L12 3z',
         label: '38 ChatGPT ad examples',
         blurb: 'the first curated library of ChatGPT advertising for B2B SaaS.' },
-      { icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z|polyline:14 2 14 8 20 8',
+      { icon: 'M10 2v7.5a3 3 0 0 1-.6 1.8l-5.4 7.2A2 2 0 0 0 5.6 22h12.8a2 2 0 0 0 1.6-3.5l-5.4-7.2a3 3 0 0 1-.6-1.8V2|line:8 2 16 2',
         label: 'Ad Formulas',
         blurb: 'short, punchy templates that work inside ChatGPT search results.' },
       { icon: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z|M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z',
         label: 'The Playbook',
         blurb: 'how ChatGPT advertising actually works: placement, copy, and headlines.' },
-      { icon: 'circle:12 12 3|M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z',
+      { icon: 'circle:12 12 3|M12 2v3|M12 19v3|M4.93 4.93l2.12 2.12|M16.95 16.95l2.12 2.12|M2 12h3|M19 12h3|M4.93 19.07l2.12-2.12|M16.95 7.05l2.12-2.12',
         label: 'The Setup',
         blurb: 'full ChatGPT campaign and conversion tracking walkthrough.' },
     ],
@@ -207,7 +207,7 @@ const PLATFORM_TIPS = {
 // Build the inner HTML of #library-info-popover for a given platform.
 function _renderTipIcon(spec) {
   // spec is a pipe-separated list of either raw path "d" strings or
-  // shorthand "type:args" tokens (rect/circle/polygon/polyline) so we can
+  // shorthand "type:args" tokens (rect/circle/polygon/polyline/line) so we can
   // build slightly more complex icons without writing full <svg> markup.
   const parts = String(spec).split('|').map(token => {
     if (token.startsWith('rect:')) {
@@ -219,11 +219,11 @@ function _renderTipIcon(spec) {
       const [cx, cy, r] = token.slice(7).split(/\s+/).map(Number);
       return `<circle cx="${cx}" cy="${cy}" r="${r}"/>`;
     }
-    if (token.startsWith('polygon:')) {
-      return `<polygon points="${token.slice(8)}"/>`;
-    }
-    if (token.startsWith('polyline:')) {
-      return `<polyline points="${token.slice(9)}"/>`;
+    if (token.startsWith('polygon:'))  return `<polygon points="${token.slice(8)}"/>`;
+    if (token.startsWith('polyline:')) return `<polyline points="${token.slice(9)}"/>`;
+    if (token.startsWith('line:')) {
+      const [x1, y1, x2, y2] = token.slice(5).split(/\s+/).map(Number);
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
     }
     return `<path d="${token}"/>`;
   }).join('');

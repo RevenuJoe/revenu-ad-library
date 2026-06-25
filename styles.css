@@ -127,21 +127,22 @@ a { color: inherit; }
 /* When zero favorites, the count span is hidden via [hidden] in app.js. */
 
 /* ---------- Info-tip (indexable hover tooltips) ----------
-   Used next to the hero title, the search-control, and the column-selector to
-   surface extra context (keyword-rich) without cluttering the visual.
-   The popover content lives in the DOM always — only opacity + visibility +
-   pointer-events are toggled — so Google indexes every word.
+   Used next to the hero title, the search-control, and the column-selector
+   to surface extra keyword-rich context without cluttering the visual. The
+   popover content lives in the DOM always — only opacity + visibility +
+   pointer-events are toggled — so Google indexes every word. The trigger
+   is a "?" mark; the green chip matches the rest of our nav.
 */
 .info-tip {
   position: relative;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  margin-left: 7px;
+  margin-left: 8px;
 }
 .info-tip-trigger {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: 0;
   background: var(--accent-soft);
   color: var(--accent-dark);
@@ -161,24 +162,24 @@ a { color: inherit; }
   outline: none;
 }
 .info-tip-trigger svg {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
-/* Popover — hidden visually, present in DOM. CSS-only reveal on hover and
-   keyboard-focus (focus-within covers the trigger being tabbed to). */
+/* Popover — hidden visually, present in DOM. CSS-only reveal on hover, focus,
+   and the `.is-open` class (tap-to-open on touch devices). */
 .info-tip-popover {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
-  width: 320px;
-  max-width: calc(100vw - 32px);
+  width: 400px;
+  max-width: calc(100vw - 24px);
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(20,30,28,0.06), 0 18px 48px rgba(20,30,28,0.14);
-  padding: 16px 18px;
+  padding: 18px 20px;
   z-index: 200;
   visibility: hidden;
   opacity: 0;
@@ -210,10 +211,10 @@ a { color: inherit; }
   border-left: 1px solid var(--line);
 }
 .info-tip-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   line-height: 1.3;
 }
 .info-tip-list {
@@ -222,19 +223,19 @@ a { color: inherit; }
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 12px;
 }
 .info-tip-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 12.5px;
+  gap: 12px;
+  font-size: 13px;
   line-height: 1.45;
   color: var(--ink);
 }
 .info-tip-list li svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   color: var(--accent);
   flex-shrink: 0;
   margin-top: 1px;
@@ -243,23 +244,24 @@ a { color: inherit; }
   font-weight: 600;
   color: var(--ink);
   display: block;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
+  font-size: 13px;
 }
 .info-tip-list li span {
   color: var(--ink-soft);
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.45;
 }
-/* Right-edge variants — when the tip is near the viewport's right edge
-   (search control + column toggle), nudge the popover left so it doesn't
-   clip off-screen. */
+/* Right-anchored variant (used for the action + columns tips that sit toward
+   the right side of the toolbar — keeps the popover from clipping off-screen). */
 .info-tip.align-right .info-tip-popover {
   left: auto;
   right: -8px;
   transform: translateY(-4px);
 }
 .info-tip.align-right:hover .info-tip-popover,
-.info-tip.align-right:focus-within .info-tip-popover {
+.info-tip.align-right:focus-within .info-tip-popover,
+.info-tip.align-right.is-open .info-tip-popover {
   transform: translateY(0);
 }
 .info-tip.align-right .info-tip-popover::before {
@@ -267,12 +269,66 @@ a { color: inherit; }
   right: 12px;
   transform: rotate(45deg);
 }
-/* Mobile: shrink the popover slightly so it fits comfortably on phone widths */
+
+/* ---------- Toolbar-positioned info-tips ----------
+   Two of the three info-tips live inside the .filters-wrap and need to align
+   with specific buttons. They use absolute positioning so they don't disturb
+   the centered .tabs row.
+   - actions-info-tip sits to the RIGHT of the search button (left:88+~32+gap)
+   - columns-info-tip sits to the LEFT of the view-toggle (which is at right:8) */
+#actions-info-tip {
+  position: absolute;
+  left: 128px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+}
+#columns-info-tip {
+  position: absolute;
+  right: 132px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+}
+/* Both toolbar info-tips are desktop-only: their target buttons (search,
+   view-toggle) are themselves hidden on mobile. */
+@media (max-width: 960px) {
+  #actions-info-tip,
+  #columns-info-tip { display: none; }
+}
+
+/* ---------- Mobile sizing + viewport-safe popover ----------
+   On phones the trigger is bigger (easier tap target). The popover anchors
+   to the RIGHT edge of the trigger and extends LEFT — since the library
+   info-tip sits after the centered hero title, the trigger is always to the
+   right of viewport-centre, so right-anchoring guarantees the popover stays
+   within the viewport. The arrow is hidden on mobile because it would no
+   longer point cleanly at the trigger after the offset.
+*/
 @media (max-width: 720px) {
-  .info-tip-popover {
-    width: 280px;
-    font-size: 12px;
+  .info-tip-trigger { width: 28px; height: 28px; }
+  .info-tip-trigger svg { width: 16px; height: 16px; }
+  .info-tip-popover,
+  .info-tip.align-right .info-tip-popover {
+    left: auto;
+    right: 0;
+    /* width: full viewport minus the trigger's distance from the right edge
+       so we always have ~12px of breathing room on each side */
+    width: calc(100vw - 24px);
+    max-width: 360px;
+    transform: translateY(-4px);
   }
+  .info-tip:hover .info-tip-popover,
+  .info-tip:focus-within .info-tip-popover,
+  .info-tip.is-open .info-tip-popover {
+    transform: translateY(0);
+  }
+  .info-tip-popover::before { display: none; }
+  .info-tip-list li svg { width: 22px; height: 22px; }
+  .info-tip-list li { font-size: 13.5px; }
+  .info-tip-list li strong { font-size: 13.5px; }
+  .info-tip-list li span { font-size: 13px; }
+  .info-tip-title { font-size: 16px; }
 }
 
 /* ---------- Hero ---------- */
