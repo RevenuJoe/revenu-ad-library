@@ -129,6 +129,118 @@ const platforms = {
   }
 };
 
+// ---------- Library info-tip content (per platform) ----------
+// Tooltip shown next to the hero title. Content stays in the DOM (CSS-hidden
+// until hover) so Google indexes every keyword. Each entry has a title and an
+// array of bullets, each bullet a {icon (inline SVG path), label, blurb}.
+// Keep these keyword-rich without sounding spammy.
+const PLATFORM_TIPS = {
+  linkedin: {
+    title: 'About this LinkedIn Ads library',
+    items: [
+      { icon: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20|M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z',
+        label: '200+ LinkedIn ad examples',
+        blurb: 'real B2B SaaS LinkedIn ads, sortable by intent and formula.' },
+      { icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+        label: 'Conversation, Convo, Problem, Product, Gated',
+        blurb: 'every LinkedIn ad format we use, with proven creative examples.' },
+      { icon: 'polygon:23 7 16 12 23 17 23 7|rect:1 5 15 14 2 2',
+        label: 'LinkedIn animated ads',
+        blurb: 'dynamic creative templates and motion design patterns that get attention.' },
+      { icon: 'polyline:22 12 18 12 15 21 9 3 6 12 2 12',
+        label: 'Conversion-tested copy',
+        blurb: 'headline patterns and CTAs from campaigns that actually drove demos.' },
+    ],
+  },
+  google: {
+    title: 'About this Google Ads library',
+    items: [
+      { icon: 'circle:11 11 7|m20 20-3.5-3.5',
+        label: '150+ Google Ads examples',
+        blurb: 'real B2B SaaS Google Ads, every keyword intent covered.' },
+      { icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z',
+        label: 'Brand, Non-Brand, Competitor',
+        blurb: 'Google Ads formulas for every funnel stage, from category to brand to competitor capture.' },
+      { icon: 'polyline:22 12 18 12 15 21 9 3 6 12 2 12',
+        label: 'Headline patterns that convert',
+        blurb: 'responsive search ad copy frameworks pulled from high-CTR campaigns.' },
+      { icon: 'M3 3v18h18|m7 14 4-4 4 4 6-6',
+        label: 'Playbook insights',
+        blurb: 'campaign structure, bidding, match types, and what actually moves CPL.' },
+    ],
+  },
+  landing: {
+    title: 'About this Landing Pages library',
+    items: [
+      { icon: 'rect:3 4 18 16 2 2|M3 8h18',
+        label: '120+ landing page examples',
+        blurb: 'real B2B SaaS landing page templates ready to inspire your next test.' },
+      { icon: 'M12 3v18|M5 10l7-7 7 7',
+        label: 'Above the Fold patterns',
+        blurb: 'hero sections, headlines, and form layouts proven to convert.' },
+      { icon: 'rect:3 3 7 7|rect:14 3 7 7|rect:3 14 7 7|rect:14 14 7 7',
+        label: 'Reusable conversion Blocks',
+        blurb: 'testimonials, features, comparisons, logos, and proof sections.' },
+      { icon: 'rect:2 4 20 14 2 2|M2 18h20',
+        label: 'Product Visuals and screenshots',
+        blurb: 'mockups, devices, and product hero treatments that sell the experience.' },
+    ],
+  },
+  chatgpt: {
+    title: 'About this ChatGPT Ads library',
+    items: [
+      { icon: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z|M8 12h8|M12 8v8',
+        label: '38 ChatGPT ad examples',
+        blurb: 'the first curated library of ChatGPT advertising for B2B SaaS.' },
+      { icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z|polyline:14 2 14 8 20 8',
+        label: 'Ad Formulas',
+        blurb: 'short, punchy templates that work inside ChatGPT search results.' },
+      { icon: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z|M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z',
+        label: 'The Playbook',
+        blurb: 'how ChatGPT advertising actually works: placement, copy, and headlines.' },
+      { icon: 'circle:12 12 3|M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z',
+        label: 'The Setup',
+        blurb: 'full ChatGPT campaign and conversion tracking walkthrough.' },
+    ],
+  },
+};
+// Build the inner HTML of #library-info-popover for a given platform.
+function _renderTipIcon(spec) {
+  // spec is a pipe-separated list of either raw path "d" strings or
+  // shorthand "type:args" tokens (rect/circle/polygon/polyline) so we can
+  // build slightly more complex icons without writing full <svg> markup.
+  const parts = String(spec).split('|').map(token => {
+    if (token.startsWith('rect:')) {
+      const v = token.slice(5).split(/\s+/).map(Number);
+      const [x, y, w, h, rx = 0, ry = 0] = v;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" ry="${ry}"/>`;
+    }
+    if (token.startsWith('circle:')) {
+      const [cx, cy, r] = token.slice(7).split(/\s+/).map(Number);
+      return `<circle cx="${cx}" cy="${cy}" r="${r}"/>`;
+    }
+    if (token.startsWith('polygon:')) {
+      return `<polygon points="${token.slice(8)}"/>`;
+    }
+    if (token.startsWith('polyline:')) {
+      return `<polyline points="${token.slice(9)}"/>`;
+    }
+    return `<path d="${token}"/>`;
+  }).join('');
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${parts}</svg>`;
+}
+function applyLibraryTip(platform) {
+  const tip = PLATFORM_TIPS[platform];
+  if (!tip) return; // saved view has no library tooltip
+  const titleEl = document.getElementById('library-info-title');
+  const listEl  = document.getElementById('library-info-list');
+  if (!titleEl || !listEl) return;
+  titleEl.textContent = tip.title;
+  listEl.innerHTML = tip.items.map(item =>
+    `<li>${_renderTipIcon(item.icon)}<span><strong>${item.label}</strong>${item.blurb}</span></li>`
+  ).join('');
+}
+
 // ---------- Favorites ----------
 // Per-ad heart toggle, stored in localStorage. The favorites filter button on
 // the desktop filter bar restricts the gallery to only favorited ads.
@@ -453,22 +565,24 @@ if (_initialAd) {
 
 // ---------- Headline + tab title ----------
 function updateHeadline() {
+  // Update only the inner text span so we don't blow away the info-tip
+  // (which is a sibling node inside the h1).
+  const textEl = document.getElementById('hero-title-text') || heroTitle;
+  const libTip = document.getElementById('library-info-tip');
   if (isHomepage()) {
-    // Chooser headline: "Select Your Library" — title case across all three
-    // words, with "Library" picked out in the same green accent.
-    heroTitle.innerHTML = `Select Your <span class="hero-title-accent">Library</span>`;
+    textEl.innerHTML = `Select Your <span class="hero-title-accent">Library</span>`;
     document.title = 'The Library | Revenu';
+    if (libTip) libTip.hidden = true;     // no library tooltip on chooser
   } else if (activePlatform === 'saved') {
-    // Saved view headline: "Your" in the dark ink colour (mirrors "Library"
-    // on each platform's title), "Saved Items" picked out in the brand
-    // accent green. Matches the LinkedIn Ads Library headline's structure
-    // but with the accent on the second half instead of the first.
-    heroTitle.innerHTML = `Your <span class="hero-title-accent">Saved Items</span>`;
+    textEl.innerHTML = `Your <span class="hero-title-accent">Saved Items</span>`;
     document.title = 'Saved | Revenu Ad Library';
+    if (libTip) libTip.hidden = true;     // no library tooltip on saved view
   } else {
     const cfg = currentPlatform();
-    heroTitle.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
+    textEl.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
     document.title = `${cfg.label} Library | Revenu`;
+    if (libTip) libTip.hidden = false;
+    applyLibraryTip(activePlatform);      // swap tooltip content per platform
   }
   updateSEOTags();
 }

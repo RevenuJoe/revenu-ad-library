@@ -5,7 +5,7 @@
 
 Site: https://library.revenuagency.io
 Total entries: 544
-Generated: 2026-06-25T15:42:46.482Z
+Generated: 2026-06-25T16:01:35.623Z
 
 ## Google Ads (158 examples)
 
