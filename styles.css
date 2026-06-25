@@ -252,8 +252,8 @@ a { color: inherit; }
   font-size: 12.5px;
   line-height: 1.45;
 }
-/* Right-anchored variant (used for the action + columns tips that sit toward
-   the right side of the toolbar — keeps the popover from clipping off-screen). */
+/* Right-anchored variant — popover anchors to the trigger's RIGHT edge and
+   extends LEFT. Use on tips near the right side of a container (columns). */
 .info-tip.align-right .info-tip-popover {
   left: auto;
   right: -8px;
@@ -267,6 +267,23 @@ a { color: inherit; }
 .info-tip.align-right .info-tip-popover::before {
   left: auto;
   right: 12px;
+  transform: rotate(45deg);
+}
+/* Left-anchored variant — popover anchors to the trigger's LEFT edge and
+   extends RIGHT. Use on tips near the left side of a container (actions). */
+.info-tip.align-left .info-tip-popover {
+  left: -8px;
+  right: auto;
+  transform: translateY(-4px);
+}
+.info-tip.align-left:hover .info-tip-popover,
+.info-tip.align-left:focus-within .info-tip-popover,
+.info-tip.align-left.is-open .info-tip-popover {
+  transform: translateY(0);
+}
+.info-tip.align-left .info-tip-popover::before {
+  left: 12px;
+  right: auto;
   transform: rotate(45deg);
 }
 
@@ -298,24 +315,26 @@ a { color: inherit; }
 }
 
 /* ---------- Mobile sizing + viewport-safe popover ----------
-   On phones the trigger is bigger (easier tap target). The popover anchors
-   to the RIGHT edge of the trigger and extends LEFT — since the library
-   info-tip sits after the centered hero title, the trigger is always to the
-   right of viewport-centre, so right-anchoring guarantees the popover stays
-   within the viewport. The arrow is hidden on mobile because it would no
-   longer point cleanly at the trigger after the offset.
+   On phones the trigger is bigger (easier tap target). The popover is
+   `position: fixed` and pinned to the LEFT and RIGHT viewport edges with
+   12px padding on each side, so it always fits no matter where the trigger
+   is on the screen. The arrow is hidden on mobile (it would no longer point
+   cleanly at the trigger). Vertical position (top) defaults to a sensible
+   spot below the header; JS overrides it per-trigger if needed.
 */
 @media (max-width: 720px) {
   .info-tip-trigger { width: 28px; height: 28px; }
   .info-tip-trigger svg { width: 16px; height: 16px; }
   .info-tip-popover,
-  .info-tip.align-right .info-tip-popover {
-    left: auto;
-    right: 0;
-    /* width: full viewport minus the trigger's distance from the right edge
-       so we always have ~12px of breathing room on each side */
-    width: calc(100vw - 24px);
-    max-width: 360px;
+  .info-tip.align-right .info-tip-popover,
+  .info-tip.align-left .info-tip-popover {
+    position: fixed;
+    top: 110px;
+    left: 12px;
+    right: 12px;
+    bottom: auto;
+    width: auto;
+    max-width: none;
     transform: translateY(-4px);
   }
   .info-tip:hover .info-tip-popover,
