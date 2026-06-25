@@ -135,6 +135,25 @@ const platforms = {
 // array of bullets, each bullet a {icon (inline SVG path), label, blurb}.
 // Keep these keyword-rich without sounding spammy.
 const PLATFORM_TIPS = {
+  // Saved view tooltip — explains the favorites flow (heart on any ad,
+  // browser-local persistence, cross-library filtering).
+  saved: {
+    title: 'About your saved items',
+    items: [
+      { icon: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
+        label: 'Your personal collection',
+        blurb: 'every ad you have hearted across every library, all in one place.' },
+      { icon: 'polygon:22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3',
+        label: 'Filter by source',
+        blurb: 'switch tabs to see only your saved LinkedIn, Google, Landing, or ChatGPT ads.' },
+      { icon: 'polyline:23 4 23 10 17 10|M20.49 15a9 9 0 1 1-2.12-9.36L23 10',
+        label: 'No account required',
+        blurb: 'saved ads persist in your browser, so they are there whenever you come back.' },
+      { icon: 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z',
+        label: 'Add or remove anytime',
+        blurb: 'tap the heart on any ad in any library to add or remove it from this view.' },
+    ],
+  },
   // Homepage / chooser tooltip. Lists all four libraries with their brand
   // marks so a visitor instantly sees what's available before picking a tile.
   home: {
@@ -604,7 +623,8 @@ function updateHeadline() {
   } else if (activePlatform === 'saved') {
     textEl.innerHTML = `Your <span class="hero-title-accent">Saved Items</span>`;
     document.title = 'Saved | Revenu Ad Library';
-    if (libTip) libTip.hidden = true;     // no library tooltip on saved view
+    if (libTip) libTip.hidden = false;
+    applyLibraryTip('saved');
   } else {
     const cfg = currentPlatform();
     textEl.innerHTML = `<span class="hero-title-accent">${escapeHtml(cfg.label)}</span> Library`;
