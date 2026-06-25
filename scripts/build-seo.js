@@ -100,7 +100,34 @@ for (const ad of ads) {
   categoriesByPlatform[p].add(ad.category);
 }
 
-// ----- sitemap.xml -----
+// ----- sitemap.xml (with image extension) -----
+// In addition to <loc>/<lastmod>/<priority>, each per-ad URL now carries an
+// <image:image> block so Google Image search indexes all 540+ creative
+// assets. The image extension namespace is declared on the root <urlset>.
+
+// Helper to build the full image URL for an ad — mirrors the JSON API path
+// resolver below so we never get out of sync.
+function imageUrlFor(ad) {
+  const cfg = PLATFORMS[ad.platform || 'google'];
+  const catFolder = (cfg.tabs.find(t => t.key === ad.category) || {}).folder || '';
+  // Path segments may contain spaces (e.g. "LinkedIn Ads") — encode each one.
+  const segs = ['/images', cfg.folder, catFolder, ad.image].filter(Boolean);
+  return BASE_URL + segs.map(s => encodeURIComponent(s)).join('/').replace('%2F', '/');
+}
+
+// Index each ad by its URL so we can attach image data when emitting the URL block.
+const adImageByUrl = new Map();
+for (const ad of ads) {
+  const url = BASE_URL + PLATFORMS[ad.platform || 'google'].path + '/' + ad.category + '-' + ad.id;
+  const cfg = PLATFORMS[ad.platform || 'google'];
+  const catLabel = (cfg.tabs.find(t => t.key === ad.category) || {}).label || ad.category;
+  adImageByUrl.set(url, {
+    loc: imageUrlFor(ad),
+    title: `${ad.title} — ${catLabel} ${cfg.label} example`,
+    caption: ad.formula || `${ad.title}: a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} example from the Revenu Ad Library.`,
+  });
+}
+
 const urls = new Set();
 urls.add(BASE_URL + '/');
 for (const platform of Object.keys(PLATFORMS)) {
@@ -119,20 +146,37 @@ for (const ad of ads) {
   urls.add(BASE_URL + PLATFORMS[p].path + '/' + ad.category + '-' + ad.id);
 }
 
+// XML-escape special characters in <image:title>/<image:caption> values so
+// e.g. an ampersand or quote in an ad copy line doesn't break the sitemap.
+function xmlEscape(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+}
+
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${[...urls].sort().map(url => {
   let priority = '0.6';
   if (url === BASE_URL + '/') priority = '1.0';
   else if (Object.values(PLATFORMS).some(p => url === BASE_URL + p.path)) priority = '0.9';
   else if (!/-\d+$/.test(url)) priority = '0.8';
-  return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
+  const img = adImageByUrl.get(url);
+  const imageBlock = img
+    ? `\n    <image:image>\n` +
+      `      <image:loc>${xmlEscape(img.loc)}</image:loc>\n` +
+      `      <image:title>${xmlEscape(img.title)}</image:title>\n` +
+      `      <image:caption>${xmlEscape(img.caption)}</image:caption>\n` +
+      `    </image:image>`
+    : '';
+  return `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>${imageBlock}\n  </url>`;
 }).join('\n')}
 </urlset>
 `;
 fs.writeFileSync(path.join(REPO_ROOT, 'sitemap.xml'), sitemap);
-console.log(`✓ sitemap.xml — ${urls.size} URLs`);
+console.log(`✓ sitemap.xml — ${urls.size} URLs, ${adImageByUrl.size} with image:image`);
 
 // ----- api/ads.json -----
 fs.mkdirSync(path.join(REPO_ROOT, 'api'), { recursive: true });

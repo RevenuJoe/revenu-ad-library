@@ -47,7 +47,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Structured data: Organization + WebSite (with SearchAction) -->
+  <!-- Structured data: Organization + WebSite (with SearchAction) — global
+       site-level schema baked into every pre-rendered page so Google
+       understands "Revenu" as an entity and can show a sitelinks search box
+       directly in the SERP. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,17 +61,35 @@
         "name": "Revenu",
         "alternateName": "Revenu Agency",
         "url": "https://www.revenuagency.io",
-        "logo": "https://library.revenuagency.io/favicon/favicon-192.png",
-        "sameAs": []
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://library.revenuagency.io/favicon/favicon-192.png",
+          "width": 192,
+          "height": 192
+        },
+        "description": "B2B SaaS marketing agency specialising in paid acquisition across LinkedIn Ads, Google Ads, and high-converting landing pages.",
+        "sameAs": [
+          "https://www.linkedin.com/company/revenuagency",
+          "https://library.revenuagency.io"
+        ]
       },
       {
         "@type": "WebSite",
         "@id": "https://library.revenuagency.io/#website",
         "url": "https://library.revenuagency.io/",
         "name": "The Revenu Library",
-        "description": "A free library of 300+ high-performing B2B SaaS ad examples and landing page templates.",
+        "alternateName": "Revenu Ad Library",
+        "description": "A free library of 540+ high-performing B2B SaaS ad examples and landing page templates across LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages.",
         "publisher": { "@id": "https://www.revenuagency.io/#organization" },
-        "inLanguage": "en"
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://library.revenuagency.io/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
     ]
   }
