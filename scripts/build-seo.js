@@ -342,7 +342,7 @@ function buildJsonLdFor({ platform, category, ad, canonical }) {
       '@type': 'ImageObject',
       '@id': canonical,
       name: ad.title,
-      caption: ad.title + (ad.formula ? ' — ' + ad.formula : ''),
+      caption: ad.title + (ad.formula ? ': ' + ad.formula : ''),
       description: `${ad.title}: a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} example curated in the Revenu Ad Library.`,
       contentUrl: BASE_URL + '/' + imagePathFor(ad),
       keywords: [cfg.label, catLabel, ad.title, ad.formula, ad.tag, 'B2B SaaS', 'ad example'].filter(Boolean).join(', '),
@@ -351,7 +351,7 @@ function buildJsonLdFor({ platform, category, ad, canonical }) {
     };
   }
   const name = category
-    ? `${(cfg.tabs.find(t => t.key === category) || {}).label || category} — ${cfg.label}`
+    ? `${(cfg.tabs.find(t => t.key === category) || {}).label || category} | ${cfg.label}`
     : `${cfg.label} Library`;
   return {
     '@context': 'https://schema.org',
@@ -567,8 +567,8 @@ let pagesWritten = 0;
 // Saved view (/saved). User-specific content, so JSON-LD is intentionally null.
 {
   const canonical = BASE_URL + '/saved';
-  const title = 'Saved | Revenu Ad Library';
-  const description = 'Your saved ads from across the Revenu Ad Library — every Google, LinkedIn, and Landing Page example you have favorited, in one place.';
+  const title = 'Saved Ads | Revenu Ad Library';
+  const description = 'Your personal collection of favorited ads across every Revenu Library. LinkedIn, Google, ChatGPT, and Landing Pages examples all in one place.';
   writePage('/saved', buildPageHtml({ title, description, canonical, jsonLd: {}, activePlatform: 'saved' }));
   pagesWritten++;
 }
@@ -581,14 +581,37 @@ const PLATFORM_OG_IMAGE = {
   landing:  '/og/landing-pages.png',
   chatgpt:  '/og/chatgpt.png',
 };
+// Per-platform title + description overrides — keyword-rich, unique per library
+// so search results distinguish them cleanly. Counts are pinned in the copy so
+// each library reads confidently ("200+", "150+", "120+", "38").
+const PLATFORM_META = {
+  linkedin: {
+    title: 'LinkedIn Ads Library | 200+ B2B SaaS Examples | Revenu',
+    description: '200+ high-performing LinkedIn Ads examples for B2B SaaS. Real Conversation Ads, Convo Ads, Problem, Product, Gated Content, and Animated ads categorized by intent and formula.',
+  },
+  google: {
+    title: 'Google Ads Library | 150+ B2B SaaS Examples | Revenu',
+    description: '150+ Google Ads examples for B2B SaaS. Real Brand, Non-Brand, and Competitor campaigns with proven headline patterns and conversion-tested copy.',
+  },
+  landing: {
+    title: 'Landing Pages Library | 120+ B2B SaaS Templates | Revenu',
+    description: '120+ landing page examples for B2B SaaS. Above the Fold heroes, reusable Blocks, and Product Visuals from campaigns that actually converted.',
+  },
+  chatgpt: {
+    title: 'ChatGPT Ads Library | 38 AI Advertising Examples | Revenu',
+    description: '38 ChatGPT Ads examples for B2B SaaS. The first curated library of ChatGPT advertising with proven formulas, playbook insights, and full campaign setup.',
+  },
+};
 // Platform-level pages (/google-ads, /linkedin-ads, /landing-pages, /chatgpt)
 for (const [platform, cfg] of Object.entries(PLATFORMS)) {
+  const meta = PLATFORM_META[platform] || {
+    title: `${cfg.label} Library | Revenu`,
+    description: `A free library of ${cfg.label} examples for B2B SaaS.`,
+  };
   const canonical = BASE_URL + cfg.path;
-  const title = `${cfg.label} Library | Revenu`;
-  const description = `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world templates categorized by formula.`;
   const ogImage = BASE_URL + (PLATFORM_OG_IMAGE[platform] || '/og-image.png');
   const jsonLd = buildJsonLdFor({ platform, category: null, ad: null, canonical });
-  writePage(cfg.path, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
+  writePage(cfg.path, buildPageHtml({ title: meta.title, description: meta.description, canonical, ogImage, jsonLd, activePlatform: platform }));
   pagesWritten++;
 }
 // Category pages — inherit the platform's OG image so shares of /chatgpt/playbook,
@@ -599,8 +622,8 @@ for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
   // explicit /all
   {
     const canonical = BASE_URL + cfg.path + '/all';
-    const title = `All ${cfg.label} examples | Revenu`;
-    const description = `Every ${cfg.label} example in the Revenu Ad Library — all categories, all formulas.`;
+    const title = `All ${cfg.label} Examples | Revenu`;
+    const description = `Every ${cfg.label} example in the Revenu Ad Library. All categories, all formulas.`;
     const jsonLd = buildJsonLdFor({ platform, category: 'all', ad: null, canonical });
     writePage(cfg.path + '/all', buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
     pagesWritten++;
@@ -609,22 +632,26 @@ for (const [platform, cats] of Object.entries(categoriesByPlatform)) {
     if (cat === cfg.defaultTab) continue;
     const catLabel = (cfg.tabs.find(t => t.key === cat) || {}).label || cat;
     const canonical = BASE_URL + cfg.path + '/' + cat;
-    const title = `${catLabel} — ${cfg.label} examples | Revenu`;
-    const description = `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS templates categorized by formula.`;
+    const title = `${catLabel} | ${cfg.label} Examples | Revenu`;
+    const description = `${catLabel} ${cfg.label} examples from the Revenu Ad Library. Proven B2B SaaS templates categorized by formula.`;
     const jsonLd = buildJsonLdFor({ platform, category: cat, ad: null, canonical });
     writePage(cfg.path + '/' + cat, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));
     pagesWritten++;
   }
 }
-// Individual ad pages
+// Individual ad pages — new pattern uses `|` for the title separator and drops
+// the awkward "a real The Playbook" repetition in the description when a formula
+// is present (since category is already in the title).
 for (const ad of ads) {
   const platform = ad.platform || 'google';
   const cfg = PLATFORMS[platform];
   const catLabel = (cfg.tabs.find(t => t.key === ad.category) || {}).label || ad.category;
   const urlPath = cfg.path + '/' + ad.category + '-' + ad.id;
   const canonical = BASE_URL + urlPath;
-  const title = `${ad.title} — ${catLabel} ${cfg.label} example | Revenu`;
-  const description = `${ad.title}${ad.formula ? ' — ' + ad.formula : ''} — a real ${catLabel} ${cfg.label} example from the Revenu Ad Library, a curated collection of high-performing B2B SaaS ad and landing page templates.`;
+  const title = `${ad.title} | ${catLabel} ${cfg.label} Example | Revenu`;
+  const description = ad.formula
+    ? `${ad.title}: ${ad.formula}. A real ${cfg.label} example from the Revenu Ad Library.`
+    : `${ad.title}: a real ${catLabel} ${cfg.label} example from the Revenu Ad Library. A curated collection of high-performing B2B SaaS ad and landing page templates.`;
   const ogImage = BASE_URL + '/' + imagePathFor(ad); // ad's own image as fallback OG
   const jsonLd = buildJsonLdFor({ platform, category: ad.category, ad, canonical });
   writePage(urlPath, buildPageHtml({ title, description, canonical, ogImage, jsonLd, activePlatform: platform }));

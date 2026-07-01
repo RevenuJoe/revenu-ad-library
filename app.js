@@ -813,35 +813,36 @@ function _updateSEOTagsImpl() {
   if (activePlatform === 'saved') {
     const canonical = SITE_ORIGIN + '/saved';
     setCanonical(canonical);
-    document.title = 'Saved | Revenu Ad Library';
+    document.title = 'Saved Ads | Revenu Ad Library';
     setMeta(
       'description',
-      'Your saved ads from across the Revenu Ad Library — every Google, LinkedIn, and Landing Page example you have favorited, in one place.'
+      'Your personal collection of favorited ads across every Revenu Library. LinkedIn, Google, ChatGPT, and Landing Pages examples all in one place.'
     );
     setJsonLd(null);
     return;
   }
   // Homepage chooser — its own title, description, and CollectionPage JSON-LD
-  // that points at the three sub-library URLs.
+  // that points at the four sub-library URLs.
   if (isHomepage()) {
     const canonical = SITE_ORIGIN + '/';
     setCanonical(canonical);
-    document.title = 'The Library | Revenu';
+    document.title = 'Revenu Library | 540+ B2B SaaS Ad Examples';
     setMeta(
       'description',
-      'The Revenu Library — pick a library to explore: high-performing Google Ads, LinkedIn Ads, and Landing Pages examples for B2B SaaS, categorized by formula.'
+      '540+ curated B2B SaaS ad examples across LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages. Free to browse, categorized by proven formula.'
     );
     setJsonLd({
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       '@id': canonical,
       name: 'Revenu Ad Library',
-      description: 'Choose a library: Google Ads, LinkedIn Ads, or Landing Pages — curated B2B SaaS examples categorized by formula.',
+      description: 'Four libraries of curated B2B SaaS examples: LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages, all categorized by formula.',
       isPartOf: { '@id': SITE_ORIGIN + '/#website' },
       hasPart: [
-        { '@type': 'CollectionPage', name: 'LinkedIn Ads Library', url: SITE_ORIGIN + '/linkedin-ads' },
-        { '@type': 'CollectionPage', name: 'Google Ads Library',   url: SITE_ORIGIN + '/google-ads' },
-        { '@type': 'CollectionPage', name: 'Landing Pages Library', url: SITE_ORIGIN + '/landing-pages' }
+        { '@type': 'CollectionPage', name: 'LinkedIn Ads Library',  url: SITE_ORIGIN + '/linkedin-ads' },
+        { '@type': 'CollectionPage', name: 'ChatGPT Ads Library',   url: SITE_ORIGIN + '/chatgpt' },
+        { '@type': 'CollectionPage', name: 'Landing Pages Library', url: SITE_ORIGIN + '/landing-pages' },
+        { '@type': 'CollectionPage', name: 'Google Ads Library',    url: SITE_ORIGIN + '/google-ads' }
       ]
     });
     return;
@@ -870,18 +871,20 @@ function _updateSEOTagsImpl() {
       name: ad.title,
       item: canonical
     });
-    const title = `${ad.title} — ${catLabel} ${cfg.label} example | Revenu`;
+    const title = `${ad.title} | ${catLabel} ${cfg.label} Example | Revenu`;
     document.title = title;
     setMeta(
       'description',
-      `${ad.title}${ad.formula ? ' — ' + ad.formula : ''} — a real ${catLabel} ${cfg.label} example from the Revenu Ad Library, a curated collection of high-performing B2B SaaS ad and landing page templates.`
+      ad.formula
+        ? `${ad.title}: ${ad.formula}. A real ${cfg.label} example from the Revenu Ad Library.`
+        : `${ad.title}: a real ${catLabel} ${cfg.label} example from the Revenu Ad Library. A curated collection of high-performing B2B SaaS ad and landing page templates.`
     );
     setJsonLd({
       '@context': 'https://schema.org',
       '@type': 'ImageObject',
       '@id': canonical,
       name: ad.title,
-      caption: ad.title + (ad.formula ? ' — ' + ad.formula : ''),
+      caption: ad.title + (ad.formula ? ': ' + ad.formula : ''),
       description: `${ad.title}: a ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} example curated in the Revenu Ad Library.`,
       contentUrl: SITE_ORIGIN + '/' + imagePath(ad).replace(/^\//, ''),
       keywords: [cfg.label, catLabel, ad.title, ad.formula, ad.tag, 'B2B SaaS', 'ad example'].filter(Boolean).join(', '),
@@ -897,16 +900,16 @@ function _updateSEOTagsImpl() {
   if (parsed.category) {
     const catLabel = (cfg.tabs.find(t => t.key === parsed.category) || {}).label || parsed.category;
     breadcrumbItems.push({ name: catLabel, item: canonical });
-    document.title = `${catLabel} — ${cfg.label} examples | Revenu`;
+    document.title = `${catLabel} | ${cfg.label} Examples | Revenu`;
     setMeta(
       'description',
-      `${catLabel} ${cfg.label} examples from the Revenu Ad Library — proven B2B SaaS ad templates categorized by formula.`
+      `${catLabel} ${cfg.label} examples from the Revenu Ad Library. Proven B2B SaaS templates categorized by formula.`
     );
     setJsonLd({
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       '@id': canonical,
-      name: `${catLabel} — ${cfg.label}`,
+      name: `${catLabel} | ${cfg.label}`,
       description: `Collection of ${catLabel.toLowerCase()} ${cfg.label.toLowerCase()} examples.`,
       isPartOf: { '@id': SITE_ORIGIN + '/#website' },
       breadcrumb: { '@type': 'BreadcrumbList', itemListElement: breadcrumbItems.map((b, i) => ({
@@ -916,12 +919,31 @@ function _updateSEOTagsImpl() {
     return;
   }
 
-  // Platform landing (or root)
-  document.title = `${cfg.label} Library | Revenu`;
-  setMeta(
-    'description',
-    `A free library of high-performing ${cfg.label} examples for B2B SaaS. Browse curated, real-world ad and landing page templates categorized by formula.`
-  );
+  // Platform landing (or root) — use the per-platform meta table so titles +
+  // descriptions match what build-seo.js bakes into the pre-rendered HTML.
+  const platformMeta = {
+    linkedin: {
+      title: 'LinkedIn Ads Library | 200+ B2B SaaS Examples | Revenu',
+      description: '200+ high-performing LinkedIn Ads examples for B2B SaaS. Real Conversation Ads, Convo Ads, Problem, Product, Gated Content, and Animated ads categorized by intent and formula.',
+    },
+    google: {
+      title: 'Google Ads Library | 150+ B2B SaaS Examples | Revenu',
+      description: '150+ Google Ads examples for B2B SaaS. Real Brand, Non-Brand, and Competitor campaigns with proven headline patterns and conversion-tested copy.',
+    },
+    landing: {
+      title: 'Landing Pages Library | 120+ B2B SaaS Templates | Revenu',
+      description: '120+ landing page examples for B2B SaaS. Above the Fold heroes, reusable Blocks, and Product Visuals from campaigns that actually converted.',
+    },
+    chatgpt: {
+      title: 'ChatGPT Ads Library | 38 AI Advertising Examples | Revenu',
+      description: '38 ChatGPT Ads examples for B2B SaaS. The first curated library of ChatGPT advertising with proven formulas, playbook insights, and full campaign setup.',
+    },
+  }[platform] || {
+    title: `${cfg.label} Library | Revenu`,
+    description: `A free library of ${cfg.label} examples for B2B SaaS.`,
+  };
+  document.title = platformMeta.title;
+  setMeta('description', platformMeta.description);
   setJsonLd({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
