@@ -550,6 +550,33 @@ function buildPageHtml({ title, description, canonical, ogImage, jsonLd, activeP
       '$1 is-active$2$3'
     );
   }
+  // Bake the correct hero <h1> + header dropdown label into the static HTML.
+  // These mirror exactly what app.js renders at runtime, so users see no
+  // change — but crawlers' first-pass (unrendered) HTML no longer shows the
+  // template's hard-coded H1 on every URL. That duplicate H1 across all
+  // pre-rendered pages was causing Google to cluster pages as duplicates
+  // ("Google chose different canonical than user", e.g. /chatgpt → /linkedin-ads).
+  if (activePlatform) {
+    const platformCfg = PLATFORMS[activePlatform];
+    const heroHtml = activePlatform === 'saved'
+      ? 'Your <span class="hero-title-accent">Saved Items</span>'
+      : platformCfg
+        ? `<span class="hero-title-accent">${esc(platformCfg.label)}</span> Library`
+        : null;
+    const dropdownLabel = activePlatform === 'saved' ? 'Saved' : platformCfg ? platformCfg.label : null;
+    if (heroHtml) {
+      html = html.replace(
+        /(<span class="hero-title-text" id="hero-title-text">)[\s\S]*?(<\/span><span class="info-tip")/,
+        `$1${heroHtml}$2`
+      );
+    }
+    if (dropdownLabel) {
+      html = html.replace(
+        /(<span class="dropdown-label" id="platform-dropdown-label">)[\s\S]*?(<\/span>)/,
+        `$1${esc(dropdownLabel)}$2`
+      );
+    }
+  }
   return html;
 }
 
