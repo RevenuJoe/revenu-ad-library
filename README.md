@@ -1,27 +1,25 @@
 # Revenu Ad Library
 
-A free, public library of 500+ high-performing B2B SaaS ad examples and landing-page templates, organised by formula.
+A free, public library of 544 high-performing B2B SaaS ad examples and landing-page templates, organised by formula.
 
 Live at **[library.revenuagency.io](https://library.revenuagency.io)**.
 
 ## What's inside
 
-Three libraries, each broken down by category:
+Four libraries, each broken down by category:
 
 - **LinkedIn Ads** — Problem · Product · Conversion · Convo Ads · Gated Content · Animations · The Playbook
 - **Google Ads** — Brand · Non Brand · Competitor · The Playbook
 - **Landing Pages** — Above the Fold · Blocks · Product Visuals
+- **ChatGPT Ads** — Playbook · Setup
 
-Every ad has its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox with prev/next, swipe, drag, favorites, search, and shuffle. The whole site requires **Sign in with LinkedIn** (the static HTML stays SEO-indexable; a JS-rendered modal blocks the UI for humans until they authenticate). Saved favorites sync to Upstash Redis per user and follow them across browsers. Admins (configured via `ADMIN_EMAILS`) can manage users at `/admin`.
+Every ad has its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox with prev/next, swipe, drag, favorites, search, and shuffle. A `/saved` route shows the user's favorited ads.
 
-## Setup (one-time, in Vercel)
+**Access is fully open — no sign-in, no gate.** Favorites are stored in the visitor's browser via `localStorage` only; there is no server, no database, and no auth anywhere in this project. (Earlier iterations had a client-side password gate and a planned LinkedIn OAuth flow — both are gone. If you see docs or links referencing a `?password=` param or `/admin`, they're stale.)
 
-1. **Env vars** (Vercel → Settings → Environment Variables):
-   - `LINKEDIN_CLIENT_ID`, `LINKEDIN_CLIENT_SECRET` — same values as the audience-explorer project
-   - `SESSION_SECRET` — any long random string
-   - Optional: `ADMIN_EMAILS` (comma-separated, defaults to `joe@revenuagency.io,ukjosephhill@gmail.com`)
-2. **Database**: Vercel → Storage / Marketplace → add **Upstash Redis** to this project (injects `UPSTASH_REDIS_REST_URL`/`TOKEN`).
-3. **LinkedIn developer portal**: app → Auth → add redirect URL `https://library.revenuagency.io/api/linkedin-callback`. The "Sign In with LinkedIn using OpenID Connect" product must be enabled.
+## Setup
+
+None. This is a pure static site — no env vars, no database, no serverless functions. `api/ads.json` and `api/library.md` are generated static files, not endpoints.
 
 ## Local preview
 
@@ -42,8 +40,21 @@ Double-click `index.html`. The site uses a conditional `<base href="/">` so it w
      platform: "linkedin"
    }
    ```
-4. Run `node scripts/build-seo.js` to regenerate `sitemap.xml`, `api/ads.json`, the LLM-friendly files, and all 520+ pre-rendered HTML pages.
+   **Append new entries at the end of their category block.** Ad URLs (`/linkedin-ads/problem-12`) are derived from entry order within each `(platform, category)` group — reordering existing entries silently changes every shared deep link after the insertion point.
+4. Run `node scripts/build-seo.js` to regenerate `sitemap.xml`, `api/ads.json`, the LLM-friendly files, and all pre-rendered HTML pages.
 5. Commit and push — Vercel auto-deploys.
+
+## Backfill formula labels
+
+472 of the 544 ads currently have an empty `formula` field. `scripts/backfill-formulas.js` uses the Anthropic API (vision) to propose a formula label for every ad missing one:
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+node scripts/backfill-formulas.js            # writes proposals to scripts/formulas-proposed.json
+node scripts/backfill-formulas.js --apply    # reviews applied: patches ads.js from the proposals file
+```
+
+It runs in two steps on purpose — propose first, review `formulas-proposed.json`, then `--apply`. Re-running skips ads that already have a proposal. After applying, run `node scripts/build-seo.js` and commit.
 
 ## Files at a glance
 
@@ -61,19 +72,21 @@ ad-library/
 ├── api/
 │   ├── ads.json            # Generated — machine-readable library
 │   └── library.md          # Generated — markdown index
-├── google-ads.html, linkedin-ads.html, landing-pages.html  # Pre-rendered platform pages
-├── google-ads/, linkedin-ads/, landing-pages/              # Pre-rendered per-category and per-ad
+├── google-ads.html, linkedin-ads.html, landing-pages.html, chatgpt.html  # Pre-rendered platform pages
+├── google-ads/, linkedin-ads/, landing-pages/, chatgpt/                  # Pre-rendered per-category and per-ad
 ├── images/                 # WebP assets, organised by platform → category
 ├── favicon/
 ├── scripts/
-│   ├── build-seo.js        # Regenerate SEO + LLM + pre-rendered HTML
-│   └── build-og-images.py  # (Optional) Per-ad 1200×630 OG card composer
+│   ├── build-seo.js            # Regenerate SEO + LLM + pre-rendered HTML
+│   ├── backfill-formulas.js    # AI-assisted formula labels for ads missing one
+│   ├── smoke-test.js           # JSDOM checks on the built pages (node scripts/smoke-test.js)
+│   └── build-og-images.py      # (Optional) Per-ad 1200×630 OG card composer — not wired into the build
 └── BUILD-NOTES.md          # Full architectural reference — read this for anything non-trivial
 ```
 
 ## Full reference
 
-For the deep dive — data model, URL routing, every feature, build pipeline, maintenance recipes, architectural decisions and rationale — see **[BUILD-NOTES.md](./BUILD-NOTES.md)**.
+For the deep dive — data model, URL routing, every feature, build pipeline, maintenance recipes, architectural decisions and rationale — see **[BUILD-NOTES.md](./BUILD-NOTES.md)**. Note: BUILD-NOTES sections describing the password gate are historical; the gate has been removed.
 
 ## Deploy
 

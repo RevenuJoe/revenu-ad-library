@@ -8,15 +8,16 @@ This document was generated at the end of a long, iterative build session. It su
 
 ## What this is
 
-A free, public library of high-performing B2B SaaS ad examples and landing-page templates, curated and built by Revenu Agency. As of writing: **503 ads** across three libraries:
+A free, public library of high-performing B2B SaaS ad examples and landing-page templates, curated and built by Revenu Agency. As of writing: **544 ads** across four libraries:
 
 - **LinkedIn Ads** — Problem, Product, Conversion, Convo Ads, Gated Content, Animations, The Playbook
 - **Google Ads** — Brand, Non Brand, Competitor, The Playbook
 - **Landing Pages** — Above the Fold, Blocks, Product Visuals
+- **ChatGPT Ads** — Playbook, Setup (route: `/chatgpt`)
 
-Each ad lives at its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox preview with swipe/drag/click navigation, favorites, shuffle, search, and a Tinder-style mobile drag.
+Each ad lives at its own shareable URL (e.g. `/linkedin-ads/problem-1`) and opens in an in-page lightbox preview with swipe/drag/click navigation, favorites, shuffle, search, and a Tinder-style mobile drag. A `/saved` route lists the visitor's favorited ads.
 
-The homepage is gated by a password (`fox`) for soft access control; deep-link URLs are public.
+The whole site is fully open — no password, no sign-in. (A `fox` password gate existed in earlier versions and has been removed; see "Password gate — REMOVED" below.)
 
 ---
 
@@ -257,15 +258,9 @@ When you navigate via JS (clicking pills/tabs/cards), `app.js` updates these in 
 - Click toggles favorite, persists to `localStorage` under `ad-library-favorites` (set of `platform|category|id` strings).
 - The toggle is independent of the favorites filter button.
 
-### Password gate
+### Password gate — REMOVED
 
-- Active **only at root URL `/`**. Deep-link URLs (`/linkedin-ads/problem-1` etc.) bypass it entirely.
-- Password: **`fox`** (case-insensitive; checked client-side in `app.js`).
-- Unlock state persists in `localStorage` under `ad-library-access`.
-- **Entrance sequence**: library renders un-blurred for ~1s, then `body.gated` is added → CSS blur fades in over 0.5s, then password card slides in from the left with overshoot.
-- **No auto-focus** on the input (so iOS doesn't pop the keyboard).
-- **iOS-friendly input** — font-size is 16px on mobile (anything below 16px triggers iOS auto-zoom on focus).
-- **Success sequence**: tick draws in (SVG stroke-dashoffset), "Thanks!" fades up, "Enjoy the best library in **B2B SaaS**" fades up, holds ~1s, card fades out, gate hides, library cards animate in. After unlock, `window.scrollTo(0,0)` ensures the reveal is at the top of the page.
+> **The password gate no longer exists.** The site is fully open by design — anyone can browse without signing in or entering anything, and favorites are localStorage-only. The `fox` password, `ad-library-access` unlock state, blur/entrance/success sequences described in earlier versions of this doc were all removed from `app.js`, `index.html`, and `styles.css`. If you find a link elsewhere with `?password=fox`, the param is harmlessly ignored — strip it.
 
 ### Shuffle and pinning interaction
 
