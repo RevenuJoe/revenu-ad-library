@@ -68,7 +68,7 @@ const platforms = {
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
       { key: 'product',       label: 'Product',       folder: 'Product' },
       { key: 'conversion',    label: 'Conversion',    folder: 'Conversion' },
-      { key: 'convo-ads',     label: 'Conversation Ads',     folder: 'Conversation Ads' },
+      { key: 'convo-ads',     label: 'Conversation Ads',     folder: 'Conversation Ads', shortLabel: 'Convo Ads' },
       { key: 'gated-content', label: 'Gated Content', folder: 'Gated Content' },
       { key: 'playbook',      label: 'The Playbook',  folder: 'The Playbook' },
       { key: 'animations',    label: 'Animations',    folder: 'Animations' }
@@ -970,7 +970,7 @@ function renderTabs() {
   const cfg = currentPlatform();
   // Desktop tabs
   tabsContainer.innerHTML = cfg.tabs.map(t => `
-    <button class="tab${t.key === activeFilter ? ' is-active' : ''}" data-filter="${escapeHtml(t.key)}" role="tab">${escapeHtml(t.label)}</button>
+    <button class="tab${t.key === activeFilter ? ' is-active' : ''}" data-filter="${escapeHtml(t.key)}" role="tab">${escapeHtml(t.shortLabel || t.label)}</button>
   `).join('');
   tabsContainer.querySelectorAll('.tab').forEach(btn => {
     btn.addEventListener('click', () => setFilter(btn.dataset.filter));

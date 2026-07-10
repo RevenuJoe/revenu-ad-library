@@ -30,7 +30,7 @@ const PLATFORMS = {
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
       { key: 'product',       label: 'Product',       folder: 'Product' },
       { key: 'conversion',    label: 'Conversion',    folder: 'Conversion' },
-      { key: 'convo-ads',     label: 'Conversation Ads',     folder: 'Conversation Ads' },
+      { key: 'convo-ads',     label: 'Conversation Ads',     folder: 'Conversation Ads', shortLabel: 'Convo Ads' },
       { key: 'gated-content', label: 'Gated Content', folder: 'Gated Content' },
       { key: 'playbook',      label: 'The Playbook',  folder: 'The Playbook' },
       { key: 'animations',    label: 'Animations',    folder: 'Animations' },
