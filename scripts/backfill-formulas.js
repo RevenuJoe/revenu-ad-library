@@ -44,7 +44,7 @@ const LIMIT = Number(argValue("--limit")) || Infinity;
 
 /* ---------- load ads.js + the platform folder map (mirrors app.js) ---------- */
 const FOLDERS = {
-  linkedin: { folder: "LinkedIn Ads", tabs: { problem: "Problem", product: "Product", conversion: "Conversion", "convo-ads": "Convo Ads", "gated-content": "Gated Content", playbook: "The Playbook", animations: "Animations" } },
+  linkedin: { folder: "LinkedIn Ads", tabs: { problem: "Problem", product: "Product", conversion: "Conversion", "convo-ads": "Conversation Ads", "gated-content": "Gated Content", playbook: "The Playbook", animations: "Animations" } },
   google:   { folder: "Google Ads", tabs: { brand: "Brand", "non-brand": "Non Brand", competitor: "Competitor", playbook: "The Playbook" } },
   landing:  { folder: "Landing Pages", tabs: { "above-the-fold": "Above the Fold", blocks: "Blocks", "product-visuals": "Product Visuals" } },
   chatgpt:  { folder: "ChatGPT Ads", tabs: { playbook: "Playbook", formulas: "Formulas", setup: "Setup" } },

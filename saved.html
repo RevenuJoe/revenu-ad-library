@@ -82,6 +82,12 @@
         "description": "A free library of 540+ high-performing B2B SaaS ad examples and landing page templates across LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages.",
         "publisher": { "@id": "https://www.revenuagency.io/#organization" },
         "inLanguage": "en",
+        "hasPart": [
+          { "@type": "CollectionPage", "@id": "https://library.revenuagency.io/linkedin-ads#collection",  "name": "LinkedIn Ads Library",  "url": "https://library.revenuagency.io/linkedin-ads" },
+          { "@type": "CollectionPage", "@id": "https://library.revenuagency.io/chatgpt#collection",        "name": "ChatGPT Ads Library",   "url": "https://library.revenuagency.io/chatgpt" },
+          { "@type": "CollectionPage", "@id": "https://library.revenuagency.io/landing-pages#collection", "name": "Landing Pages Library", "url": "https://library.revenuagency.io/landing-pages" },
+          { "@type": "CollectionPage", "@id": "https://library.revenuagency.io/google-ads#collection",    "name": "Google Ads Library",    "url": "https://library.revenuagency.io/google-ads" }
+        ],
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
@@ -90,6 +96,17 @@
           },
           "query-input": "required name=search_term_string"
         }
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://library.revenuagency.io/#nav",
+        "name": ["LinkedIn Ads", "ChatGPT Ads", "Landing Pages", "Google Ads"],
+        "url": [
+          "https://library.revenuagency.io/linkedin-ads",
+          "https://library.revenuagency.io/chatgpt",
+          "https://library.revenuagency.io/landing-pages",
+          "https://library.revenuagency.io/google-ads"
+        ]
       }
     ]
   }

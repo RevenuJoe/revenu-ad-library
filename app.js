@@ -68,7 +68,7 @@ const platforms = {
       { key: 'problem',       label: 'Problem',       folder: 'Problem' },
       { key: 'product',       label: 'Product',       folder: 'Product' },
       { key: 'conversion',    label: 'Conversion',    folder: 'Conversion' },
-      { key: 'convo-ads',     label: 'Convo Ads',     folder: 'Convo Ads' },
+      { key: 'convo-ads',     label: 'Conversation Ads',     folder: 'Conversation Ads' },
       { key: 'gated-content', label: 'Gated Content', folder: 'Gated Content' },
       { key: 'playbook',      label: 'The Playbook',  folder: 'The Playbook' },
       { key: 'animations',    label: 'Animations',    folder: 'Animations' }
@@ -161,16 +161,16 @@ const PLATFORM_TIPS = {
     items: [
       { icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.22 0z"/></svg>',
         label: 'LinkedIn Ads',
-        blurb: '200+ B2B SaaS LinkedIn ads sorted by intent and formula.' },
+        blurb: '200+ LinkedIn ad examples and LinkedIn animated ad templates for B2B SaaS.' },
       { icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.141.08L8.704 5.46a.795.795 0 0 0-.392.681v6.732zm1.097-2.365L12.005 8.91l2.6 1.5v3l-2.595 1.5-2.6-1.5z"/></svg>',
         label: 'ChatGPT Ads',
-        blurb: 'The first ChatGPT advertising library with formulas, playbook, and setup.' },
+        blurb: 'How to advertise on ChatGPT: 38 real ChatGPT ad examples and OpenAI setup guide.' },
       { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="6.5" cy="7" r="0.6" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r="0.6" fill="currentColor" stroke="none"/></svg>',
         label: 'Landing Pages',
-        blurb: '120+ landing page templates including hero, blocks, and product visuals.' },
+        blurb: '120+ B2B SaaS landing page examples and swipe files including hero and above the fold designs.' },
       { icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 11v2.8h4.51c-.2 1.05-1.55 3.05-4.51 3.05-2.72 0-4.94-2.26-4.94-5.05S9.28 6.75 12 6.75c1.55 0 2.58.66 3.17 1.23l2.15-2.06C15.95 4.66 14.16 3.9 12 3.9 7.61 3.9 4.06 7.45 4.06 11.8s3.55 7.9 7.94 7.9c4.59 0 7.61-3.22 7.61-7.76 0-.52-.06-.91-.13-1.31H12z"/></svg>',
         label: 'Google Ads',
-        blurb: '150+ B2B SaaS Google Ads examples by keyword intent.' },
+        blurb: '150+ Google Ads examples with Responsive Search Ad templates and copy inspiration.' },
     ],
   },
   linkedin: {
@@ -178,16 +178,16 @@ const PLATFORM_TIPS = {
     items: [
       { icon: 'rect:3 3 7 7 1|rect:14 3 7 7 1|rect:3 14 7 7 1|rect:14 14 7 7 1',
         label: '200+ LinkedIn ad examples',
-        blurb: 'real B2B SaaS LinkedIn ads, sortable by intent and formula.' },
+        blurb: 'real B2B SaaS LinkedIn ads and ad templates you can model your own campaigns on.' },
       { icon: 'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z',
-        label: 'Conversation, Convo, Problem, Product, Gated',
-        blurb: 'every LinkedIn ad format we use, with proven creative examples.' },
+        label: 'Every LinkedIn ad format',
+        blurb: 'Conversation Ads, Message Ads, Sponsored Content, Video Ads, and Gated Content examples.' },
       { icon: 'polygon:5 3 19 12 5 21 5 3',
         label: 'LinkedIn animated ads',
-        blurb: 'dynamic creative templates and motion design patterns that get attention.' },
+        blurb: 'dynamic creative and motion design templates for high-attention LinkedIn ads.' },
       { icon: 'polyline:23 6 13.5 15.5 8.5 10.5 1 18|polyline:17 6 23 6 23 12',
-        label: 'Conversion-tested copy',
-        blurb: 'headline patterns and CTAs from campaigns that actually drove demos.' },
+        label: 'LinkedIn ad swipe file',
+        blurb: 'headline patterns, hooks, and CTAs from real B2B SaaS LinkedIn campaigns.' },
     ],
   },
   google: {
@@ -195,16 +195,16 @@ const PLATFORM_TIPS = {
     items: [
       { icon: 'circle:11 11 8|m21 21-4.35-4.35',
         label: '150+ Google Ads examples',
-        blurb: 'real B2B SaaS Google Ads, every keyword intent covered.' },
+        blurb: 'real B2B SaaS Google Ads and Responsive Search Ad copy examples.' },
       { icon: 'circle:12 12 10|circle:12 12 6|circle:12 12 2',
         label: 'Brand, Non-Brand, Competitor',
-        blurb: 'Google Ads formulas for every funnel stage, from category to brand to competitor capture.' },
+        blurb: 'Google Ads campaigns for every keyword intent, from category to brand to competitor capture.' },
       { icon: 'polyline:4 7 4 4 20 4 20 7|line:9 20 15 20|line:12 4 12 20',
-        label: 'Headline patterns that convert',
-        blurb: 'responsive search ad copy frameworks pulled from high-CTR campaigns.' },
+        label: 'Google Ads copy that converts',
+        blurb: 'headline formulas and RSA templates pulled from high-CTR B2B SaaS campaigns.' },
       { icon: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z|M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z',
-        label: 'Playbook insights',
-        blurb: 'campaign structure, bidding, match types, and what actually moves CPL.' },
+        label: 'Google Ads swipe file',
+        blurb: 'ready-to-use ad copy templates and campaign structures for B2B SaaS.' },
     ],
   },
   landing: {
@@ -212,16 +212,16 @@ const PLATFORM_TIPS = {
     items: [
       { icon: 'rect:3 3 18 18 2 2|line:3 9 21 9',
         label: '120+ landing page examples',
-        blurb: 'real B2B SaaS landing page templates ready to inspire your next test.' },
+        blurb: 'real B2B SaaS landing page examples and SaaS landing page templates.' },
       { icon: 'line:12 3 12 21|polyline:6 9 12 3 18 9',
-        label: 'Above the Fold patterns',
-        blurb: 'hero sections, headlines, and form layouts proven to convert.' },
+        label: 'Above the fold examples',
+        blurb: 'hero section, headline, and form layout patterns proven to convert.' },
       { icon: 'rect:3 3 7 7 1|rect:14 3 7 7 1|rect:3 14 7 7 1|rect:14 14 7 7 1',
-        label: 'Reusable conversion Blocks',
-        blurb: 'testimonials, features, comparisons, logos, and proof sections.' },
+        label: 'Landing page blocks',
+        blurb: 'testimonials, features, comparisons, logos, and proof section examples.' },
       { icon: 'rect:3 3 18 18 2 2|circle:8.5 8.5 1.5|polyline:21 15 16 10 5 21',
-        label: 'Product Visuals and screenshots',
-        blurb: 'mockups, devices, and product hero treatments that sell the experience.' },
+        label: 'Landing page swipe file',
+        blurb: 'product visuals, mockups, and hero treatments that sell the experience.' },
     ],
   },
   chatgpt: {
@@ -229,16 +229,16 @@ const PLATFORM_TIPS = {
     items: [
       { icon: 'M12 3l1.9 4.7 4.6.5-3.5 3.1 1 4.6L12 13.8 7.9 16l1-4.6L5.5 8.2l4.6-.5L12 3z',
         label: '38 ChatGPT ad examples',
-        blurb: 'the first curated library of ChatGPT advertising for B2B SaaS.' },
+        blurb: 'the first curated ChatGPT ads library for B2B SaaS and AI advertising.' },
       { icon: 'M10 2v7.5a3 3 0 0 1-.6 1.8l-5.4 7.2A2 2 0 0 0 5.6 22h12.8a2 2 0 0 0 1.6-3.5l-5.4-7.2a3 3 0 0 1-.6-1.8V2|line:8 2 16 2',
-        label: 'Ad Formulas',
-        blurb: 'short, punchy templates that work inside ChatGPT search results.' },
+        label: 'How to advertise on ChatGPT',
+        blurb: 'OpenAI ad formulas and short-copy templates that work inside ChatGPT search results.' },
       { icon: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z|M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z',
-        label: 'The Playbook',
-        blurb: 'how ChatGPT advertising actually works: placement, copy, and headlines.' },
+        label: 'ChatGPT advertising playbook',
+        blurb: 'placement, copy, and headline best practices for ChatGPT ads and OpenAI ads.' },
       { icon: 'circle:12 12 3|M12 2v3|M12 19v3|M4.93 4.93l2.12 2.12|M16.95 16.95l2.12 2.12|M2 12h3|M19 12h3|M4.93 19.07l2.12-2.12|M16.95 7.05l2.12-2.12',
-        label: 'The Setup',
-        blurb: 'full ChatGPT campaign and conversion tracking walkthrough.' },
+        label: 'ChatGPT ads setup guide',
+        blurb: 'full ChatGPT campaign creation and conversion tracking walkthrough.' },
     ],
   },
 };
@@ -816,7 +816,7 @@ function _updateSEOTagsImpl() {
     document.title = 'Saved Ads | Revenu Ad Library';
     setMeta(
       'description',
-      'Your personal collection of favorited ads across every Revenu Library. LinkedIn, Google, ChatGPT, and Landing Pages examples all in one place.'
+      'Your saved LinkedIn ad examples, Google Ads examples, ChatGPT ads, and landing page examples across every Revenu Library, all in one place.'
     );
     setJsonLd(null);
     return;
@@ -829,14 +829,14 @@ function _updateSEOTagsImpl() {
     document.title = 'Revenu Library | 540+ B2B SaaS Ad Examples';
     setMeta(
       'description',
-      '540+ curated B2B SaaS ad examples across LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages. Free to browse, categorized by proven formula.'
+      '540+ LinkedIn ad examples, Google ad examples, ChatGPT ad examples, and landing page examples for B2B SaaS. Free swipe file with real ad templates and creative inspiration.'
     );
     setJsonLd({
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       '@id': canonical,
       name: 'Revenu Ad Library',
-      description: 'Four libraries of curated B2B SaaS examples: LinkedIn Ads, Google Ads, ChatGPT Ads, and Landing Pages, all categorized by formula.',
+      description: 'Free swipe file of LinkedIn ad examples, Google Ads examples, ChatGPT ad examples, and B2B SaaS landing page templates. 540+ real ads.',
       isPartOf: { '@id': SITE_ORIGIN + '/#website' },
       hasPart: [
         { '@type': 'CollectionPage', name: 'LinkedIn Ads Library',  url: SITE_ORIGIN + '/linkedin-ads' },
@@ -923,20 +923,20 @@ function _updateSEOTagsImpl() {
   // descriptions match what build-seo.js bakes into the pre-rendered HTML.
   const platformMeta = {
     linkedin: {
-      title: 'LinkedIn Ads Library | 200+ B2B SaaS Examples | Revenu',
-      description: '200+ high-performing LinkedIn Ads examples for B2B SaaS. Real Conversation Ads, Convo Ads, Problem, Product, Gated Content, and Animated ads categorized by intent and formula.',
+      title: 'LinkedIn Ads Library | 200+ Examples & Templates | Revenu',
+      description: '200+ real LinkedIn ad examples and templates for B2B SaaS. LinkedIn animated ads, Conversation Ads, Sponsored Content, Video Ads, and Gated Content. Free LinkedIn ad library and swipe file.',
     },
     google: {
-      title: 'Google Ads Library | 150+ B2B SaaS Examples | Revenu',
-      description: '150+ Google Ads examples for B2B SaaS. Real Brand, Non-Brand, and Competitor campaigns with proven headline patterns and conversion-tested copy.',
+      title: 'Google Ads Library | 150+ Examples & Templates | Revenu',
+      description: '150+ real Google Ads examples and templates for B2B SaaS. Responsive Search Ads, competitor ads, brand and non-brand campaigns. Free Google Ads swipe file and copy inspiration.',
     },
     landing: {
       title: 'Landing Pages Library | 120+ B2B SaaS Templates | Revenu',
-      description: '120+ landing page examples for B2B SaaS. Above the Fold heroes, reusable Blocks, and Product Visuals from campaigns that actually converted.',
+      description: '120+ real landing page examples for B2B SaaS. Above the fold hero examples, conversion blocks, product visuals, and design inspiration. Free landing page swipe file.',
     },
     chatgpt: {
-      title: 'ChatGPT Ads Library | 38 AI Advertising Examples | Revenu',
-      description: '38 ChatGPT Ads examples for B2B SaaS. The first curated library of ChatGPT advertising with proven formulas, playbook insights, and full campaign setup.',
+      title: 'ChatGPT Ads Library | Examples + How to Advertise | Revenu',
+      description: '38 real ChatGPT ad examples plus how to advertise on ChatGPT. The first ChatGPT ads library with OpenAI advertising formulas, playbook, and full campaign setup guide.',
     },
   }[platform] || {
     title: `${cfg.label} Library | Revenu`,

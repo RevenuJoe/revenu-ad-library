@@ -5,7 +5,7 @@
 
 Site: https://library.revenuagency.io
 Total entries: 544
-Generated: 2026-07-07T12:45:31.986Z
+Generated: 2026-07-10T23:47:08.457Z
 
 ## Google Ads (158 examples)
 
@@ -397,7 +397,7 @@ Generated: 2026-07-07T12:45:31.986Z
 - **Audit Offer** — [https://library.revenuagency.io/linkedin-ads/conversion-22](https://library.revenuagency.io/linkedin-ads/conversion-22)
 - **AirBnB Gift Card** — [https://library.revenuagency.io/linkedin-ads/conversion-23](https://library.revenuagency.io/linkedin-ads/conversion-23)
 
-### Convo Ads — 25 examples
+### Conversation Ads — 25 examples
 
 - **AirPods** — [https://library.revenuagency.io/linkedin-ads/convo-ads-1](https://library.revenuagency.io/linkedin-ads/convo-ads-1)
 - **Lunch** — [https://library.revenuagency.io/linkedin-ads/convo-ads-2](https://library.revenuagency.io/linkedin-ads/convo-ads-2)
