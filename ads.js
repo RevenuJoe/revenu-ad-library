@@ -1575,6 +1575,8 @@ window.ADS = [
   { image: "Convo 23.webp", title: "Problem Statement",   formula: "", tag: "Conversation Ads", category: "convo-ads", platform: "linkedin" },
   { image: "Convo 24.webp", title: "Problem Statement",   formula: "", tag: "Conversation Ads", category: "convo-ads", platform: "linkedin" },
   { image: "Convo 25.webp", title: "Problem Statement",   formula: "", tag: "Conversation Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "Broken Taxonomy.webp", title: "Broken Taxonomy", formula: "White Lie audit script that reveals a broken product taxonomy", tag: "Conversation Ads", category: "convo-ads", platform: "linkedin" },
+  { image: "ChatGPT Audit.webp",   title: "ChatGPT Audit",   formula: "Fear-based ChatGPT audit script targeting visibility in AI search", tag: "Conversation Ads", category: "convo-ads", platform: "linkedin" },
 
   // ---------- LinkedIn — Playbook (chart slides) ----------
   { image: "Playbook 17.webp", title: "Incentive Headlines",             formula: "50%+ open rate with an incentive in the subject",   tag: "Playbook", category: "playbook", platform: "linkedin" },

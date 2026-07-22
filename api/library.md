@@ -4,8 +4,8 @@
 > Each entry includes the formula name and a direct URL to view it.
 
 Site: https://library.revenuagency.io
-Total entries: 544
-Generated: 2026-07-10T23:53:19.684Z
+Total entries: 546
+Generated: 2026-07-22T14:00:32.282Z
 
 ## Google Ads (158 examples)
 
@@ -179,7 +179,7 @@ Generated: 2026-07-10T23:53:19.684Z
 - **Tell a Good Story** (Problem · Solution · Benefit) — [https://library.revenuagency.io/google-ads/playbook-6](https://library.revenuagency.io/google-ads/playbook-6)
 - **The Formulas** (The playbook for ads that convert) — [https://library.revenuagency.io/google-ads/playbook-7](https://library.revenuagency.io/google-ads/playbook-7)
 
-## LinkedIn Ads (223 examples)
+## LinkedIn Ads (225 examples)
 
 ### The Playbook — 29 examples
 
@@ -397,7 +397,7 @@ Generated: 2026-07-10T23:53:19.684Z
 - **Audit Offer** — [https://library.revenuagency.io/linkedin-ads/conversion-22](https://library.revenuagency.io/linkedin-ads/conversion-22)
 - **AirBnB Gift Card** — [https://library.revenuagency.io/linkedin-ads/conversion-23](https://library.revenuagency.io/linkedin-ads/conversion-23)
 
-### Conversation Ads — 25 examples
+### Conversation Ads — 27 examples
 
 - **AirPods** — [https://library.revenuagency.io/linkedin-ads/convo-ads-1](https://library.revenuagency.io/linkedin-ads/convo-ads-1)
 - **Lunch** — [https://library.revenuagency.io/linkedin-ads/convo-ads-2](https://library.revenuagency.io/linkedin-ads/convo-ads-2)
@@ -424,6 +424,8 @@ Generated: 2026-07-10T23:53:19.684Z
 - **Problem Statement** — [https://library.revenuagency.io/linkedin-ads/convo-ads-23](https://library.revenuagency.io/linkedin-ads/convo-ads-23)
 - **Problem Statement** — [https://library.revenuagency.io/linkedin-ads/convo-ads-24](https://library.revenuagency.io/linkedin-ads/convo-ads-24)
 - **Problem Statement** — [https://library.revenuagency.io/linkedin-ads/convo-ads-25](https://library.revenuagency.io/linkedin-ads/convo-ads-25)
+- **Broken Taxonomy** (White Lie audit script that reveals a broken product taxonomy) — [https://library.revenuagency.io/linkedin-ads/convo-ads-26](https://library.revenuagency.io/linkedin-ads/convo-ads-26)
+- **ChatGPT Audit** (Fear-based ChatGPT audit script targeting visibility in AI search) — [https://library.revenuagency.io/linkedin-ads/convo-ads-27](https://library.revenuagency.io/linkedin-ads/convo-ads-27)
 
 ## Landing Pages (125 examples)
 

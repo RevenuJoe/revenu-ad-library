@@ -1,7 +1,7 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-07-10T23:53:19.677Z",
-  "total": 544,
+  "generated": "2026-07-22T14:00:32.276Z",
+  "total": 546,
   "platforms": {
     "linkedin": {
       "label": "LinkedIn Ads",
@@ -5388,6 +5388,28 @@
       "image": "Convo 25.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/convo-ads-25",
       "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversation Ads/Convo 25.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "convo-ads",
+      "id": 26,
+      "title": "Broken Taxonomy",
+      "formula": "White Lie audit script that reveals a broken product taxonomy",
+      "tag": "Conversation Ads",
+      "image": "Broken Taxonomy.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/convo-ads-26",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversation Ads/Broken Taxonomy.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "convo-ads",
+      "id": 27,
+      "title": "ChatGPT Audit",
+      "formula": "Fear-based ChatGPT audit script targeting visibility in AI search",
+      "tag": "Conversation Ads",
+      "image": "ChatGPT Audit.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/convo-ads-27",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversation Ads/ChatGPT Audit.webp"
     },
     {
       "platform": "linkedin",
