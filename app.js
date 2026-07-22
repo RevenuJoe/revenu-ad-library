@@ -1147,9 +1147,12 @@ function renderCards(animate = false) {
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Open ${ad.title}`);
     const fav = isFavorite(ad);
-    // ChatGPT Playbook + Setup cards show title + tag only in the grid (description
-    // is kept in ads.js so it still drives SEO meta / JSON-LD on the per-ad URL).
-    const hideCardSub = ad.platform === 'chatgpt' && (ad.category === 'playbook' || ad.category === 'setup');
+    // ChatGPT Playbook + Setup, and LinkedIn Conversation Ads, show title + tag
+    // only in the grid (description is kept in ads.js so it still drives SEO
+    // meta / JSON-LD on the per-ad URL).
+    const hideCardSub =
+      (ad.platform === 'chatgpt' && (ad.category === 'playbook' || ad.category === 'setup')) ||
+      (ad.platform === 'linkedin' && ad.category === 'convo-ads');
     card.innerHTML = `
       <div class="card-thumb">
         <img src="${imagePath(ad)}" alt="${escapeHtml(ad.title)}" loading="lazy" />
