@@ -1,7 +1,7 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-07-22T14:00:32.276Z",
-  "total": 546,
+  "generated": "2026-07-29T14:35:05.694Z",
+  "total": 551,
   "platforms": {
     "linkedin": {
       "label": "LinkedIn Ads",
@@ -3092,6 +3092,39 @@
     },
     {
       "platform": "linkedin",
+      "category": "product",
+      "id": 39,
+      "title": "Billboard Keys",
+      "formula": "",
+      "tag": "Product",
+      "image": "Billboard Keys.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/product-39",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Billboard Keys.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "product",
+      "id": 40,
+      "title": "From This To This",
+      "formula": "",
+      "tag": "Product",
+      "image": "From This To This.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/product-40",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/From This To This.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "product",
+      "id": 41,
+      "title": "Step By Step",
+      "formula": "",
+      "tag": "Product",
+      "image": "Step By Step.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/product-41",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Step By Step.webp"
+    },
+    {
+      "platform": "linkedin",
       "category": "animations",
       "id": 1,
       "title": "Gift Card",
@@ -4676,6 +4709,17 @@
     },
     {
       "platform": "linkedin",
+      "category": "problem",
+      "id": 85,
+      "title": "From This To This",
+      "formula": "",
+      "tag": "Problem",
+      "image": "From This To This.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/problem-85",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/From This To This.webp"
+    },
+    {
+      "platform": "linkedin",
       "category": "gated-content",
       "id": 1,
       "title": "Ebook Highlights",
@@ -5113,6 +5157,17 @@
       "image": "Conversion 23.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/conversion-23",
       "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Conversion 23.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "conversion",
+      "id": 24,
+      "title": "Message Snake",
+      "formula": "",
+      "tag": "Conversion",
+      "image": "Message Snake.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/conversion-24",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Message Snake.webp"
     },
     {
       "platform": "linkedin",

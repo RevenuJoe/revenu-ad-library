@@ -1313,6 +1313,9 @@ window.ADS = [
     category: "product",
     platform: "linkedin"
   },
+  { image: "Billboard Keys.webp", title: "Billboard Keys", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "From This To This.webp", title: "From This To This", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Step By Step.webp", title: "Step By Step", formula: "", tag: "Product", category: "product", platform: "linkedin" },
   {
     image: "Gift card.webp",
     title: "Gift Card",
@@ -1504,6 +1507,7 @@ window.ADS = [
   { image: "Problem 82.webp", title: "Countdown", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "Problem 83.webp", title: "Pokemon", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "Problem 84.webp", title: "Change My Mind", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "From This To This.webp", title: "From This To This", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
 
   // ---------- LinkedIn — Gated Content ----------
   { image: "Gated 1.webp",  title: "Ebook Highlights",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
@@ -1548,6 +1552,7 @@ window.ADS = [
   { image: "Conversion 21.webp", title: "Nike Gift Card",     formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 22.webp", title: "Audit Offer",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 23.webp", title: "AirBnB Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Message Snake.webp", title: "Message Snake", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
 
   // ---------- LinkedIn — Conversation Ads ----------,
   { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Conversation Ads", category: "convo-ads", priority: { all: 6 }, platform: "linkedin" },
