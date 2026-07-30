@@ -4,8 +4,8 @@
 > Each entry includes the formula name and a direct URL to view it.
 
 Site: https://library.revenuagency.io
-Total entries: 551
-Generated: 2026-07-29T14:35:05.703Z
+Total entries: 554
+Generated: 2026-07-30T20:27:09.612Z
 
 ## Google Ads (158 examples)
 
@@ -179,7 +179,7 @@ Generated: 2026-07-29T14:35:05.703Z
 - **Tell a Good Story** (Problem · Solution · Benefit) — [https://library.revenuagency.io/google-ads/playbook-6](https://library.revenuagency.io/google-ads/playbook-6)
 - **The Formulas** (The playbook for ads that convert) — [https://library.revenuagency.io/google-ads/playbook-7](https://library.revenuagency.io/google-ads/playbook-7)
 
-## LinkedIn Ads (230 examples)
+## LinkedIn Ads (233 examples)
 
 ### The Playbook — 29 examples
 
@@ -345,7 +345,7 @@ Generated: 2026-07-29T14:35:05.703Z
 - **From This To This** — [https://library.revenuagency.io/linkedin-ads/product-40](https://library.revenuagency.io/linkedin-ads/product-40)
 - **Step By Step** — [https://library.revenuagency.io/linkedin-ads/product-41](https://library.revenuagency.io/linkedin-ads/product-41)
 
-### Animations — 7 examples
+### Animations — 10 examples
 
 - **Gift Card** — [https://library.revenuagency.io/linkedin-ads/animations-1](https://library.revenuagency.io/linkedin-ads/animations-1)
 - **Rubik's Cube** — [https://library.revenuagency.io/linkedin-ads/animations-2](https://library.revenuagency.io/linkedin-ads/animations-2)
@@ -354,6 +354,9 @@ Generated: 2026-07-29T14:35:05.703Z
 - **GIF in Message** — [https://library.revenuagency.io/linkedin-ads/animations-5](https://library.revenuagency.io/linkedin-ads/animations-5)
 - **Scroll Through** — [https://library.revenuagency.io/linkedin-ads/animations-6](https://library.revenuagency.io/linkedin-ads/animations-6)
 - **Transformation** — [https://library.revenuagency.io/linkedin-ads/animations-7](https://library.revenuagency.io/linkedin-ads/animations-7)
+- **Before and After** — [https://library.revenuagency.io/linkedin-ads/animations-8](https://library.revenuagency.io/linkedin-ads/animations-8)
+- **Animated Maze** — [https://library.revenuagency.io/linkedin-ads/animations-9](https://library.revenuagency.io/linkedin-ads/animations-9)
+- **Word Search** — [https://library.revenuagency.io/linkedin-ads/animations-10](https://library.revenuagency.io/linkedin-ads/animations-10)
 
 ### Gated Content — 17 examples
 

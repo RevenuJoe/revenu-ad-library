@@ -1604,6 +1604,9 @@ window.ADS = [
   { image: "GIF in Message 2.webp",  title: "GIF in Message",   formula: "", tag: "Animation", category: "animations", priority: { problem: 20 },                         platform: "linkedin" },
   { image: "Scroll Through.webp",    title: "Scroll Through",   formula: "", tag: "Animation", category: "animations", priority: { animations: 3, "gated-content": 2 },   platform: "linkedin" },
   { image: "Transformation.webp",    title: "Transformation",   formula: "", tag: "Animation", category: "animations", priority: { product: 6 },                          platform: "linkedin" },
+  { image: "Before and After.webp", title: "Before and After", formula: "", tag: "Animation", category: "animations", platform: "linkedin" },
+  { image: "Animated Maze.webp",    title: "Animated Maze",    formula: "", tag: "Animation", category: "animations", platform: "linkedin" },
+  { image: "Word Search.webp",      title: "Word Search",      formula: "", tag: "Animation", category: "animations", platform: "linkedin" },
   // ====================== ChatGPT Ads ======================
   // ---------- ChatGPT — The Playbook ----------
   { image: "30 of ChatGPT users are mobile Make sure youre page Is ready.webp", title: "Mobile-Ready Pages", formula: "30% of ChatGPT users are on mobile, make sure your landing page is ready", tag: "Playbook", category: "playbook", platform: "chatgpt" },

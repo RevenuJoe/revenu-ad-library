@@ -1,7 +1,7 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-07-29T14:35:05.694Z",
-  "total": 551,
+  "generated": "2026-07-30T20:27:09.606Z",
+  "total": 554,
   "platforms": {
     "linkedin": {
       "label": "LinkedIn Ads",
@@ -5663,6 +5663,39 @@
       "image": "Transformation.webp",
       "url": "https://library.revenuagency.io/linkedin-ads/animations-7",
       "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Animations/Transformation.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "animations",
+      "id": 8,
+      "title": "Before and After",
+      "formula": "",
+      "tag": "Animation",
+      "image": "Before and After.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/animations-8",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Animations/Before and After.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "animations",
+      "id": 9,
+      "title": "Animated Maze",
+      "formula": "",
+      "tag": "Animation",
+      "image": "Animated Maze.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/animations-9",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Animations/Animated Maze.webp"
+    },
+    {
+      "platform": "linkedin",
+      "category": "animations",
+      "id": 10,
+      "title": "Word Search",
+      "formula": "",
+      "tag": "Animation",
+      "image": "Word Search.webp",
+      "url": "https://library.revenuagency.io/linkedin-ads/animations-10",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Animations/Word Search.webp"
     },
     {
       "platform": "chatgpt",
