@@ -1,6 +1,6 @@
 {
   "site": "https://library.revenuagency.io",
-  "generated": "2026-08-11T07:57:27.019Z",
+  "generated": "2026-08-11T08:09:03.996Z",
   "total": 569,
   "platforms": {
     "linkedin": {
@@ -4786,57 +4786,57 @@
     },
     {
       "platform": "linkedin",
-      "category": "problem",
-      "id": 86,
+      "category": "product",
+      "id": 48,
       "title": "Dominos",
       "formula": "",
-      "tag": "Problem",
+      "tag": "Product",
       "image": "Dominos.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/problem-86",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/Dominos.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-48",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Dominos.webp"
     },
     {
       "platform": "linkedin",
-      "category": "problem",
-      "id": 87,
+      "category": "product",
+      "id": 49,
       "title": "Text Message",
       "formula": "",
-      "tag": "Problem",
+      "tag": "Product",
       "image": "Text Message.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/problem-87",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/Text Message.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-49",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Text Message.webp"
     },
     {
       "platform": "linkedin",
-      "category": "problem",
-      "id": 88,
+      "category": "product",
+      "id": 50,
       "title": "Old Script",
       "formula": "",
-      "tag": "Problem",
+      "tag": "Product",
       "image": "Old Script.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/problem-88",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/Old Script.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-50",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Old Script.webp"
     },
     {
       "platform": "linkedin",
-      "category": "problem",
-      "id": 89,
+      "category": "product",
+      "id": 51,
       "title": "ChatGPT",
       "formula": "",
-      "tag": "Problem",
+      "tag": "Product",
       "image": "ChatGPT.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/problem-89",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/ChatGPT.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-51",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/ChatGPT.webp"
     },
     {
       "platform": "linkedin",
       "category": "problem",
-      "id": 90,
+      "id": 86,
       "title": "Journey",
       "formula": "",
       "tag": "Problem",
       "image": "Journey.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/problem-90",
+      "url": "https://library.revenuagency.io/linkedin-ads/problem-86",
       "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/Journey.webp"
     },
     {
@@ -5292,47 +5292,47 @@
     },
     {
       "platform": "linkedin",
-      "category": "conversion",
-      "id": 25,
+      "category": "product",
+      "id": 52,
       "title": "Billboard",
       "formula": "",
-      "tag": "Conversion",
+      "tag": "Product",
       "image": "Billboard.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/conversion-25",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Billboard.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-52",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Billboard.webp"
     },
     {
       "platform": "linkedin",
-      "category": "conversion",
-      "id": 26,
+      "category": "product",
+      "id": 53,
       "title": "Tick List",
       "formula": "",
-      "tag": "Conversion",
+      "tag": "Product",
       "image": "Tick List.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/conversion-26",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Tick List.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-53",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Tick List.webp"
     },
     {
       "platform": "linkedin",
-      "category": "conversion",
-      "id": 27,
+      "category": "problem",
+      "id": 87,
       "title": "Castle of Features",
       "formula": "",
-      "tag": "Conversion",
+      "tag": "Problem",
       "image": "Castle of Features.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/conversion-27",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Castle of Features.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/problem-87",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Problem/Castle of Features.webp"
     },
     {
       "platform": "linkedin",
-      "category": "conversion",
-      "id": 28,
+      "category": "product",
+      "id": 54,
       "title": "Story Messages",
       "formula": "",
-      "tag": "Conversion",
+      "tag": "Product",
       "image": "Story Messages.webp",
-      "url": "https://library.revenuagency.io/linkedin-ads/conversion-28",
-      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Conversion/Story Messages.webp"
+      "url": "https://library.revenuagency.io/linkedin-ads/product-54",
+      "imageUrl": "https://library.revenuagency.io/images/LinkedIn Ads/Product/Story Messages.webp"
     },
     {
       "platform": "linkedin",

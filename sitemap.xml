@@ -3587,46 +3587,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/conversion-25</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Conversion/Billboard.webp</image:loc>
-      <image:title>Billboard — Conversion LinkedIn Ads example</image:title>
-      <image:caption>Billboard: a conversion linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/conversion-26</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Conversion/Tick%20List.webp</image:loc>
-      <image:title>Tick List — Conversion LinkedIn Ads example</image:title>
-      <image:caption>Tick List: a conversion linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/conversion-27</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Conversion/Castle%20of%20Features.webp</image:loc>
-      <image:title>Castle of Features — Conversion LinkedIn Ads example</image:title>
-      <image:caption>Castle of Features: a conversion linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/conversion-28</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Conversion/Story%20Messages.webp</image:loc>
-      <image:title>Story Messages — Conversion LinkedIn Ads example</image:title>
-      <image:caption>Story Messages: a conversion linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://library.revenuagency.io/linkedin-ads/conversion-3</loc>
     <lastmod>2026-08-11</lastmod>
     <priority>0.6</priority>
@@ -5291,9 +5251,9 @@
     <lastmod>2026-08-11</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Dominos.webp</image:loc>
-      <image:title>Dominos — Problem LinkedIn Ads example</image:title>
-      <image:caption>Dominos: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Journey.webp</image:loc>
+      <image:title>Journey — Problem LinkedIn Ads example</image:title>
+      <image:caption>Journey: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
     </image:image>
   </url>
   <url>
@@ -5301,29 +5261,9 @@
     <lastmod>2026-08-11</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Text%20Message.webp</image:loc>
-      <image:title>Text Message — Problem LinkedIn Ads example</image:title>
-      <image:caption>Text Message: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/problem-88</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Old%20Script.webp</image:loc>
-      <image:title>Old Script — Problem LinkedIn Ads example</image:title>
-      <image:caption>Old Script: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/problem-89</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/ChatGPT.webp</image:loc>
-      <image:title>ChatGPT — Problem LinkedIn Ads example</image:title>
-      <image:caption>ChatGPT: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Castle%20of%20Features.webp</image:loc>
+      <image:title>Castle of Features — Problem LinkedIn Ads example</image:title>
+      <image:caption>Castle of Features: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
     </image:image>
   </url>
   <url>
@@ -5334,16 +5274,6 @@
       <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Problem%209.webp</image:loc>
       <image:title>Word Search 2 — Problem LinkedIn Ads example</image:title>
       <image:caption>Word Search 2: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://library.revenuagency.io/linkedin-ads/problem-90</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Problem/Journey.webp</image:loc>
-      <image:title>Journey — Problem LinkedIn Ads example</image:title>
-      <image:caption>Journey: a problem linkedin ads example from the Revenu Ad Library.</image:caption>
     </image:image>
   </url>
   <url>
@@ -5772,6 +5702,26 @@
     </image:image>
   </url>
   <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-48</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Dominos.webp</image:loc>
+      <image:title>Dominos — Product LinkedIn Ads example</image:title>
+      <image:caption>Dominos: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-49</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Text%20Message.webp</image:loc>
+      <image:title>Text Message — Product LinkedIn Ads example</image:title>
+      <image:caption>Text Message: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://library.revenuagency.io/linkedin-ads/product-5</loc>
     <lastmod>2026-08-11</lastmod>
     <priority>0.6</priority>
@@ -5779,6 +5729,56 @@
       <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Product%205.webp</image:loc>
       <image:title>Platform Blocks — Product LinkedIn Ads example</image:title>
       <image:caption>Platform Blocks: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-50</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Old%20Script.webp</image:loc>
+      <image:title>Old Script — Product LinkedIn Ads example</image:title>
+      <image:caption>Old Script: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-51</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/ChatGPT.webp</image:loc>
+      <image:title>ChatGPT — Product LinkedIn Ads example</image:title>
+      <image:caption>ChatGPT: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-52</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Billboard.webp</image:loc>
+      <image:title>Billboard — Product LinkedIn Ads example</image:title>
+      <image:caption>Billboard: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-53</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Tick%20List.webp</image:loc>
+      <image:title>Tick List — Product LinkedIn Ads example</image:title>
+      <image:caption>Tick List: a product linkedin ads example from the Revenu Ad Library.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://library.revenuagency.io/linkedin-ads/product-54</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://library.revenuagency.io/images/LinkedIn%20Ads/Product/Story%20Messages.webp</image:loc>
+      <image:title>Story Messages — Product LinkedIn Ads example</image:title>
+      <image:caption>Story Messages: a product linkedin ads example from the Revenu Ad Library.</image:caption>
     </image:image>
   </url>
   <url>
