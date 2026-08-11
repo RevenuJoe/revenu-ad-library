@@ -4,8 +4,8 @@
 > Each entry includes the formula name and a direct URL to view it.
 
 Site: https://library.revenuagency.io
-Total entries: 554
-Generated: 2026-07-30T20:29:53.622Z
+Total entries: 569
+Generated: 2026-08-11T07:57:27.027Z
 
 ## Google Ads (158 examples)
 
@@ -179,7 +179,7 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Tell a Good Story** (Problem · Solution · Benefit) — [https://library.revenuagency.io/google-ads/playbook-6](https://library.revenuagency.io/google-ads/playbook-6)
 - **The Formulas** (The playbook for ads that convert) — [https://library.revenuagency.io/google-ads/playbook-7](https://library.revenuagency.io/google-ads/playbook-7)
 
-## LinkedIn Ads (233 examples)
+## LinkedIn Ads (248 examples)
 
 ### The Playbook — 29 examples
 
@@ -213,7 +213,7 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Grab Their Attention** (Lead with something powerful to open the ad) — [https://library.revenuagency.io/linkedin-ads/playbook-28](https://library.revenuagency.io/linkedin-ads/playbook-28)
 - **Be Extreme, Tap Pain, Offer Free** (Three angles that get convo ads opened) — [https://library.revenuagency.io/linkedin-ads/playbook-29](https://library.revenuagency.io/linkedin-ads/playbook-29)
 
-### Problem — 85 examples
+### Problem — 90 examples
 
 - **Mascot Message** — [https://library.revenuagency.io/linkedin-ads/problem-1](https://library.revenuagency.io/linkedin-ads/problem-1)
 - **Broken Message** — [https://library.revenuagency.io/linkedin-ads/problem-2](https://library.revenuagency.io/linkedin-ads/problem-2)
@@ -300,8 +300,13 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Pokemon** — [https://library.revenuagency.io/linkedin-ads/problem-83](https://library.revenuagency.io/linkedin-ads/problem-83)
 - **Change My Mind** — [https://library.revenuagency.io/linkedin-ads/problem-84](https://library.revenuagency.io/linkedin-ads/problem-84)
 - **From This To This** — [https://library.revenuagency.io/linkedin-ads/problem-85](https://library.revenuagency.io/linkedin-ads/problem-85)
+- **Dominos** — [https://library.revenuagency.io/linkedin-ads/problem-86](https://library.revenuagency.io/linkedin-ads/problem-86)
+- **Text Message** — [https://library.revenuagency.io/linkedin-ads/problem-87](https://library.revenuagency.io/linkedin-ads/problem-87)
+- **Old Script** — [https://library.revenuagency.io/linkedin-ads/problem-88](https://library.revenuagency.io/linkedin-ads/problem-88)
+- **ChatGPT** — [https://library.revenuagency.io/linkedin-ads/problem-89](https://library.revenuagency.io/linkedin-ads/problem-89)
+- **Journey** — [https://library.revenuagency.io/linkedin-ads/problem-90](https://library.revenuagency.io/linkedin-ads/problem-90)
 
-### Product — 41 examples
+### Product — 47 examples
 
 - **Step by Step** — [https://library.revenuagency.io/linkedin-ads/product-1](https://library.revenuagency.io/linkedin-ads/product-1)
 - **Platform Icons** — [https://library.revenuagency.io/linkedin-ads/product-2](https://library.revenuagency.io/linkedin-ads/product-2)
@@ -344,6 +349,12 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Billboard Keys** — [https://library.revenuagency.io/linkedin-ads/product-39](https://library.revenuagency.io/linkedin-ads/product-39)
 - **From This To This** — [https://library.revenuagency.io/linkedin-ads/product-40](https://library.revenuagency.io/linkedin-ads/product-40)
 - **Step By Step** — [https://library.revenuagency.io/linkedin-ads/product-41](https://library.revenuagency.io/linkedin-ads/product-41)
+- **Video Game** — [https://library.revenuagency.io/linkedin-ads/product-42](https://library.revenuagency.io/linkedin-ads/product-42)
+- **Calendar** — [https://library.revenuagency.io/linkedin-ads/product-43](https://library.revenuagency.io/linkedin-ads/product-43)
+- **Deck of Cards** — [https://library.revenuagency.io/linkedin-ads/product-44](https://library.revenuagency.io/linkedin-ads/product-44)
+- **Not Quite** — [https://library.revenuagency.io/linkedin-ads/product-45](https://library.revenuagency.io/linkedin-ads/product-45)
+- **Mona Lisa** — [https://library.revenuagency.io/linkedin-ads/product-46](https://library.revenuagency.io/linkedin-ads/product-46)
+- **Screenshots** — [https://library.revenuagency.io/linkedin-ads/product-47](https://library.revenuagency.io/linkedin-ads/product-47)
 
 ### Animations — 10 examples
 
@@ -378,7 +389,7 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Chart** — [https://library.revenuagency.io/linkedin-ads/gated-content-16](https://library.revenuagency.io/linkedin-ads/gated-content-16)
 - **Infographic** — [https://library.revenuagency.io/linkedin-ads/gated-content-17](https://library.revenuagency.io/linkedin-ads/gated-content-17)
 
-### Conversion — 24 examples
+### Conversion — 28 examples
 
 - **Demo Slides** — [https://library.revenuagency.io/linkedin-ads/conversion-1](https://library.revenuagency.io/linkedin-ads/conversion-1)
 - **3 Step Trial** — [https://library.revenuagency.io/linkedin-ads/conversion-2](https://library.revenuagency.io/linkedin-ads/conversion-2)
@@ -404,6 +415,10 @@ Generated: 2026-07-30T20:29:53.622Z
 - **Audit Offer** — [https://library.revenuagency.io/linkedin-ads/conversion-22](https://library.revenuagency.io/linkedin-ads/conversion-22)
 - **AirBnB Gift Card** — [https://library.revenuagency.io/linkedin-ads/conversion-23](https://library.revenuagency.io/linkedin-ads/conversion-23)
 - **Message Snake** — [https://library.revenuagency.io/linkedin-ads/conversion-24](https://library.revenuagency.io/linkedin-ads/conversion-24)
+- **Billboard** — [https://library.revenuagency.io/linkedin-ads/conversion-25](https://library.revenuagency.io/linkedin-ads/conversion-25)
+- **Tick List** — [https://library.revenuagency.io/linkedin-ads/conversion-26](https://library.revenuagency.io/linkedin-ads/conversion-26)
+- **Castle of Features** — [https://library.revenuagency.io/linkedin-ads/conversion-27](https://library.revenuagency.io/linkedin-ads/conversion-27)
+- **Story Messages** — [https://library.revenuagency.io/linkedin-ads/conversion-28](https://library.revenuagency.io/linkedin-ads/conversion-28)
 
 ### Conversation Ads — 27 examples
 

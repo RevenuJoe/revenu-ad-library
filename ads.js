@@ -1316,6 +1316,12 @@ window.ADS = [
   { image: "Billboard Keys.webp", title: "Billboard Keys", formula: "", tag: "Product", category: "product", platform: "linkedin" },
   { image: "From This To This.webp", title: "From This To This", formula: "", tag: "Product", category: "product", platform: "linkedin" },
   { image: "Step By Step.webp", title: "Step By Step", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Video Game.webp", title: "Video Game", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Calendar.webp", title: "Calendar", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Deck of Cards.webp", title: "Deck of Cards", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Not Quite.webp", title: "Not Quite", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Mona Lisa.webp", title: "Mona Lisa", formula: "", tag: "Product", category: "product", platform: "linkedin" },
+  { image: "Screenshots.webp", title: "Screenshots", formula: "", tag: "Product", category: "product", platform: "linkedin" },
   {
     image: "Gift card.webp",
     title: "Gift Card",
@@ -1508,6 +1514,11 @@ window.ADS = [
   { image: "Problem 83.webp", title: "Pokemon", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "Problem 84.webp", title: "Change My Mind", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
   { image: "From This To This.webp", title: "From This To This", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Dominos.webp", title: "Dominos", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Text Message.webp", title: "Text Message", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Old Script.webp", title: "Old Script", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "ChatGPT.webp", title: "ChatGPT", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
+  { image: "Journey.webp", title: "Journey", formula: "", tag: "Problem", category: "problem", platform: "linkedin" },
 
   // ---------- LinkedIn — Gated Content ----------
   { image: "Gated 1.webp",  title: "Ebook Highlights",   formula: "", tag: "Gated Content", category: "gated-content", platform: "linkedin" },
@@ -1553,6 +1564,10 @@ window.ADS = [
   { image: "Conversion 22.webp", title: "Audit Offer",        formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Conversion 23.webp", title: "AirBnB Gift Card",   formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
   { image: "Message Snake.webp", title: "Message Snake", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Billboard.webp", title: "Billboard", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Tick List.webp", title: "Tick List", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Castle of Features.webp", title: "Castle of Features", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
+  { image: "Story Messages.webp", title: "Story Messages", formula: "", tag: "Conversion", category: "conversion", platform: "linkedin" },
 
   // ---------- LinkedIn — Conversation Ads ----------,
   { image: "Convo 1.webp",  title: "AirPods",             formula: "", tag: "Conversation Ads", category: "convo-ads", priority: { all: 6 }, platform: "linkedin" },
